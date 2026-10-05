@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Invitación al matrimonio de Deivis Bonillo y Maynelim Fajardo. Acompáñanos en este día tan especial." />
+  <title>Deivis &amp; Maynelim — Nuestra Boda</title>
+
+  <!-- Favicon SVG con monograma D|M -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+
+  <!-- Google Fonts: Playfair Display (serif), Great Vibes (script), Montserrat (sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles/main.css" />
+
+  <!-- Marcar JS habilitado antes del render para evitar FOUC -->
+  <script>document.documentElement.classList.add('js-enabled');</script>
+</head>
+<body>
+  <!-- ========================================================== -->
+  <!-- HERO PRINCIPAL                                              -->
+  <!-- ========================================================== -->
+  <header class="hero" id="inicio">
+    <!-- Decoración floral esquinas -->
+    <div class="floral-corner floral-tl" aria-hidden="true"></div>
+    <div class="floral-corner floral-tr" aria-hidden="true"></div>
+    <div class="floral-corner floral-bl" aria-hidden="true"></div>
+    <div class="floral-corner floral-br" aria-hidden="true"></div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <p class="hero-pretitle">Together with their families</p>
+
+      <h1 class="hero-names">
+        <span class="name">Deivis</span>
+        <span class="ampersand">&amp;</span>
+        <span class="name">Maynelim</span>
+      </h1>
+
+      <div class="hero-divider">
+        <span class="line"></span>
+        <span class="seal">
+          <svg viewBox="0 0 80 80" class="seal-svg" aria-hidden="true">
+            <circle cx="40" cy="40" r="38" class="seal-ring-outer" />
+            <circle cx="40" cy="40" r="32" class="seal-ring-inner" />
+            <text x="40" y="48" text-anchor="middle" class="seal-monogram">D|M</text>
+          </svg>
+        </span>
+        <span class="line"></span>
+      </div>
+
+      <p class="hero-subtitle">INVITE YOU TO CELEBRATE<br>THEIR WEDDING DAY</p>
+
+      <p class="hero-date">Sábado · 12 de Diciembre · 2026<br><span class="hero-time">a las 5:00 PM</span></p>
+
+      <a href="#countdown" class="hero-scroll" aria-label="Desliza hacia abajo">
+        <svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 4v16m0 0l-7-7m7 7l7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ========================================================== -->
+  <!-- CUENTA REGRESIVA                                            -->
+  <!-- ========================================================== -->
+  <section class="countdown-section" id="countdown">
+    <div class="floral-side floral-left" aria-hidden="true"></div>
+    <div class="floral-side floral-right" aria-hidden="true"></div>
+
+    <div class="container">
+      <p class="section-pretitle">Faltan pocos días para</p>
+      <h2 class="section-title script-title">Nuestro Gran Día</h2>
+
+      <div class="countdown" id="countdown-timer">
+        <div class="countdown-item">
+          <span class="count-number" id="days">00</span>
+          <span class="count-label">Días</span>
+        </div>
+        <div class="countdown-divider">:</div>
+        <div class="countdown-item">
+          <span class="count-number" id="hours">00</span>
+          <span class="count-label">Horas</span>
+        </div>
+        <div class="countdown-divider">:</div>
+        <div class="countdown-item">
+          <span class="count-number" id="minutes">00</span>
+          <span class="count-label">Minutos</span>
+        </div>
+        <div class="countdown-divider">:</div>
+        <div class="countdown-item">
+          <span class="count-number" id="seconds">00</span>
+          <span class="count-label">Segundos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- BIENVENIDA / MENSAJE                                        -->
+  <!-- ========================================================== -->
+  <section class="welcome-section" id="bienvenida">
+    <div class="container narrow">
+      <p class="section-pretitle">Con la bendición de Dios y nuestros padres</p>
+      <h2 class="section-title">¡Nos casamos!</h2>
+
+      <p class="welcome-text">
+        Con inmensa alegría queremos compartir con las personas que más amamos
+        el momento más importante de nuestras vidas. Cada paso que hemos dado
+        juntos nos ha traído hasta aquí, y queremos que tú seas testigo de
+        este amor que crece cada día.
+      </p>
+
+      <div class="welcome-signature">
+        <span class="script-name">Deivis &amp; Maynelim</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- NUESTRA HISTORIA                                            -->
+  <!-- ========================================================== -->
+  <section class="story-section" id="historia">
+    <div class="container">
+      <p class="section-pretitle">Nuestra historia</p>
+      <h2 class="section-title script-title">Cómo comenzó todo</h2>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">El primer encuentro</span>
+            <h3 class="timeline-title">Donde todo empezó</h3>
+            <p class="timeline-text">
+              Una tarde cualquiera, en un lugar inesperado, nuestras miradas
+              se cruzaron y supimos que algo especial estaba por comenzar.
+              Desde ese instante, nada volvió a ser igual.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">El primer viaje juntos</span>
+            <h3 class="timeline-title">Aventuras compartidas</h3>
+            <p class="timeline-text">
+              Descubrimos el mundo de la mano y aprendimos que la vida
+              tiene un sabor distinto cuando se comparte. Cada destino fue
+              un capítulo nuevo en nuestra historia.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Nuestro primer hogar</span>
+            <h3 class="timeline-title">Construyendo juntos</h3>
+            <p class="timeline-text">
+              Llegó el momento de empezar nuestro propio camino. Cada rincón
+              de nuestro hogar guarda recuerdos de risas, planes y sueños
+              que poco a poco se han hecho realidad.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">La propuesta</span>
+            <h3 class="timeline-title">El sí que cambió todo</h3>
+            <p class="timeline-text">
+              Con el corazón latiendo fuerte y una sortija en la mano,
+              llegó la pregunta que marcaría para siempre nuestras vidas.
+              Una lágrima, una sonrisa y un "sí" sellaron nuestro compromiso.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot timeline-dot-final"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Para siempre</span>
+            <h3 class="timeline-title">Nuestra boda</h3>
+            <p class="timeline-text">
+              Y ahora, rodeados de las personas que amamos, daremos el gran paso.
+              Este será el comienzo de una nueva aventura, y queremos que seas
+              parte de ella. ¡Nos casamos!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- DETALLES DEL EVENTO                                          -->
+  <!-- ========================================================== -->
+  <section class="details-section" id="detalles">
+    <div class="container">
+      <p class="section-pretitle">Detalles del evento</p>
+      <h2 class="section-title script-title">Acompáñanos</h2>
+
+      <div class="details-grid">
+        <!-- Ceremonia -->
+        <article class="details-card">
+          <div class="details-icon">
+            <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M32 8l4 8h-8l4-8z" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 28h40v28H12z" stroke-linejoin="round"/>
+              <path d="M32 28v28M12 28l20-20 20 20" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="32" cy="42" r="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="details-title">Ceremonia</h3>
+          <p class="details-time">5:00 PM</p>
+          <p class="details-place">Iglesia San Rafael Arcángel</p>
+          <p class="details-address">Av. Principal #123, Caracas, Venezuela</p>
+          <a href="#" class="details-link" target="_blank" rel="noopener">Ver ubicación →</a>
+        </article>
+
+        <!-- Recepción -->
+        <article class="details-card">
+          <div class="details-icon">
+            <svg viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8 28h48l-4 28H12L8 28z" stroke-linejoin="round"/>
+              <path d="M24 28V16a8 8 0 0116 0v12" stroke-linecap="round"/>
+              <path d="M24 36v12M40 36v12" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="details-title">Recepción</h3>
+          <p class="details-time">7:00 PM</p>
+          <p class="details-place">Salón Jardín Real</p>
+          <p class="details-address">Carretera Sur, Km 12, Caracas, Venezuela</p>
+          <a href="#" class="details-link" target="_blank" rel="noopener">Ver ubicación →</a>
+        </article>
+      </div>
+
+      <!-- Dress code -->
+      <div class="dress-code">
+        <p class="dress-code-title">Dress Code</p>
+        <p class="dress-code-text">Etiqueta obligatoria · Mujeres: largo · Caballeros: traje oscuro</p>
+        <p class="dress-code-note">Colores sugeridos: tonos dusty blue, sage green, champán y blanco</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- GALERÍA                                                    -->
+  <!-- ========================================================== -->
+  <section class="gallery-section" id="galeria">
+    <div class="container">
+      <p class="section-pretitle">Momentos</p>
+      <h2 class="section-title script-title">Nuestra galería</h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80')">
+          <div class="gallery-overlay"><span>Nosotros</span></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80')">
+          <div class="gallery-overlay"><span>Para siempre</span></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1511285564829-80945275fece?w=600&q=80')">
+          <div class="gallery-overlay"><span>El gran día</span></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=80')">
+          <div class="gallery-overlay"><span>Juntos</span></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1525258946800-98cfd641d0de?w=600&q=80')">
+          <div class="gallery-overlay"><span>Amor</span></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80')">
+          <div class="gallery-overlay"><span>Felices</span></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80')">
+          <div class="gallery-overlay"><span>Bendición</span></div>
+        </div>
+        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80')">
+          <div class="gallery-overlay"><span>Detalles</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- RSVP                                                       -->
+  <!-- ========================================================== -->
+  <section class="rsvp-section" id="rsvp">
+    <div class="container narrow">
+      <p class="section-pretitle">Confirma tu asistencia</p>
+      <h2 class="section-title script-title">¡Esperamos por ti!</h2>
+
+      <p class="rsvp-intro">
+        Por favor confirma tu asistencia antes del <strong>30 de Noviembre de 2026</strong>.
+        Tu presencia es el mejor regalo que podemos recibir.
+      </p>
+
+      <form id="rsvp-form" class="rsvp-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre y apellido" required />
+          </div>
+        </div>
+
+        <div class="form-row form-row-2">
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+58 412 1234567" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>¿Asistirás a nuestra boda?</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="asistencia" value="si" required />
+                <span>¡Sí, ahí estaré! 😊</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="asistencia" value="no" required />
+                <span>Lamentablemente no podré 😢</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row form-row-2" id="acompanantes-row" style="display:none;">
+          <div class="form-group">
+            <label for="acompanantes">Número de acompañantes</label>
+            <select id="acompanantes" name="acompanantes">
+              <option value="0">Solo yo</option>
+              <option value="1">1 acompañante</option>
+              <option value="2">2 acompañantes</option>
+              <option value="3">3 acompañantes</option>
+              <option value="4">4 acompañantes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="menu">Preferencia de menú</label>
+            <select id="menu" name="menu">
+              <option value="tradicional">Tradicional</option>
+              <option value="vegetariano">Vegetariano</option>
+              <option value="vegano">Vegano</option>
+              <option value="celiaco">Sin gluten</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cancion">¿Qué canción no puede faltar en la fiesta?</label>
+            <input type="text" id="cancion" name="cancion" placeholder="Nombre de la canción y artista" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mensaje">Mensaje para los novios (opcional)</label>
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Tus buenos deseos..."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <span>Confirmar asistencia</span>
+        </button>
+
+        <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- REGALOS / LUNA DE MIEL                                      -->
+  <!-- ========================================================== -->
+  <section class="gift-section" id="regalos">
+    <div class="container narrow">
+      <p class="section-pretitle">Mesa de regalos</p>
+      <h2 class="section-title script-title">Tu presencia es el mejor regalo</h2>
+
+      <p class="gift-text">
+        El mayor regalo que podemos recibir es compartir contigo este día tan especial.
+        Sin embargo, si deseas tener un detalle con nosotros, hemos habilitado las siguientes opciones:
+      </p>
+
+      <div class="gift-grid">
+        <div class="gift-card">
+          <div class="gift-icon">
+            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M16 24h32v32H16zM16 24l-8-8h12l4 8M48 24l8-8H44l-4 8M32 24v32M32 24l-8-8M32 24l8-8"/>
+            </svg>
+          </div>
+          <h3 class="gift-title">Luna de miel</h3>
+          <p class="gift-text-small">
+            Estamos ahorrando para nuestra luna de miel. Cualquier contribución
+            será un sueño hecho realidad.
+          </p>
+          <p class="gift-bank">
+            <strong>Cuenta:</strong> 0102-XXXX-XX-XXXXXXXX<br>
+            <strong>Titular:</strong> Deivis Bonillo &amp; Maynelim Fajardo<br>
+            <strong>Banco:</strong> Banesco
+          </p>
+        </div>
+
+        <div class="gift-card">
+          <div class="gift-icon">
+            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8 16h48v36H8zM8 16l8-8h32l8 8M20 32h24M32 24v16"/>
+            </svg>
+          </div>
+          <h3 class="gift-title">Lista de regalos</h3>
+          <p class="gift-text-small">
+            Hemos preparado una lista con regalos para nuestro nuevo hogar.
+            Elige el que más te guste.
+          </p>
+          <a href="#" class="gift-link">Ver lista de regalos →</a>
+        </div>
+
+        <div class="gift-card">
+          <div class="gift-icon">
+            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M32 8l8 16h-16l8-16zM32 56l-8-16h16l-8 16zM8 32l16-8v16L8 32zM56 32l-16 8V24l16 8z"/>
+              <circle cx="32" cy="32" r="6"/>
+            </svg>
+          </div>
+          <h3 class="gift-title">Tarjeta de felicitación</h3>
+          <p class="gift-text-small">
+            Si prefieres hacernos un regalo personal, puedes dejarlo en
+            la mesa de regalos durante el evento.
+          </p>
+          <p class="gift-text-small"><em>"Lo que importa no es el regalo, sino el corazón con el que se entrega."</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- HASHTAGS / DESPEDIDA                                        -->
+  <!-- ========================================================== -->
+  <section class="hashtag-section">
+    <div class="container narrow">
+      <p class="section-pretitle">Comparte con nosotros</p>
+      <h2 class="section-title script-title">#DeivisYMaynelim2026</h2>
+
+      <p class="hashtag-text">
+        Etiqueta tus fotos y momentos del gran día en redes sociales
+        para que podamos revivirlos juntos.
+      </p>
+
+      <div class="hashtag-grid">
+        <span class="hashtag">#DeivisYMaynelim</span>
+        <span class="hashtag">#BodaDM2026</span>
+        <span class="hashtag">#ParaSiempreBonilloFajardo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- FOOTER                                                     -->
+  <!-- ========================================================== -->
+  <footer class="footer">
+    <div class="container narrow">
+      <div class="footer-monogram">D <span class="ampersand">&amp;</span> M</div>
+      <p class="footer-names">Deivis Bonillo &amp; Maynelim Fajardo</p>
+      <p class="footer-date">12 · 12 · 2026</p>
+      <div class="footer-divider">
+        <span class="line"></span>
+        <span class="heart">♥</span>
+        <span class="line"></span>
+      </div>
+      <p class="footer-thanks">
+        We can't wait to celebrate with you!<br>
+        ¡No podemos esperar para celebrar contigo!
+      </p>
+      <p class="footer-credit">Con amor · Hecho con ♥ para nuestro gran día</p>
+    </div>
+  </footer>
+
+  <script src="/scripts/main.js"></script>
+</body>
+</html>
