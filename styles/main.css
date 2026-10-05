@@ -232,28 +232,28 @@ a {
 
 .hero-names .name {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(3rem, 9vw, 5.5rem);
-  background: linear-gradient(180deg, #2C3E50 0%, #4A6278 60%, #C9A961 100%);
+  background: linear-gradient(180deg, #A6863E 0%, #C9A961 30%, #E5C77F 50%, #FBE9B0 70%, #C9A961 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: 0.04em;
   line-height: 1;
   position: relative;
-  text-shadow: 0 2px 8px rgba(201, 169, 97, 0.15);
+  filter: drop-shadow(0 2px 4px rgba(201, 169, 97, 0.4));
 }
 
 .hero-names .ampersand {
   font-family: var(--font-script);
-  font-size: clamp(2.5rem, 7vw, 4rem);
-  background: var(--gold-gradient);
+  font-size: clamp(2.8rem, 7vw, 4.5rem);
+  background: linear-gradient(135deg, #A6863E 0%, #FBE9B0 50%, #A6863E 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1;
   margin: 0.2rem 0;
-  filter: drop-shadow(0 2px 6px rgba(201, 169, 97, 0.3));
+  filter: drop-shadow(0 3px 8px rgba(201, 169, 97, 0.5));
 }
 
 .hero-divider {
@@ -302,10 +302,16 @@ a {
 .seal::before {
   content: '';
   position: absolute;
-  inset: -8px;
+  inset: -12px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 169, 97, 0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 169, 97, 0.4) 0%, rgba(201, 169, 97, 0.15) 40%, transparent 70%);
   z-index: 0;
+  animation: sealGlow 3s ease-in-out infinite;
+}
+
+@keyframes sealGlow {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
 }
 
 .seal-svg {
@@ -313,7 +319,7 @@ a {
   height: 100%;
   position: relative;
   z-index: 1;
-  filter: drop-shadow(0 4px 12px rgba(201, 169, 97, 0.4));
+  filter: drop-shadow(0 4px 16px rgba(201, 169, 97, 0.6));
 }
 
 .seal-ring-outer {
