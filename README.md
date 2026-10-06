@@ -12,8 +12,7 @@ Estilo **romántico clásico-moderno** inspirado en una invitación de referenci
 
 Ritmo de secciones: azul claro (inicio) → azul profundo (cuenta regresiva) →
 amarillo pastel (bienvenida) → azul claro (detalles) → amarillo (galería) →
-azul profundo (RSVP) → azul (versículo, regalos) → amarillo (galería del evento) →
-azul (hashtags) → azul noche (footer). Todo esto vive en `styles/tema.css`.
+azul profundo (RSVP) → azul (versículo, regalos) → azul noche (footer). Todo esto vive en `styles/tema.css`.
 
 Tipografías:
 - **Playfair Display** — serif para títulos y nombres
@@ -72,8 +71,7 @@ boda-deivis-maynelim/
 5. **Galería** — Grid de 6 fotos (placeholder Unsplash, se reemplazan por fotos reales)
 6. **RSVP** — Formulario completo de confirmación con confetti al enviar
 7. **Regalos** — Luna de miel + lista + tarjeta
-8. **Hashtags** — #DeivisYMaynelim2026 + variantes
-9. **Footer** — Monograma, nombres, fecha y agradecimiento
+8. **Footer** — Monograma, nombres, fecha y agradecimiento
 
 ## Personalización rápida
 
