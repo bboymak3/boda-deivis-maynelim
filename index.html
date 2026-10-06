@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/styles/main.css?v=5" />
-  <link rel="stylesheet" href="/styles/invitacion.css?v=5" />
-  <link rel="stylesheet" href="/styles/effects.css?v=5" />
-  <link rel="stylesheet" href="/styles/tema.css?v=5" />
+  <link rel="stylesheet" href="/styles/main.css?v=8" />
+  <link rel="stylesheet" href="/styles/invitacion.css?v=8" />
+  <link rel="stylesheet" href="/styles/effects.css?v=8" />
+  <link rel="stylesheet" href="/styles/tema.css?v=8" />
 
   <!-- Marcar JS habilitado antes del render para evitar FOUC -->
   <script>document.documentElement.classList.add('js-enabled', 'intro-pending');</script>
@@ -229,7 +229,7 @@
 
             <p class="invite-sub">Invite you to celebrate<br>their wedding day</p>
 
-            <div class="invite-ornament" aria-hidden="true"><span></span><i>♥</i><span></span></div>
+            <div class="invite-ornament" aria-hidden="true"><span></span><i><svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.2 5.3 3.1 1.7-1.9 3.2-3.1 5.3-3.1 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg></i><span></span></div>
 
             <div class="invite-date">
               <span class="invite-weekday">Sábado</span>
@@ -257,11 +257,11 @@
                 </span>
                 <span class="circle-label">Confirmar<br>asistencia</span>
               </a>
-              <a href="#historia" class="circle-btn">
+              <a href="#galeria" class="circle-btn">
                 <span class="circle-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="M12 17.2s-2.6-1.6-2.6-3.3a1.3 1.3 0 012.6-.4 1.3 1.3 0 012.6.4c0 1.7-2.6 3.3-2.6 3.3z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.6-2.5h6.8L17 8h3a1 1 0 011 1v9a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13" r="3.6"/></svg>
                 </span>
-                <span class="circle-label">Nuestra<br>historia</span>
+                <span class="circle-label">Nuestra<br>galería</span>
               </a>
               <a href="#regalos" class="circle-btn">
                 <span class="circle-icon">
@@ -272,7 +272,7 @@
             </nav>
 
             <p class="invite-closing">¡No podemos esperar para celebrar contigo!</p>
-            <span class="invite-heart" aria-hidden="true">♥</span>
+            <span class="invite-heart" aria-hidden="true"><svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.2 5.3 3.1 1.7-1.9 3.2-3.1 5.3-3.1 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg></span>
           </div>
           <div class="invite-wash" aria-hidden="true"></div>
         </article>
@@ -336,83 +336,6 @@
 
       <div class="welcome-signature">
         <span class="script-name">Deivis &amp; Maynelim</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================== -->
-  <!-- NUESTRA HISTORIA                                            -->
-  <!-- ========================================================== -->
-  <section class="story-section" id="historia">
-    <div class="container">
-      <p class="section-pretitle">Nuestra historia</p>
-      <h2 class="section-title script-title">Cómo comenzó todo</h2>
-
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">El primer encuentro</span>
-            <h3 class="timeline-title">Donde todo empezó</h3>
-            <p class="timeline-text">
-              Una tarde cualquiera, en un lugar inesperado, nuestras miradas
-              se cruzaron y supimos que algo especial estaba por comenzar.
-              Desde ese instante, nada volvió a ser igual.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">El primer viaje juntos</span>
-            <h3 class="timeline-title">Aventuras compartidas</h3>
-            <p class="timeline-text">
-              Descubrimos el mundo de la mano y aprendimos que la vida
-              tiene un sabor distinto cuando se comparte. Cada destino fue
-              un capítulo nuevo en nuestra historia.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Nuestro primer hogar</span>
-            <h3 class="timeline-title">Construyendo juntos</h3>
-            <p class="timeline-text">
-              Llegó el momento de empezar nuestro propio camino. Cada rincón
-              de nuestro hogar guarda recuerdos de risas, planes y sueños
-              que poco a poco se han hecho realidad.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">La propuesta</span>
-            <h3 class="timeline-title">El sí que cambió todo</h3>
-            <p class="timeline-text">
-              Con el corazón latiendo fuerte y una sortija en la mano,
-              llegó la pregunta que marcaría para siempre nuestras vidas.
-              Una lágrima, una sonrisa y un "sí" sellaron nuestro compromiso.
-            </p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot timeline-dot-final"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Para siempre</span>
-            <h3 class="timeline-title">Nuestra boda</h3>
-            <p class="timeline-text">
-              Y ahora, rodeados de las personas que amamos, daremos el gran paso.
-              Este será el comienzo de una nueva aventura, y queremos que seas
-              parte de ella. ¡Nos casamos!
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -525,7 +448,6 @@
 
       <p class="rsvp-intro">
         Por favor confirma tu asistencia antes del <strong>30 de Noviembre de 2026</strong>.
-        Tu presencia es el mejor regalo que podemos recibir.
       </p>
 
       <form id="rsvp-form" class="rsvp-form" novalidate>
@@ -682,110 +604,49 @@
   <section class="gift-section" id="regalos">
     <div class="container narrow">
       <p class="section-pretitle">Mesa de regalos</p>
-      <h2 class="section-title script-title">Tu presencia es el mejor regalo</h2>
+      <h2 class="section-title script-title">Nuestro regalo soñado</h2>
 
       <p class="gift-text">
-        El mayor regalo que podemos recibir es compartir contigo este día tan especial.
-        Sin embargo, si deseas tener un detalle con nosotros, hemos habilitado las siguientes opciones:
+        Si deseas hacernos un regalo, nuestra opción preferida es <strong>USDT</strong>.
+        ¡Nos ayudará a cumplir el sueño de nuestra luna de miel!
       </p>
 
-      <div class="gift-grid">
-        <div class="gift-card featured">
-          <div class="gift-icon">
-            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M16 24h32v32H16zM16 24l-8-8h12l4 8M48 24l8-8H44l-4 8M32 24v32M32 24l-8-8M32 24l8-8"/>
-            </svg>
-          </div>
-          <h3 class="gift-title">Luna de miel</h3>
-          <p class="gift-text-small">
-            Estamos ahorrando para nuestra luna de miel. Cualquier contribución
-            será un sueño hecho realidad.
-          </p>
-          <div class="gift-bank">
-            <strong>💵 Pago Móvil:</strong> 0412-1234567<br>
-            <strong>👤 Titular:</strong> Maynelim Fajardo<br>
-            <strong>🏦 Banco:</strong> Banesco<br>
-            <strong>🔐 Cédula:</strong> V-XX.XXX.XXX
-          </div>
-          <div class="gift-bank" style="margin-top: 0.6rem; border-left-color: var(--sage);">
-            <strong>🪙 Binance (USDT):</strong><br>
-            <span style="word-break: break-all; font-size: 0.78rem;">Fajardomaynelim.lv@gmail.com</span><br>
-            <em style="font-size: 0.75rem; color: var(--gray-text);">Red BNB Smart Chain (BEP20)</em>
-          </div>
-          <a href="/donaciones" class="gift-link" style="margin-top: 1rem; display: inline-block;">
-            Ver todas las opciones de donación →
-          </a>
+      <!-- USDT: opción principal -->
+      <article class="usdt-card fx-frame">
+        <span class="usdt-badge">★ Opción preferida</span>
+        <div class="usdt-logo" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30"/><path d="M18 18h28v8H36v5.2c7 .5 12 2 12 3.8s-5 3.3-12 3.8V50h-8V38.8c-7-.5-12-2-12-3.8s5-3.3 12-3.8V26H18z M28 33.3c-4.6.3-7.6 1-7.6 1.7s3 1.4 7.6 1.7v-3.4zm8 0v3.4c4.6-.3 7.6-1 7.6-1.7s-3-1.4-7.6-1.7z" fill-rule="evenodd"/></svg>
+        </div>
+        <h3 class="usdt-title">USDT · Binance</h3>
+        <p class="usdt-subtitle">Envíalo desde tu app de Binance al correo:</p>
+
+        <div class="usdt-copy">
+          <span class="usdt-email" id="usdt-email">Fajardomaynelim.lv@gmail.com</span>
+          <button type="button" class="usdt-copy-btn fx-btn" data-copy-text="Fajardomaynelim.lv@gmail.com">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 011-1h10"/></svg>
+            <span>Copiar</span>
+          </button>
         </div>
 
-        <div class="gift-card">
-          <div class="gift-icon">
-            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M8 16h48v36H8zM8 16l8-8h32l8 8M20 32h24M32 24v16"/>
-            </svg>
-          </div>
-          <h3 class="gift-title">Lista de regalos</h3>
-          <p class="gift-text-small">
-            Hemos preparado una lista con regalos para nuestro nuevo hogar.
-            Elige el que más te guste.
-          </p>
-          <a href="#" class="gift-link">Ver lista de regalos →</a>
+        <dl class="usdt-data">
+          <div><dt>Moneda</dt><dd>USDT</dd></div>
+          <div><dt>Red</dt><dd>BNB Smart Chain (BEP20)</dd></div>
+          <div><dt>Titular</dt><dd>Maynelim Fajardo</dd></div>
+        </dl>
+
+        <p class="usdt-note">Envía siempre <strong>USDT</strong> por la red <strong>BEP20</strong>. Otras redes pueden ocasionar pérdida de fondos.</p>
+      </article>
+
+      <!-- Otra opción -->
+      <div class="gift-card gift-secondary">
+        <h3 class="gift-title">También por Pago Móvil</h3>
+        <div class="gift-bank">
+          <strong>💵 Pago Móvil:</strong> 0412-1234567<br>
+          <strong>👤 Titular:</strong> Maynelim Fajardo<br>
+          <strong>🏦 Banco:</strong> Banesco<br>
+          <strong>🔐 Cédula:</strong> V-XX.XXX.XXX
         </div>
-
-        <div class="gift-card">
-          <div class="gift-icon">
-            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M32 8l8 16h-16l8-16zM32 56l-8-16h16l-8 16zM8 32l16-8v16L8 32zM56 32l-16 8V24l16 8z"/>
-              <circle cx="32" cy="32" r="6"/>
-            </svg>
-          </div>
-          <h3 class="gift-title">Tarjeta de felicitación</h3>
-          <p class="gift-text-small">
-            Si prefieres hacernos un regalo personal, puedes dejarlo en
-            la mesa de regalos durante el evento.
-          </p>
-          <p class="gift-text-small"><em>"Lo que importa no es el regalo, sino el corazón con el que se entrega."</em></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================== -->
-  <!-- BOTÓN GALERÍA DE FOTOS DEL EVENTO                           -->
-  <!-- ========================================================== -->
-  <section class="gallery-cta-section" id="galeria-evento">
-    <div class="container narrow">
-      <h2 class="gallery-cta-title">Galería de fotos del evento</h2>
-      <p class="gallery-cta-text">
-        Después de la boda, subiremos aquí todas las fotos del gran día para que las disfrutes y descargues.
-      </p>
-      <a href="/galeria" class="btn-gallery">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-        Ver galería de fotos
-      </a>
-    </div>
-  </section>
-
-  <!-- ========================================================== -->
-  <!-- HASHTAGS / DESPEDIDA                                        -->
-  <!-- ========================================================== -->
-  <section class="hashtag-section">
-    <div class="container narrow">
-      <p class="section-pretitle">Comparte con nosotros</p>
-      <h2 class="section-title script-title">#DeivisYMaynelim2026</h2>
-
-      <p class="hashtag-text">
-        Etiqueta tus fotos y momentos del gran día en redes sociales
-        para que podamos revivirlos juntos.
-      </p>
-
-      <div class="hashtag-grid">
-        <span class="hashtag">#DeivisYMaynelim</span>
-        <span class="hashtag">#BodaDM2026</span>
-        <span class="hashtag">#ParaSiempreBonilloFajardo</span>
+        <a href="/donaciones" class="gift-link">Ver todas las opciones →</a>
       </div>
     </div>
   </section>
@@ -800,14 +661,14 @@
       <p class="footer-date">12 · 12 · 2026</p>
       <div class="footer-divider">
         <span class="line"></span>
-        <span class="heart">♥</span>
+        <span class="heart"><svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.2 5.3 3.1 1.7-1.9 3.2-3.1 5.3-3.1 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg></span>
         <span class="line"></span>
       </div>
       <p class="footer-thanks">
         We can't wait to celebrate with you!<br>
         ¡No podemos esperar para celebrar contigo!
       </p>
-      <p class="footer-credit">Con amor · Hecho con ♥ para nuestro gran día</p>
+      <p class="footer-credit">Con amor · Hecho con <span class="heart-inline"><svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.2 5.3 3.1 1.7-1.9 3.2-3.1 5.3-3.1 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg></span> para nuestro gran día</p>
     </div>
   </footer>
 
@@ -820,13 +681,13 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
       <span>Inicio</span>
     </a>
-    <a href="#historia" class="bottom-nav-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-8-4.6-8-10.2A4.3 4.3 0 0112 7.3a4.3 4.3 0 018 2.5C20 15.4 12 20 12 20z"/></svg>
-      <span>Historia</span>
-    </a>
     <a href="#detalles" class="bottom-nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>
       <span>Detalles</span>
+    </a>
+    <a href="#galeria" class="bottom-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5L5 20"/></svg>
+      <span>Galería</span>
     </a>
     <a href="#rsvp" class="bottom-nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
@@ -854,7 +715,7 @@
   <canvas class="fx-particles" id="fx-particles" aria-hidden="true"></canvas>
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <script src="/scripts/main.js?v=5"></script>
-  <script src="/scripts/effects.js?v=5"></script>
+  <script src="/scripts/main.js?v=8"></script>
+  <script src="/scripts/effects.js?v=8"></script>
 </body>
 </html>
