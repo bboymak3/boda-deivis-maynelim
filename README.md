@@ -4,12 +4,16 @@ Landing page de invitación al matrimonio de **Deivis Bonillo & Maynelim Fajardo
 
 ## Diseño
 
-Estilo **romántico clásico-moderno** inspirado en invitación de boda con paleta *dusty blue*:
-- Color primario: dusty blue `#6B8CAE` y deep `#4A6278`
-- Color texto: navy `#2C3E50`
-- Color fondo: cream `#FAFAF7` / `#F5F1EB`
-- Color acento: champán `#C9B99A`
-- Color flora: sage `#C5D5C5`
+Estilo **romántico clásico-moderno** inspirado en una invitación de referencia.
+**El azul domina y el amarillo pastel es el segundo color**, con acentos dorados:
+- Azules: `#2A4060` (noche) · `#3F5A78` (profundo) · `#6E8DB0` (dusty blue) · `#C9D9EA` · `#EEF3F9`
+- Amarillo pastel: `#F7E7A6` · `#FBEFC4` · `#FDF6D8`
+- Dorado: `#C9A352` / `#E8C878` (bordes animados, sello, números)
+
+Ritmo de secciones: azul claro (inicio) → azul profundo (cuenta regresiva) →
+amarillo pastel (bienvenida) → azul claro (historia, detalles) → amarillo (galería) →
+azul profundo (RSVP) → azul (versículo, regalos) → amarillo (galería del evento) →
+azul (hashtags) → azul noche (footer). Todo esto vive en `styles/tema.css`.
 
 Tipografías:
 - **Playfair Display** — serif para títulos y nombres
@@ -34,7 +38,10 @@ Rediseño inspirado en una invitación de referencia (dusty blue + crema + dorad
 - **Música de fondo** — ver `assets/musica/LEEME.md`.
 - Respeta "reducir movimiento" del sistema.
 
-Archivos: `styles/invitacion.css`, `styles/effects.css`, `scripts/effects.js`.
+Archivos: `styles/invitacion.css`, `styles/effects.css`, `styles/tema.css`, `scripts/effects.js`.
+
+> Al cambiar CSS/JS sube el número `?v=` en los `<link>`/`<script>` de los HTML:
+> `_headers` guarda esos archivos en caché por un año.
 
 ## Estructura
 

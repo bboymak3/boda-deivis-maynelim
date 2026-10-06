@@ -6,9 +6,9 @@
 
 :root {
   /* Colores — paleta de la invitación de referencia:
-     dusty blue + crema + blanco + acentos dorados.
-     (Los nombres antiguos pastel-yellow/sage/vanilla se conservan para no
-     romper estilos existentes, pero ahora apuntan a tonos azul-crema.) */
+     AZUL dominante + AMARILLO PASTEL como segundo color + acentos dorados.
+     (sage/cream se conservan por compatibilidad y apuntan a tonos azul-crema.
+     Las variables --blue-* y --yellow-* están en styles/tema.css.) */
   --dusty-blue: #6E8DB0;
   --dusty-blue-deep: #3F5A78;
   --dusty-blue-light: #A9BFD6;
@@ -19,10 +19,10 @@
   --sage: #8FA9C4;
   --sage-light: #C9D7E6;
   --sage-pale: #EAF0F6;
-  --pastel-yellow: #DCE6F1;
-  --pastel-yellow-deep: #BFD0E3;
-  --pastel-yellow-pale: #EEF3F8;
-  --vanilla: #F3EFE7;
+  --pastel-yellow: #F7E7A6;
+  --pastel-yellow-deep: #EDD487;
+  --pastel-yellow-pale: #FDF6D8;
+  --vanilla: #FBF3D9;
   --rose-dust: #E9E4DE;
   --rose-dust-deep: #D8D0C6;
   --terracotta-soft: #B89B5E;

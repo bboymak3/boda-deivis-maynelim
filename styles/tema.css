@@ -1,0 +1,451 @@
+/* ============================================================
+   TEMA — AZUL DOMINANTE + AMARILLO PASTEL
+   Se carga después de main.css / invitacion.css y define el color
+   de cada sección. Ritmo: azul claro → azul profundo → amarillo
+   pastel → azul… para que el azul domine y el amarillo ilumine.
+   ============================================================ */
+
+:root {
+  --blue-900: #2A4060;
+  --blue-800: #34507A;
+  --blue-700: #3F5A78;
+  --blue-600: #4F6F96;
+  --blue-500: #6E8DB0;
+  --blue-300: #A9BFD6;
+  --blue-200: #C9D9EA;
+  --blue-100: #E1EAF4;
+  --blue-50: #EEF3F9;
+
+  --yellow-400: #F2DC8C;
+  --yellow-300: #F7E7A6;
+  --yellow-200: #FBEFC4;
+  --yellow-100: #FDF6D8;
+  --yellow-50: #FFFBEB;
+
+  /* Las capas que usaban "crema" pasan a azul muy claro */
+  --cream: var(--blue-50);
+  --cream-warm: var(--blue-100);
+  --sage-pale: var(--blue-100);
+}
+
+body {
+  background: var(--blue-50);
+  color: var(--blue-900);
+}
+
+::selection {
+  background: var(--yellow-300);
+  color: var(--blue-900);
+}
+
+/* ============================================================
+   TÍTULOS
+   ============================================================ */
+.section-title { color: var(--blue-800); }
+.section-pretitle { color: var(--blue-600); }
+
+/* Fondo oscuro → títulos en amarillo pastel + dorado */
+.on-dark .section-pretitle,
+.countdown-section .section-pretitle,
+.rsvp-section .section-pretitle {
+  color: var(--yellow-300);
+}
+
+.countdown-section .section-pretitle::before,
+.countdown-section .section-pretitle::after,
+.rsvp-section .section-pretitle::before,
+.rsvp-section .section-pretitle::after {
+  background: linear-gradient(90deg, transparent, var(--yellow-300));
+}
+
+.countdown-section .script-title,
+.rsvp-section .script-title {
+  background-image: linear-gradient(135deg, #E8C878 0%, #FFF6D0 25%, #F7E7A6 50%, #FFF6D0 75%, #E8C878 100%);
+  filter: drop-shadow(0 2px 10px rgba(247, 231, 166, 0.45));
+}
+
+/* ============================================================
+   HERO / SOBRE — más azul, con luz amarilla pastel
+   ============================================================ */
+.hero-invite {
+  background:
+    radial-gradient(ellipse at 18% 12%, rgba(253, 246, 216, 0.95) 0%, rgba(253, 246, 216, 0) 45%),
+    radial-gradient(ellipse at 85% 95%, rgba(79, 111, 150, 0.45) 0%, transparent 55%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 6px),
+    linear-gradient(165deg, #E1EAF4 0%, #C9D9EA 45%, #A9BFD6 100%);
+}
+
+.js-enabled .intro {
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(253, 246, 216, 0.95) 0%, rgba(253, 246, 216, 0) 55%),
+    linear-gradient(165deg, #E1EAF4 0%, #C9D9EA 55%, #A9BFD6 100%);
+}
+
+.env-letter {
+  background: linear-gradient(180deg, var(--yellow-50) 0%, var(--yellow-100) 100%);
+}
+
+/* Papel de la invitación con un toque amarillo pastel */
+.invite-card {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF5 55%, var(--yellow-50) 100%);
+}
+
+.invite-photo::after {
+  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.75) 70%, #FFFFFF 100%);
+}
+
+.invite-wash {
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 100%, rgba(110, 141, 176, 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 85% 100%, rgba(79, 111, 150, 0.45) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 30% at 50% 100%, rgba(247, 231, 166, 0.55) 0%, transparent 70%);
+}
+
+.invite-ornament i,
+.invite-heart { color: var(--blue-500); }
+
+/* Botones circulares: azul con aro dorado y brillo amarillo pastel */
+.circle-icon {
+  background: radial-gradient(circle at 35% 28%, #93AFCE 0%, var(--blue-500) 50%, var(--blue-700) 100%);
+}
+
+.circle-btn:hover .circle-icon,
+.circle-btn:focus-visible .circle-icon {
+  box-shadow: 0 14px 26px rgba(42, 64, 96, 0.35), 0 0 22px rgba(247, 231, 166, 0.9);
+}
+
+.circle-btn:hover .circle-label { color: var(--blue-700); }
+
+/* ============================================================
+   CUENTA REGRESIVA — azul profundo, números dorados
+   ============================================================ */
+.countdown-section {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(247, 231, 166, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 120%, rgba(110, 141, 176, 0.5) 0%, transparent 60%),
+    linear-gradient(180deg, var(--blue-700) 0%, var(--blue-900) 100%);
+}
+
+.countdown-item {
+  background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.05) 100%);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(10, 20, 40, 0.35), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+.count-number {
+  background-image: linear-gradient(135deg, #E8C878 0%, #FFF6D0 30%, #F7E7A6 50%, #FFF6D0 70%, #E8C878 100%);
+  filter: drop-shadow(0 2px 8px rgba(247, 231, 166, 0.35));
+}
+
+.count-label { color: var(--yellow-200); }
+.countdown-divider { color: var(--yellow-300); opacity: 0.8; }
+
+/* ============================================================
+   BIENVENIDA — amarillo pastel
+   ============================================================ */
+.welcome-section {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.8) 0%, transparent 60%),
+    linear-gradient(180deg, var(--yellow-100) 0%, var(--yellow-200) 100%);
+}
+
+.welcome-text { color: var(--blue-800); }
+
+/* ============================================================
+   HISTORIA — azul claro, línea de tiempo azul y dorada
+   ============================================================ */
+.story-section {
+  background: linear-gradient(180deg, var(--blue-50) 0%, var(--blue-100) 100%);
+}
+
+.timeline::before {
+  background: linear-gradient(180deg, transparent 0%, var(--blue-500) 10%, var(--gold-light) 50%, var(--blue-500) 90%, transparent 100%);
+}
+
+.timeline-dot {
+  background: var(--yellow-200);
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 4px var(--blue-50), 0 0 0 5px var(--blue-300), 0 0 12px rgba(247, 231, 166, 0.8);
+}
+
+.timeline-content {
+  border-left-color: var(--blue-500);
+}
+
+.timeline-date { color: var(--blue-600); }
+.timeline-title { color: var(--blue-800); }
+
+/* ============================================================
+   DETALLES — azul medio, tarjetas blancas
+   ============================================================ */
+.details-section {
+  background:
+    radial-gradient(ellipse at 80% 10%, rgba(253, 246, 216, 0.7) 0%, transparent 45%),
+    linear-gradient(180deg, var(--blue-100) 0%, var(--blue-200) 100%);
+}
+
+.details-icon { color: var(--blue-500); }
+.details-title { color: var(--blue-800); }
+.details-place { color: var(--blue-700); }
+
+.dress-code {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 16px;
+  border: 1px solid rgba(201, 163, 82, 0.4);
+}
+
+/* ============================================================
+   GALERÍA — amarillo pastel
+   ============================================================ */
+.gallery-section {
+  background: linear-gradient(180deg, var(--yellow-100) 0%, var(--yellow-50) 100%);
+}
+
+.gallery-overlay {
+  background: linear-gradient(180deg, transparent 45%, rgba(42, 64, 96, 0.78) 100%);
+}
+
+.gallery-overlay span { color: var(--yellow-100); }
+
+/* ============================================================
+   RSVP — azul profundo, formulario blanco
+   ============================================================ */
+.rsvp-section {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(247, 231, 166, 0.18) 0%, transparent 55%),
+    linear-gradient(180deg, var(--blue-800) 0%, var(--blue-600) 100%);
+}
+
+.rsvp-intro { color: var(--blue-100); }
+.rsvp-intro strong { color: var(--yellow-300); }
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px rgba(247, 231, 166, 0.6);
+}
+
+.radio-option:has(input:checked) {
+  border-color: var(--blue-500);
+  background: var(--yellow-50);
+  box-shadow: 0 0 0 2px rgba(247, 231, 166, 0.8);
+}
+
+/* Botón principal: azul con marco dorado y texto amarillo pastel */
+.btn-submit {
+  background: linear-gradient(135deg, var(--blue-700) 0%, var(--blue-500) 50%, var(--blue-700) 100%);
+  background-size: 200% 100%;
+  color: var(--yellow-100);
+  border-radius: 40px;
+  box-shadow: 0 0 0 1.5px var(--gold-light), 0 6px 20px rgba(42, 64, 96, 0.35);
+}
+
+.btn-submit:hover {
+  box-shadow: 0 0 0 2px var(--yellow-300), 0 10px 28px rgba(42, 64, 96, 0.45);
+}
+
+.btn-submit.fx-btn {
+  animation: btnGlowBlue 2.8s ease-in-out infinite;
+}
+
+@keyframes btnGlowBlue {
+  0%, 100% { box-shadow: 0 0 0 1.5px var(--gold-light), 0 6px 20px rgba(42, 64, 96, 0.35); }
+  50% { box-shadow: 0 0 0 2px #FFF1C4, 0 6px 26px rgba(42, 64, 96, 0.4), 0 0 24px rgba(247, 231, 166, 0.7); }
+}
+
+/* ============================================================
+   VERSÍCULO — azul medio, tarjeta amarillo pastel
+   ============================================================ */
+.verse-section {
+  background: linear-gradient(180deg, var(--blue-200) 0%, var(--blue-300) 100%);
+}
+
+.verse-card {
+  background: linear-gradient(180deg, var(--yellow-50) 0%, var(--yellow-100) 100%);
+}
+
+.verse-text { color: var(--blue-800); }
+
+/* ============================================================
+   REGALOS — azul muy claro
+   ============================================================ */
+.gift-section {
+  background: linear-gradient(180deg, var(--blue-50) 0%, var(--blue-100) 100%);
+}
+
+.gift-icon { color: var(--blue-500); }
+.gift-title { color: var(--blue-800); }
+
+.gift-card.featured {
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--yellow-100) 100%);
+}
+
+.gift-bank {
+  background: var(--yellow-50);
+  border-left-color: var(--blue-500);
+}
+
+.gift-bank strong { color: var(--blue-700); }
+
+/* ============================================================
+   GALERÍA DEL EVENTO — amarillo pastel + botón azul
+   ============================================================ */
+.gallery-cta-section {
+  background:
+    radial-gradient(ellipse at center, rgba(255,255,255,0.7) 0%, transparent 70%),
+    linear-gradient(180deg, var(--yellow-200) 0%, var(--yellow-100) 100%);
+}
+
+.gallery-cta-text { color: var(--blue-800); }
+
+.btn-gallery {
+  color: var(--yellow-100);
+  background: linear-gradient(135deg, var(--blue-700) 0%, var(--blue-500) 100%);
+  border-color: var(--gold-light);
+}
+
+.btn-gallery:hover {
+  color: var(--blue-900);
+  background: linear-gradient(135deg, var(--yellow-300) 0%, var(--yellow-100) 100%);
+}
+
+/* ============================================================
+   HASHTAGS — azul dusty
+   ============================================================ */
+.hashtag-section {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(247, 231, 166, 0.25) 0%, transparent 55%),
+    linear-gradient(180deg, var(--blue-500) 0%, var(--blue-600) 100%);
+}
+
+.hashtag-section .section-pretitle { color: var(--yellow-200); }
+.hashtag-section .section-pretitle::before,
+.hashtag-section .section-pretitle::after {
+  background: linear-gradient(90deg, transparent, var(--yellow-200));
+}
+
+.hashtag-section .script-title {
+  background-image: linear-gradient(135deg, #E8C878 0%, #FFF6D0 25%, #F7E7A6 50%, #FFF6D0 75%, #E8C878 100%);
+}
+
+.hashtag-text { color: var(--blue-50); }
+
+.hashtag {
+  color: var(--blue-800);
+  background: var(--yellow-100);
+  border-color: var(--gold-light);
+}
+
+.hashtag:hover {
+  color: var(--blue-900);
+  background: var(--yellow-300);
+}
+
+/* ============================================================
+   FOOTER — azul noche con amarillo pastel
+   ============================================================ */
+.footer {
+  background:
+    radial-gradient(ellipse at top, rgba(247, 231, 166, 0.18) 0%, transparent 60%),
+    linear-gradient(180deg, var(--blue-800) 0%, var(--blue-900) 100%);
+}
+
+.footer-date,
+.footer-credit,
+.footer-divider .heart { color: var(--yellow-300); }
+
+/* ============================================================
+   BARRA INFERIOR Y MÚSICA
+   ============================================================ */
+.bottom-nav {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.bottom-nav-item { color: var(--blue-600); }
+.bottom-nav-item.is-active { color: var(--blue-900); }
+.bottom-nav-item.is-active svg { color: var(--blue-700); filter: drop-shadow(0 0 4px rgba(247, 231, 166, 1)); }
+
+.bottom-nav-indicator {
+  background: linear-gradient(180deg, var(--yellow-200) 0%, var(--yellow-300) 100%);
+  box-shadow: inset 0 0 0 1px rgba(201, 163, 82, 0.6), 0 0 14px rgba(247, 231, 166, 0.7);
+}
+
+.music-bars i {
+  background: linear-gradient(180deg, #FFFBEB, var(--yellow-300));
+}
+
+/* ============================================================
+   PÁGINAS SECUNDARIAS (galería y donaciones)
+   ============================================================ */
+.page-header,
+.donations-hero {
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(253, 246, 216, 0.9) 0%, transparent 45%),
+    linear-gradient(180deg, var(--blue-100) 0%, var(--blue-200) 100%);
+}
+
+.gallery-event-section,
+.donations-section {
+  background: linear-gradient(180deg, var(--blue-50) 0%, var(--yellow-50) 100%);
+}
+
+.donation-card { border-color: var(--blue-300); }
+.donation-card.featured {
+  border-color: var(--gold-light);
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--yellow-100) 100%);
+}
+
+.donation-badge {
+  background: linear-gradient(135deg, var(--blue-700), var(--blue-500));
+  color: var(--yellow-100);
+}
+
+.back-link { color: var(--blue-700); }
+.back-link:hover { color: var(--gold-deep); }
+
+/* ============================================================
+   LEGIBILIDAD — títulos cursivos en fondos claros
+   Azul profundo con un destello dorado que recorre el texto
+   (en fondos oscuros siguen en amarillo pastel/dorado).
+   ============================================================ */
+.script-title,
+.script-name,
+.verse-ref,
+.gallery-cta-title,
+.verse-text strong {
+  background-image: linear-gradient(110deg,
+    var(--blue-800) 0%, var(--blue-600) 35%, #C9A352 46%, #F2DC8C 50%, #C9A352 54%,
+    var(--blue-600) 65%, var(--blue-800) 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.6));
+}
+
+.dress-code-title { color: var(--blue-700); -webkit-text-fill-color: currentColor; background: none; }
+
+/* "and" del hero y el 12: dorado más profundo para que destaque sobre el papel */
+.invite-and,
+.invite-date-day {
+  background-image: linear-gradient(135deg, #8A6A22 0%, #C9A352 30%, #E8C878 50%, #C9A352 70%, #8A6A22 100%);
+}
+
+/* Fondos oscuros: mantener dorado/amarillo pastel (más específico que lo anterior) */
+.countdown-section .script-title,
+.rsvp-section .script-title,
+.hashtag-section .script-title {
+  background-image: linear-gradient(110deg, #E8C878 0%, #FFF6D0 30%, #FFFFFF 50%, #FFF6D0 70%, #E8C878 100%);
+  filter: drop-shadow(0 2px 10px rgba(247, 231, 166, 0.45));
+}
+
+/* Cuenta regresiva en una sola fila en celulares */
+@media (max-width: 480px) {
+  .countdown-section { padding-left: 10px; padding-right: 10px; }
+  .countdown-section .container { padding: 0 6px; }
+  .countdown { gap: 6px; flex-wrap: nowrap; }
+  .countdown-item { min-width: 0; flex: 1 1 0; max-width: 84px; padding: 0.9rem 0.3rem; }
+  .count-label { font-size: 0.52rem; letter-spacing: 0.12em; }
+}

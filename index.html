@@ -14,9 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/styles/main.css?v=2" />
-  <link rel="stylesheet" href="/styles/invitacion.css?v=2" />
-  <link rel="stylesheet" href="/styles/effects.css?v=2" />
+  <link rel="stylesheet" href="/styles/main.css?v=3" />
+  <link rel="stylesheet" href="/styles/invitacion.css?v=3" />
+  <link rel="stylesheet" href="/styles/effects.css?v=3" />
+  <link rel="stylesheet" href="/styles/tema.css?v=3" />
 
   <!-- Marcar JS habilitado antes del render para evitar FOUC -->
   <script>document.documentElement.classList.add('js-enabled', 'intro-pending');</script>
@@ -31,6 +32,10 @@
       <radialGradient id="g-rose-white" cx="50%" cy="45%" r="62%">
         <stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#EEF2F6"/>
         <stop offset="1" stop-color="#C6D2DF"/>
+      </radialGradient>
+      <radialGradient id="g-rose-yellow" cx="50%" cy="45%" r="62%">
+        <stop offset="0" stop-color="#FFFDF2"/><stop offset=".45" stop-color="#FBEFC4"/>
+        <stop offset=".85" stop-color="#F1D98E"/><stop offset="1" stop-color="#D9BC6A"/>
       </radialGradient>
       <linearGradient id="g-leaf" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#B5C6D3"/><stop offset="1" stop-color="#6F8B9F"/>
@@ -81,6 +86,27 @@
         </g>
         <path d="M-5 1 q5 -9 10 0 q-4 6 -9 1 q3 -3 5 -1" fill="none" stroke="#4E6E92" stroke-opacity=".55" stroke-width="1.2" stroke-linecap="round"/>
       </symbol>
+    <symbol id="sym-rose-yellow" viewBox="-50 -50 100 100">
+        <g fill="url(#g-rose-yellow)" stroke="#B8994A" stroke-opacity=".25" stroke-width=".6">
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(0)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(51)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(103)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(154)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(206)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(257)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(309)" opacity=".85"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(20)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(92)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(164)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(236)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(308)" opacity=".9"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(315)"/>
+        </g>
+        <path d="M-5 1 q5 -9 10 0 q-4 6 -9 1 q3 -3 5 -1" fill="none" stroke="#4E6E92" stroke-opacity=".55" stroke-width="1.2" stroke-linecap="round"/>
+      </symbol>
       <symbol id="sym-sprig" viewBox="0 0 160 60">
         <path d="M2 50 Q70 20 158 8" fill="none" stroke="#7F97A8" stroke-width="1.4"/>
         <g fill="url(#g-leaf)" opacity=".9">
@@ -102,37 +128,37 @@
           <use href="#sym-sprig" x="0" y="0" width="160" height="60" transform="translate(10 90) rotate(-10) scale(0.8)"/>
           <use href="#sym-sprig" x="0" y="0" width="160" height="60" transform="translate(200 120) rotate(-40) scale(0.85)"/>
           <path d="M70 40 q8 -18 20 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
-          <circle cx="78" cy="26" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="85" cy="20" r="3.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="92" cy="14" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
+          <circle cx="78" cy="26" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="85" cy="20" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="92" cy="14" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
           <path d="M140 110 q12 -24 22 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
-          <circle cx="148" cy="96" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="155" cy="90" r="3.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="162" cy="84" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
+          <circle cx="148" cy="96" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="155" cy="90" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="162" cy="84" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
           <path d="M30 200 q16 -18 24 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
-          <circle cx="38" cy="186" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="45" cy="180" r="3.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="52" cy="174" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
+          <circle cx="38" cy="186" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="45" cy="180" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="52" cy="174" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
           <path d="M240 60 q8 -24 26 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
-          <circle cx="248" cy="46" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="255" cy="40" r="3.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="262" cy="34" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
+          <circle cx="248" cy="46" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="255" cy="40" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="262" cy="34" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
           <path d="M260 170 q12 -18 28 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
-          <circle cx="268" cy="156" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="275" cy="150" r="3.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="282" cy="144" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
+          <circle cx="268" cy="156" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="275" cy="150" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="282" cy="144" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
           <path d="M110 30 q16 -24 30 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
-          <circle cx="118" cy="16" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="125" cy="10" r="3.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="132" cy="4" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
+          <circle cx="118" cy="16" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="125" cy="10" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="132" cy="4" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
           <path d="M190 200 q8 -18 32 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
-          <circle cx="198" cy="186" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="205" cy="180" r="3.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
-          <circle cx="212" cy="174" r="2.2" fill="#FFFFFF" stroke="#B9C8D6" stroke-width=".5"/>
+          <circle cx="198" cy="186" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="205" cy="180" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="212" cy="174" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
           <use href="#sym-rose-blue" x="25.0" y="65.0" width="90" height="90"/>
           <use href="#sym-rose-white" x="100.0" y="45.0" width="70" height="70"/>
           <use href="#sym-rose-blue" x="119.0" y="119.0" width="62" height="62"/>
-          <use href="#sym-rose-white" x="5.0" y="35.0" width="50" height="50"/>
+          <use href="#sym-rose-yellow" x="5.0" y="35.0" width="50" height="50"/>
           <use href="#sym-rose-blue" x="183.0" y="73.0" width="44" height="44"/>
           <circle cx="100" cy="170" r="5" fill="#46678C" opacity=".85"/><circle cx="98.5" cy="168.5" r="1.4" fill="#fff" opacity=".6"/>
           <circle cx="185" cy="140" r="5" fill="#46678C" opacity=".85"/><circle cx="183.5" cy="138.5" r="1.4" fill="#fff" opacity=".6"/>
@@ -776,7 +802,7 @@
   <canvas class="fx-particles" id="fx-particles" aria-hidden="true"></canvas>
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <script src="/scripts/main.js?v=2"></script>
-  <script src="/scripts/effects.js?v=2"></script>
+  <script src="/scripts/main.js?v=3"></script>
+  <script src="/scripts/effects.js?v=3"></script>
 </body>
 </html>
