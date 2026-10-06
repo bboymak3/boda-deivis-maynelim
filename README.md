@@ -39,6 +39,8 @@ Rediseño inspirado en una invitación de referencia (dusty blue + crema + dorad
 - **Modal de confirmación RSVP**: valida cada campo (mensaje bajo el campo con error),
   muestra un resumen para revisar (Editar / Sí, confirmar) y luego una pantalla de
   agradecimiento con check animado y confeti.
+- **Confirmaciones por WhatsApp**: al confirmar se abre WhatsApp con la respuesta
+  lista para enviar al número `WHATSAPP_NUMBER` de `scripts/main.js` (+58 414-9851063).
 - Respeta "reducir movimiento" del sistema.
 
 Archivos: `styles/invitacion.css`, `styles/effects.css`, `styles/tema.css`, `scripts/effects.js`.
