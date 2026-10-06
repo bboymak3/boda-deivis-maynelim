@@ -55,65 +55,192 @@
   // ========================================================
   function initRSVPForm() {
     const form = document.getElementById('rsvp-form');
-    const feedback = document.getElementById('form-feedback');
-    const acompanantesRow = document.getElementById('acompanantes-row');
-    const radioSi = form?.querySelector('input[name="asistencia"][value="si"]');
-    const radioNo = form?.querySelector('input[name="asistencia"][value="no"]');
-
     if (!form) return;
 
-    // Mostrar/ocultar acompañantes según respuesta
+    const feedback = document.getElementById('form-feedback');
+    const acompanantesRow = document.getElementById('acompanantes-row');
+    const radios = form.querySelectorAll('input[name="asistencia"]');
+    const modal = document.getElementById('rsvp-modal');
+    const summary = document.getElementById('rsvp-summary');
+    const confirmBtn = document.getElementById('rsvp-confirm');
+    let pending = null; // datos validados esperando confirmación
+
+    // Mostrar acompañantes/menú solo si asistirá
     function toggleAcompanantes() {
-      if (radioSi.checked) {
-        acompanantesRow.style.display = '';
-      } else if (radioNo.checked) {
-        acompanantesRow.style.display = 'none';
-      } else {
-        acompanantesRow.style.display = 'none';
-      }
+      const si = form.querySelector('input[name="asistencia"][value="si"]').checked;
+      acompanantesRow.style.display = si ? '' : 'none';
     }
 
-    form.querySelectorAll('input[name="asistencia"]').forEach(function(radio) {
-      radio.addEventListener('change', toggleAcompanantes);
+    radios.forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        toggleAcompanantes();
+        clearError(form.querySelector('.radio-group'));
+      });
+    });
+
+    // Quitar el error de un campo en cuanto el invitado lo corrige
+    ['nombre', 'email', 'telefono'].forEach(function(name) {
+      form[name].addEventListener('input', function() { clearError(form[name]); });
+    });
+
+    // ------------------------------------------------------
+    // Validación con mensajes bajo cada campo
+    // ------------------------------------------------------
+    function setError(field, msg) {
+      const group = field.closest('.form-group');
+      group.classList.add('has-error');
+      field.setAttribute('aria-invalid', 'true');
+      let note = group.querySelector('.field-error');
+      if (!note) {
+        note = document.createElement('p');
+        note.className = 'field-error';
+        note.id = (field.id || 'asistencia') + '-error';
+        group.appendChild(note);
+      }
+      note.textContent = msg;
+      field.setAttribute('aria-describedby', note.id);
+    }
+
+    function clearError(field) {
+      const group = field.closest('.form-group');
+      if (!group || !group.classList.contains('has-error')) return;
+      group.classList.remove('has-error');
+      field.removeAttribute('aria-invalid');
+      const note = group.querySelector('.field-error');
+      if (note) note.remove();
+    }
+
+    function validate() {
+      const errors = [];
+      const nombre = form.nombre.value.trim().replace(/\s+/g, ' ');
+      const email = form.email.value.trim();
+      const telefono = form.telefono.value.trim();
+      const asistencia = form.querySelector('input[name="asistencia"]:checked');
+
+      [form.nombre, form.email, form.telefono, form.querySelector('.radio-group')].forEach(clearError);
+
+      if (nombre.length < 3) {
+        errors.push([form.nombre, 'Escribe tu nombre completo.']);
+      } else if (nombre.split(' ').length < 2) {
+        errors.push([form.nombre, 'Incluye tu nombre y apellido.']);
+      }
+      if (!isValidEmail(email)) {
+        errors.push([form.email, 'Ingresa un correo válido, por ejemplo: nombre@correo.com']);
+      }
+      if (telefono && telefono.replace(/\D/g, '').length < 7) {
+        errors.push([form.telefono, 'El teléfono parece incompleto.']);
+      }
+      if (!asistencia) {
+        errors.push([form.querySelector('.radio-group'), 'Cuéntanos si podrás asistir.']);
+      }
+
+      errors.forEach(function(err) { setError(err[0], err[1]); });
+
+      if (errors.length) {
+        const first = errors[0][0];
+        first.closest('.form-group').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const focusable = first.matches('input, select, textarea') ? first : first.querySelector('input');
+        if (focusable) setTimeout(function() { focusable.focus({ preventScroll: true }); }, 350);
+        showFeedback(errors.length === 1
+          ? 'Revisa el campo marcado, por favor.'
+          : 'Revisa los ' + errors.length + ' campos marcados, por favor.', true);
+        return null;
+      }
+
+      const si = asistencia.value === 'si';
+      return {
+        nombre: nombre,
+        email: email,
+        telefono: telefono,
+        asistencia: asistencia.value,
+        acompanantes: si ? form.acompanantes.value : '0',
+        acompanantesTexto: si ? form.acompanantes.selectedOptions[0].text : '',
+        menu: si ? form.menu.value : '',
+        menuTexto: si ? form.menu.selectedOptions[0].text : '',
+        cancion: form.cancion.value.trim(),
+        mensaje: form.mensaje.value.trim()
+      };
+    }
+
+    // ------------------------------------------------------
+    // Modal: resumen → confirmar → gracias
+    // ------------------------------------------------------
+    function fillSummary(data) {
+      const rows = [
+        ['Nombre', data.nombre],
+        ['Correo', data.email],
+        ['Teléfono', data.telefono],
+        ['Asistencia', data.asistencia === 'si' ? '¡Sí, ahí estaré! 😊' : 'No podré asistir 😢'],
+        ['Acompañantes', data.acompanantesTexto],
+        ['Menú', data.menuTexto],
+        ['Canción', data.cancion],
+        ['Mensaje', data.mensaje]
+      ];
+      summary.textContent = '';
+      rows.forEach(function(row) {
+        if (!row[1]) return;
+        const wrap = document.createElement('div');
+        wrap.className = 'rsvp-summary-row';
+        const dt = document.createElement('dt');
+        dt.textContent = row[0];
+        const dd = document.createElement('dd');
+        dd.textContent = row[1];
+        if (row[0] === 'Asistencia') dd.className = data.asistencia === 'si' ? 'is-yes' : 'is-no';
+        wrap.appendChild(dt);
+        wrap.appendChild(dd);
+        summary.appendChild(wrap);
+      });
+    }
+
+    function showStep(step) {
+      modal.querySelectorAll('.rsvp-step').forEach(function(el) {
+        el.hidden = el.dataset.step !== step;
+      });
+      modal.dataset.step = step;
+    }
+
+    function openModal() {
+      showStep('review');
+      if (typeof modal.showModal === 'function') modal.showModal();
+      else modal.setAttribute('open', '');
+      document.documentElement.classList.add('modal-open');
+      setTimeout(function() { confirmBtn.focus(); }, 50);
+    }
+
+    function closeModal() {
+      modal.classList.add('is-closing');
+      setTimeout(function() {
+        modal.classList.remove('is-closing');
+        if (typeof modal.close === 'function' && modal.open) modal.close();
+        else modal.removeAttribute('open');
+      }, 250);
+    }
+
+    modal.addEventListener('close', function() {
+      document.documentElement.classList.remove('modal-open');
+      if (modal.dataset.step === 'review') form.nombre.focus({ preventScroll: true });
+    });
+
+    // Cerrar con botones o tocando fuera de la tarjeta
+    modal.addEventListener('click', function(e) {
+      if (e.target.closest('[data-modal-close]') || e.target === modal) closeModal();
     });
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      const data = validate();
+      if (!data) return;
+      feedback.classList.remove('show');
+      pending = data;
+      fillSummary(data);
+      openModal();
+    });
 
-      // Validación simple
-      const nombre = form.nombre.value.trim();
-      const email = form.email.value.trim();
-      const asistencia = form.querySelector('input[name="asistencia"]:checked');
-
-      if (!nombre) {
-        showFeedback('Por favor escribe tu nombre.', true);
-        form.nombre.focus();
-        return;
-      }
-
-      if (!email || !isValidEmail(email)) {
-        showFeedback('Por favor ingresa un correo electrónico válido.', true);
-        form.email.focus();
-        return;
-      }
-
-      if (!asistencia) {
-        showFeedback('Por favor confirma si asistirás.', true);
-        return;
-      }
-
-      // Recoger datos
-      const data = {
-        nombre: nombre,
-        email: email,
-        telefono: form.telefono.value.trim(),
-        asistencia: asistencia.value,
-        acompanantes: form.acompanantes ? form.acompanantes.value : '0',
-        menu: form.menu ? form.menu.value : '',
-        cancion: form.cancion.value.trim(),
-        mensaje: form.mensaje.value.trim(),
-        timestamp: new Date().toISOString()
-      };
+    confirmBtn.addEventListener('click', function() {
+      if (!pending) return;
+      const data = pending;
+      pending = null;
+      data.timestamp = new Date().toISOString();
 
       // Guardar en localStorage como respaldo
       try {
@@ -125,34 +252,35 @@
       // Enviar a Google Sheet vía Formspree-style (placeholder)
       console.log('RSVP:', data);
 
-      // Mensaje de éxito
-      const mensaje = asistencia.value === 'si'
-        ? '¡Gracias ' + nombre.split(' ')[0] + '! Nos emociona saber que estarás ahí. Te esperamos el 12 de Diciembre. ♥'
-        : 'Gracias ' + nombre.split(' ')[0] + ' por avisarnos. Te extrañaremos en este día tan especial. ♥';
+      const primerNombre = data.nombre.split(' ')[0];
+      const si = data.asistencia === 'si';
+      document.getElementById('rsvp-success-title').textContent =
+        si ? '¡Gracias, ' + primerNombre + '!' : 'Gracias, ' + primerNombre;
+      document.getElementById('rsvp-success-text').textContent = si
+        ? 'Nos emociona saber que estarás con nosotros. ¡Te esperamos! ♥'
+        : 'Gracias por avisarnos. Te extrañaremos en este día tan especial. ♥';
 
-      showFeedback(mensaje, false);
+      showStep('success');
+      showFeedback(si
+        ? '¡Asistencia confirmada! Te esperamos el 12 de Diciembre. ♥'
+        : 'Gracias por avisarnos, ' + primerNombre + '. ♥', false, true);
       form.reset();
-      acompanantesRow.style.display = 'none';
-
-      // Confetti simple
-      launchConfetti();
+      toggleAcompanantes();
+      if (si) launchConfetti();
     });
 
-    function showFeedback(msg, isError) {
+    function showFeedback(msg, isError, quiet) {
       feedback.textContent = msg;
       feedback.classList.add('show');
       feedback.classList.toggle('error', isError);
-      feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
+      if (!isError && !quiet) feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
       if (!isError) {
-        setTimeout(function() {
-          feedback.classList.remove('show');
-        }, 8000);
+        setTimeout(function() { feedback.classList.remove('show'); }, 8000);
       }
     }
 
     function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
     }
   }
 
@@ -160,10 +288,12 @@
   // CONFETTI BÁSICO
   // ========================================================
   function launchConfetti() {
-    const colors = ['#6B8CAE', '#C9B99A', '#C5D5C5', '#A7C0D6', '#E6DCC7'];
+    const colors = ['#6E8DB0', '#3F5A78', '#F7E7A6', '#FBEFC4', '#E8C878', '#C9A352'];
     const container = document.createElement('div');
     container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden;';
-    document.body.appendChild(container);
+    // Si el modal está abierto, el confeti va dentro para verse por encima
+    const modal = document.getElementById('rsvp-modal');
+    (modal && modal.open ? modal : document.body).appendChild(container);
 
     for (let i = 0; i < 60; i++) {
       const piece = document.createElement('div');

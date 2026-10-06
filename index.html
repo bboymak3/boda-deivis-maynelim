@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/styles/main.css?v=3" />
-  <link rel="stylesheet" href="/styles/invitacion.css?v=3" />
-  <link rel="stylesheet" href="/styles/effects.css?v=3" />
-  <link rel="stylesheet" href="/styles/tema.css?v=3" />
+  <link rel="stylesheet" href="/styles/main.css?v=4" />
+  <link rel="stylesheet" href="/styles/invitacion.css?v=4" />
+  <link rel="stylesheet" href="/styles/effects.css?v=4" />
+  <link rel="stylesheet" href="/styles/tema.css?v=4" />
 
   <!-- Marcar JS habilitado antes del render para evitar FOUC -->
   <script>document.documentElement.classList.add('js-enabled', 'intro-pending');</script>
@@ -529,16 +529,17 @@
       </p>
 
       <form id="rsvp-form" class="rsvp-form" novalidate>
+        <p class="form-required-note">Los campos con <span aria-hidden="true">*</span> son obligatorios</p>
         <div class="form-row">
           <div class="form-group">
-            <label for="nombre">Nombre completo</label>
+            <label for="nombre">Nombre completo <span class="req" aria-hidden="true">*</span></label>
             <input type="text" id="nombre" name="nombre" placeholder="Tu nombre y apellido" required />
           </div>
         </div>
 
         <div class="form-row form-row-2">
           <div class="form-group">
-            <label for="email">Correo electrónico</label>
+            <label for="email">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
             <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
           </div>
           <div class="form-group">
@@ -549,8 +550,8 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label>¿Asistirás a nuestra boda?</label>
-            <div class="radio-group">
+            <label id="asistencia-label">¿Asistirás a nuestra boda? <span class="req" aria-hidden="true">*</span></label>
+            <div class="radio-group" role="radiogroup" aria-labelledby="asistencia-label">
               <label class="radio-option">
                 <input type="radio" name="asistencia" value="si" required />
                 <span>¡Sí, ahí estaré! 😊</span>
@@ -607,6 +608,49 @@
       </form>
     </div>
   </section>
+
+  <!-- ========================================================== -->
+  <!-- MODAL DE CONFIRMACIÓN RSVP                                  -->
+  <!-- Paso 1: revisar datos · Paso 2: ¡gracias!                   -->
+  <!-- ========================================================== -->
+  <dialog class="rsvp-modal" id="rsvp-modal" aria-labelledby="rsvp-modal-title">
+    <div class="rsvp-modal-card fx-frame">
+      <button type="button" class="rsvp-modal-close" data-modal-close aria-label="Cerrar">&times;</button>
+      <div class="rsvp-modal-scroll">
+
+      <!-- Paso 1: revisión -->
+      <div class="rsvp-step rsvp-step-review" data-step="review">
+        <div class="wax-seal rsvp-modal-seal" aria-hidden="true"><span>D|M</span></div>
+        <p class="rsvp-modal-pretitle">Antes de enviar</p>
+        <h3 class="rsvp-modal-title" id="rsvp-modal-title">Revisa tu confirmación</h3>
+        <p class="rsvp-modal-text">Verifica que tus datos estén correctos.</p>
+        <dl class="rsvp-summary" id="rsvp-summary"></dl>
+        <div class="rsvp-modal-actions">
+          <button type="button" class="rsvp-btn rsvp-btn-ghost" data-modal-close>Editar</button>
+          <button type="button" class="rsvp-btn rsvp-btn-primary fx-btn" id="rsvp-confirm">
+            <span>Sí, confirmar</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Paso 2: éxito -->
+      <div class="rsvp-step rsvp-step-success" data-step="success" hidden>
+        <div class="rsvp-check" aria-hidden="true">
+          <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M15 27l7.5 7.5L38 19"/></svg>
+        </div>
+        <p class="rsvp-modal-pretitle">Confirmación recibida</p>
+        <h3 class="rsvp-modal-title" id="rsvp-success-title">¡Gracias!</h3>
+        <p class="rsvp-modal-text" id="rsvp-success-text"></p>
+        <p class="rsvp-modal-date">Sábado 12 de Diciembre 2026<br>a las 5:00 PM</p>
+        <div class="rsvp-modal-actions">
+          <button type="button" class="rsvp-btn rsvp-btn-primary fx-btn" data-modal-close>
+            <span>Cerrar</span>
+          </button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </dialog>
 
   <!-- ========================================================== -->
   <!-- VERSÍCULO BÍBLICO                                            -->
@@ -802,7 +846,7 @@
   <canvas class="fx-particles" id="fx-particles" aria-hidden="true"></canvas>
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <script src="/scripts/main.js?v=3"></script>
-  <script src="/scripts/effects.js?v=3"></script>
+  <script src="/scripts/main.js?v=4"></script>
+  <script src="/scripts/effects.js?v=4"></script>
 </body>
 </html>
