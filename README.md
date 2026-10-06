@@ -16,6 +16,26 @@ Tipografías:
 - **Great Vibes** — script para "and" y decorativos
 - **Montserrat** — sans-serif para cuerpo de texto
 
+## Capa de animación (v2)
+
+Rediseño inspirado en una invitación de referencia (dusty blue + crema + dorado):
+
+- **Sobre 3D de bienvenida** con sello de cera D|M: al tocar "Abrir invitación" la
+  solapa se abre, sale la carta, estallan destellos dorados y empieza la música.
+- **Tarjeta de invitación** con foto, sello de cera, nombres en 3D y 4 botones
+  circulares animados (Ver lugar · Confirmar asistencia · Nuestra historia · Regalos).
+- **Bordes dorados vivos** en todas las tarjetas: el brillo gira solo y además
+  avanza y se intensifica al desplazar la página; destello diagonal cada vez que
+  una tarjeta entra en pantalla.
+- **Botones animados**: brillo recorriendo, onda dorada al tocar, efecto magnético.
+- **Partículas doradas** con profundidad (parallax) y rastro de destellos con el mouse.
+- **Inclinación 3D** de tarjetas con el mouse (y de la invitación con el giroscopio en Android).
+- **Barra inferior tipo app** que resalta la sección visible.
+- **Música de fondo** — ver `assets/musica/LEEME.md`.
+- Respeta "reducir movimiento" del sistema.
+
+Archivos: `styles/invitacion.css`, `styles/effects.css`, `scripts/effects.js`.
+
 ## Estructura
 
 ```
@@ -55,6 +75,8 @@ Edita `index.html` y busca los siguientes placeholders:
 | `Salón Jardín Real` | Nombre del salón de recepción |
 | `Carretera Sur, Km 12, Caracas, Venezuela` | Dirección recepción |
 | `Cuenta: 0102-XXXX-XX-XXXXXXXX` | Datos bancarios para regalos |
+| Foto en `.invite-photo img` (index.html) | Foto principal de los novios en la tarjeta |
+| `assets/musica/cancion.mp3` | Canción de fondo |
 | Fotos Unsplash en `.gallery-item` | Reemplazar `background-image` por fotos reales |
 | `WEDDING_DATE` en `scripts/main.js` | Fecha/hora del evento (default: 2026-12-12T17:00) |
 
