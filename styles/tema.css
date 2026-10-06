@@ -153,30 +153,6 @@ body {
 .welcome-text { color: var(--blue-800); }
 
 /* ============================================================
-   HISTORIA — azul claro, línea de tiempo azul y dorada
-   ============================================================ */
-.story-section {
-  background: linear-gradient(180deg, var(--blue-50) 0%, var(--blue-100) 100%);
-}
-
-.timeline::before {
-  background: linear-gradient(180deg, transparent 0%, var(--blue-500) 10%, var(--gold-light) 50%, var(--blue-500) 90%, transparent 100%);
-}
-
-.timeline-dot {
-  background: var(--yellow-200);
-  border-color: var(--blue-500);
-  box-shadow: 0 0 0 4px var(--blue-50), 0 0 0 5px var(--blue-300), 0 0 12px rgba(247, 231, 166, 0.8);
-}
-
-.timeline-content {
-  border-left-color: var(--blue-500);
-}
-
-.timeline-date { color: var(--blue-600); }
-.timeline-title { color: var(--blue-800); }
-
-/* ============================================================
    DETALLES — azul medio, tarjetas blancas
    ============================================================ */
 .details-section {
@@ -448,4 +424,40 @@ body {
   .countdown { gap: 6px; flex-wrap: nowrap; }
   .countdown-item { min-width: 0; flex: 1 1 0; max-width: 84px; padding: 0.9rem 0.3rem; }
   .count-label { font-size: 0.52rem; letter-spacing: 0.12em; }
+}
+
+/* ============================================================
+   CORAZONES AMARILLOS
+   SVG en vez del carácter ♥ (que Android pinta como emoji rojo)
+   ============================================================ */
+.heart-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.12em;
+  fill: var(--yellow-400);
+  stroke: #C9A352;
+  stroke-width: 1.2;
+  filter: drop-shadow(0 0 4px rgba(247, 231, 166, 0.9));
+}
+
+.invite-ornament i {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.invite-heart {
+  font-size: 1.05rem;
+}
+
+/* En fondos azul oscuro: amarillo pastel más claro, sin borde */
+.footer .heart-icon {
+  fill: var(--yellow-300);
+  stroke: none;
+  filter: drop-shadow(0 0 6px rgba(247, 231, 166, 0.6));
+}
+
+.footer-divider .heart {
+  font-size: 1.1rem;
+  line-height: 1;
 }

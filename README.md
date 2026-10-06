@@ -11,7 +11,7 @@ Estilo **romántico clásico-moderno** inspirado en una invitación de referenci
 - Dorado: `#C9A352` / `#E8C878` (bordes animados, sello, números)
 
 Ritmo de secciones: azul claro (inicio) → azul profundo (cuenta regresiva) →
-amarillo pastel (bienvenida) → azul claro (historia, detalles) → amarillo (galería) →
+amarillo pastel (bienvenida) → azul claro (detalles) → amarillo (galería) →
 azul profundo (RSVP) → azul (versículo, regalos) → amarillo (galería del evento) →
 azul (hashtags) → azul noche (footer). Todo esto vive en `styles/tema.css`.
 
@@ -27,7 +27,7 @@ Rediseño inspirado en una invitación de referencia (dusty blue + crema + dorad
 - **Sobre 3D de bienvenida** con sello de cera D|M: al tocar "Abrir invitación" la
   solapa se abre, sale la carta, estallan destellos dorados y empieza la música.
 - **Tarjeta de invitación** con foto, sello de cera, nombres en 3D y 4 botones
-  circulares animados (Ver lugar · Confirmar asistencia · Nuestra historia · Regalos).
+  circulares animados (Ver lugar · Confirmar asistencia · Nuestra galería · Regalos).
 - **Bordes dorados vivos** en todas las tarjetas: el brillo gira solo y además
   avanza y se intensifica al desplazar la página; destello diagonal cada vez que
   una tarjeta entra en pantalla.
@@ -65,16 +65,15 @@ boda-deivis-maynelim/
 
 ## Secciones
 
-1. **Hero** — Nombres "Deivis & Maynelim" + sello circular con monograma D|M + fecha
+1. **Hero** — Tarjeta de invitación: foto, sello D|M, nombres, fecha y 4 botones circulares
 2. **Cuenta regresiva** — Días / Horas / Minutos / Segundos al 12-Dic-2026 5:00 PM
 3. **Bienvenida** — Mensaje de los novios
-4. **Historia** — Timeline con 5 hitos (primer encuentro → boda)
-5. **Detalles** — Ceremonia + Recepción + dress code
-6. **Galería** — Grid de 6 fotos (placeholder Unsplash, se reemplazan por fotos reales)
-7. **RSVP** — Formulario completo de confirmación con confetti al enviar
-8. **Regalos** — Luna de miel + lista + tarjeta
-9. **Hashtags** — #DeivisYMaynelim2026 + variantes
-10. **Footer** — Monograma, nombres, fecha y agradecimiento
+4. **Detalles** — Ceremonia + Recepción + dress code
+5. **Galería** — Grid de 6 fotos (placeholder Unsplash, se reemplazan por fotos reales)
+6. **RSVP** — Formulario completo de confirmación con confetti al enviar
+7. **Regalos** — Luna de miel + lista + tarjeta
+8. **Hashtags** — #DeivisYMaynelim2026 + variantes
+9. **Footer** — Monograma, nombres, fecha y agradecimiento
 
 ## Personalización rápida
 

@@ -16,6 +16,10 @@
   // ========================================================
   const WHATSAPP_NUMBER = '584149851063';
 
+  // Corazón dibujado (amarillo por CSS). Se usa en vez del carácter ♥,
+  // que en Android se muestra como emoji rojo.
+  const HEART_SVG = '<svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.2 5.3 3.1 1.7-1.9 3.2-3.1 5.3-3.1 3.7 0 5.8 3.8 4.3 7.2C19.5 16.4 12 21 12 21z"/></svg>';
+
   // ========================================================
   // COUNTDOWN
   // ========================================================
@@ -286,12 +290,15 @@
       const si = data.asistencia === 'si';
       document.getElementById('rsvp-success-title').textContent =
         si ? '¡Gracias, ' + primerNombre + '!' : 'Gracias, ' + primerNombre;
-      document.getElementById('rsvp-success-text').textContent = si
-        ? 'Nos emociona saber que estarás con nosotros. ¡Te esperamos! ♥'
-        : 'Gracias por avisarnos. Te extrañaremos en este día tan especial. ♥';
+      const successText = document.getElementById('rsvp-success-text');
+      successText.textContent = si
+        ? 'Nos emociona saber que estarás con nosotros. ¡Te esperamos! '
+        : 'Gracias por avisarnos. Te extrañaremos en este día tan especial. ';
+      successText.insertAdjacentHTML('beforeend', HEART_SVG);
 
       showStep('success');
-      showFeedback('¡Listo, ' + primerNombre + '! Recuerda tocar "Enviar" en WhatsApp para que tu confirmación nos llegue. ♥', false, true);
+      showFeedback('¡Listo, ' + primerNombre + '! Recuerda tocar "Enviar" en WhatsApp para que tu confirmación nos llegue. ', false, true);
+      feedback.insertAdjacentHTML('beforeend', HEART_SVG);
       form.reset();
       toggleAcompanantes();
       if (si) launchConfetti();
