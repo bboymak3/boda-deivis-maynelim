@@ -70,7 +70,7 @@ boda-deivis-maynelim/
 4. **Detalles** — Ceremonia + Recepción + dress code
 5. **Galería** — Grid de 6 fotos (placeholder Unsplash, se reemplazan por fotos reales)
 6. **RSVP** — Formulario completo de confirmación con confetti al enviar
-7. **Regalos** — Luna de miel + lista + tarjeta
+7. **Regalos** — USDT (Binance) como opción preferida con botón Copiar + Pago Móvil
 8. **Footer** — Monograma, nombres, fecha y agradecimiento
 
 ## Personalización rápida

@@ -412,6 +412,47 @@
   }
 
   // ========================================================
+  // COPIAR DATOS DE PAGO (correo de Binance)
+  // ========================================================
+  function initCopyButtons() {
+    document.querySelectorAll('.usdt-copy-btn').forEach(function(btn) {
+      const label = btn.querySelector('span:not(.fx-btn-shine)') || btn;
+      const original = label.textContent;
+
+      function done(ok) {
+        label.textContent = ok ? '¡Copiado!' : 'Mantén presionado el correo para copiar';
+        btn.classList.toggle('is-copied', ok);
+        setTimeout(function() {
+          label.textContent = original;
+          btn.classList.remove('is-copied');
+        }, 2200);
+      }
+
+      btn.addEventListener('click', function() {
+        const text = btn.getAttribute('data-copy-text');
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function() { done(true); }, function() { done(fallbackCopy(text)); });
+        } else {
+          done(fallbackCopy(text));
+        }
+      });
+    });
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;left:-9999px;top:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) {}
+      ta.remove();
+      return ok;
+    }
+  }
+
+  // ========================================================
   // SMOOTH SCROLL para enlaces internos
   // ========================================================
   function initSmoothScroll() {
@@ -437,6 +478,7 @@
     initRSVPForm();
     initScrollReveal();
     initSmoothScroll();
+    initCopyButtons();
   });
 
 })();

@@ -403,3 +403,191 @@ body {
   font-size: 1.1rem;
   line-height: 1;
 }
+
+/* ============================================================
+   REGALO PRINCIPAL — USDT (Binance)
+   Tarjeta azul profundo con marco dorado: la opción destacada
+   ============================================================ */
+.gift-text strong { color: var(--blue-700); font-weight: 600; }
+
+.usdt-card {
+  position: relative;
+  max-width: 520px;
+  margin: 2.5rem auto 1.5rem;
+  padding: 2.6rem 1.6rem 1.8rem;
+  border-radius: 20px;
+  text-align: center;
+  color: var(--blue-50);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(247, 231, 166, 0.22) 0%, transparent 60%),
+    linear-gradient(160deg, var(--blue-600) 0%, var(--blue-800) 70%, var(--blue-900) 100%);
+  box-shadow: 0 24px 50px rgba(42, 64, 96, 0.35);
+}
+
+.usdt-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  padding: 0.4rem 1.1rem;
+  border-radius: 30px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--blue-900);
+  background: linear-gradient(135deg, #E8C878 0%, #FFF1C4 50%, #E8C878 100%);
+  box-shadow: 0 6px 16px rgba(201, 163, 82, 0.45);
+}
+
+.usdt-logo {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 0.9rem;
+  animation: usdtFloat 4s ease-in-out infinite;
+}
+
+.usdt-logo svg {
+  width: 100%;
+  height: 100%;
+  fill: #FFFFFF;
+  filter: drop-shadow(0 6px 14px rgba(38, 161, 123, 0.5));
+}
+
+.usdt-logo circle { fill: #26A17B; }
+
+@keyframes usdtFloat {
+  0%, 100% { transform: translateY(0) rotateY(0); }
+  50% { transform: translateY(-6px) rotateY(180deg); }
+}
+
+.usdt-title {
+  font-family: var(--font-elegant);
+  font-size: 1.9rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+  margin-bottom: 0.3rem;
+}
+
+.usdt-subtitle {
+  font-size: 0.85rem;
+  color: var(--blue-200);
+  margin-bottom: 1rem;
+}
+
+.usdt-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px dashed rgba(247, 231, 166, 0.6);
+}
+
+.usdt-email {
+  font-size: clamp(0.82rem, 3.9vw, 1rem);
+  font-weight: 500;
+  color: var(--yellow-200);
+  overflow-wrap: anywhere;
+  -webkit-user-select: all;
+  user-select: all;
+}
+
+.usdt-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.6rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-900);
+  background: linear-gradient(135deg, #E8C878 0%, #FFF1C4 50%, #E8C878 100%);
+  box-shadow: 0 6px 16px rgba(201, 163, 82, 0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.usdt-copy-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(201, 163, 82, 0.55); }
+.usdt-copy-btn.is-copied { background: linear-gradient(135deg, #1E9E57, #25D366); color: #fff; }
+
+.usdt-data {
+  display: grid;
+  gap: 0.1rem;
+  text-align: left;
+  margin: 0 auto 1rem;
+  max-width: 360px;
+}
+
+.usdt-data div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(247, 231, 166, 0.2);
+}
+
+.usdt-data div:last-child { border-bottom: none; }
+
+.usdt-data dt {
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-200);
+}
+
+.usdt-data dd {
+  font-size: 0.88rem;
+  color: #FFFFFF;
+  text-align: right;
+}
+
+.usdt-note {
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--blue-200);
+}
+
+.usdt-note strong { color: var(--yellow-300); }
+
+/* Pago Móvil como opción secundaria */
+.gift-secondary {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.gift-secondary .gift-title {
+  font-size: 1.15rem;
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.gift-secondary .gift-link {
+  letter-spacing: 0.12em;
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Etiqueta "Opción preferida" por encima del marco dorado animado */
+.donation-badge {
+  z-index: 6;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .usdt-card { padding-left: 1rem; padding-right: 1rem; }
+  .usdt-copy { padding: 0.9rem 0.4rem; }
+  .usdt-email { font-size: 0.86rem; }
+}

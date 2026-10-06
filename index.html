@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/styles/main.css?v=7" />
-  <link rel="stylesheet" href="/styles/invitacion.css?v=7" />
-  <link rel="stylesheet" href="/styles/effects.css?v=7" />
-  <link rel="stylesheet" href="/styles/tema.css?v=7" />
+  <link rel="stylesheet" href="/styles/main.css?v=8" />
+  <link rel="stylesheet" href="/styles/invitacion.css?v=8" />
+  <link rel="stylesheet" href="/styles/effects.css?v=8" />
+  <link rel="stylesheet" href="/styles/tema.css?v=8" />
 
   <!-- Marcar JS habilitado antes del render para evitar FOUC -->
   <script>document.documentElement.classList.add('js-enabled', 'intro-pending');</script>
@@ -448,7 +448,6 @@
 
       <p class="rsvp-intro">
         Por favor confirma tu asistencia antes del <strong>30 de Noviembre de 2026</strong>.
-        Tu presencia es el mejor regalo que podemos recibir.
       </p>
 
       <form id="rsvp-form" class="rsvp-form" novalidate>
@@ -605,69 +604,49 @@
   <section class="gift-section" id="regalos">
     <div class="container narrow">
       <p class="section-pretitle">Mesa de regalos</p>
-      <h2 class="section-title script-title">Tu presencia es el mejor regalo</h2>
+      <h2 class="section-title script-title">Nuestro regalo soñado</h2>
 
       <p class="gift-text">
-        El mayor regalo que podemos recibir es compartir contigo este día tan especial.
-        Sin embargo, si deseas tener un detalle con nosotros, hemos habilitado las siguientes opciones:
+        Si deseas hacernos un regalo, nuestra opción preferida es <strong>USDT</strong>.
+        ¡Nos ayudará a cumplir el sueño de nuestra luna de miel!
       </p>
 
-      <div class="gift-grid">
-        <div class="gift-card featured">
-          <div class="gift-icon">
-            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M16 24h32v32H16zM16 24l-8-8h12l4 8M48 24l8-8H44l-4 8M32 24v32M32 24l-8-8M32 24l8-8"/>
-            </svg>
-          </div>
-          <h3 class="gift-title">Luna de miel</h3>
-          <p class="gift-text-small">
-            Estamos ahorrando para nuestra luna de miel. Cualquier contribución
-            será un sueño hecho realidad.
-          </p>
-          <div class="gift-bank">
-            <strong>💵 Pago Móvil:</strong> 0412-1234567<br>
-            <strong>👤 Titular:</strong> Maynelim Fajardo<br>
-            <strong>🏦 Banco:</strong> Banesco<br>
-            <strong>🔐 Cédula:</strong> V-XX.XXX.XXX
-          </div>
-          <div class="gift-bank" style="margin-top: 0.6rem; border-left-color: var(--sage);">
-            <strong>🪙 Binance (USDT):</strong><br>
-            <span style="word-break: break-all; font-size: 0.78rem;">Fajardomaynelim.lv@gmail.com</span><br>
-            <em style="font-size: 0.75rem; color: var(--gray-text);">Red BNB Smart Chain (BEP20)</em>
-          </div>
-          <a href="/donaciones" class="gift-link" style="margin-top: 1rem; display: inline-block;">
-            Ver todas las opciones de donación →
-          </a>
+      <!-- USDT: opción principal -->
+      <article class="usdt-card fx-frame">
+        <span class="usdt-badge">★ Opción preferida</span>
+        <div class="usdt-logo" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="30"/><path d="M18 18h28v8H36v5.2c7 .5 12 2 12 3.8s-5 3.3-12 3.8V50h-8V38.8c-7-.5-12-2-12-3.8s5-3.3 12-3.8V26H18z M28 33.3c-4.6.3-7.6 1-7.6 1.7s3 1.4 7.6 1.7v-3.4zm8 0v3.4c4.6-.3 7.6-1 7.6-1.7s-3-1.4-7.6-1.7z" fill-rule="evenodd"/></svg>
+        </div>
+        <h3 class="usdt-title">USDT · Binance</h3>
+        <p class="usdt-subtitle">Envíalo desde tu app de Binance al correo:</p>
+
+        <div class="usdt-copy">
+          <span class="usdt-email" id="usdt-email">Fajardomaynelim.lv@gmail.com</span>
+          <button type="button" class="usdt-copy-btn fx-btn" data-copy-text="Fajardomaynelim.lv@gmail.com">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 011-1h10"/></svg>
+            <span>Copiar</span>
+          </button>
         </div>
 
-        <div class="gift-card">
-          <div class="gift-icon">
-            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M8 16h48v36H8zM8 16l8-8h32l8 8M20 32h24M32 24v16"/>
-            </svg>
-          </div>
-          <h3 class="gift-title">Lista de regalos</h3>
-          <p class="gift-text-small">
-            Hemos preparado una lista con regalos para nuestro nuevo hogar.
-            Elige el que más te guste.
-          </p>
-          <a href="#" class="gift-link">Ver lista de regalos →</a>
-        </div>
+        <dl class="usdt-data">
+          <div><dt>Moneda</dt><dd>USDT</dd></div>
+          <div><dt>Red</dt><dd>BNB Smart Chain (BEP20)</dd></div>
+          <div><dt>Titular</dt><dd>Maynelim Fajardo</dd></div>
+        </dl>
 
-        <div class="gift-card">
-          <div class="gift-icon">
-            <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M32 8l8 16h-16l8-16zM32 56l-8-16h16l-8 16zM8 32l16-8v16L8 32zM56 32l-16 8V24l16 8z"/>
-              <circle cx="32" cy="32" r="6"/>
-            </svg>
-          </div>
-          <h3 class="gift-title">Tarjeta de felicitación</h3>
-          <p class="gift-text-small">
-            Si prefieres hacernos un regalo personal, puedes dejarlo en
-            la mesa de regalos durante el evento.
-          </p>
-          <p class="gift-text-small"><em>"Lo que importa no es el regalo, sino el corazón con el que se entrega."</em></p>
+        <p class="usdt-note">Envía siempre <strong>USDT</strong> por la red <strong>BEP20</strong>. Otras redes pueden ocasionar pérdida de fondos.</p>
+      </article>
+
+      <!-- Otra opción -->
+      <div class="gift-card gift-secondary">
+        <h3 class="gift-title">También por Pago Móvil</h3>
+        <div class="gift-bank">
+          <strong>💵 Pago Móvil:</strong> 0412-1234567<br>
+          <strong>👤 Titular:</strong> Maynelim Fajardo<br>
+          <strong>🏦 Banco:</strong> Banesco<br>
+          <strong>🔐 Cédula:</strong> V-XX.XXX.XXX
         </div>
+        <a href="/donaciones" class="gift-link">Ver todas las opciones →</a>
       </div>
     </div>
   </section>
@@ -736,7 +715,7 @@
   <canvas class="fx-particles" id="fx-particles" aria-hidden="true"></canvas>
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <script src="/scripts/main.js?v=7"></script>
-  <script src="/scripts/effects.js?v=7"></script>
+  <script src="/scripts/main.js?v=8"></script>
+  <script src="/scripts/effects.js?v=8"></script>
 </body>
 </html>
