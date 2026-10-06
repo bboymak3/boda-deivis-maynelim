@@ -1297,3 +1297,51 @@ body {
   .rsvp-summary-row { grid-template-columns: 1fr; gap: 0.15rem; }
   .rsvp-modal-scroll { padding: 1.6rem 1rem 1.2rem; }
 }
+
+/* ============================================================
+   RSVP — envío por WhatsApp
+   ============================================================ */
+.rsvp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  text-decoration: none;
+}
+
+.rsvp-btn svg {
+  flex: none;
+}
+
+.rsvp-modal-text strong {
+  color: #1E8E50;
+  font-weight: 600;
+}
+
+.rsvp-whatsapp-note {
+  background: rgba(37, 211, 102, 0.08);
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  border-radius: 14px;
+  padding: 0.9rem 1rem 1rem;
+  margin: 0 0 1.2rem;
+}
+
+.rsvp-whatsapp-note p {
+  font-size: 0.85rem;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+
+.rsvp-btn-whatsapp {
+  max-width: none;
+  width: 100%;
+  border: none;
+  color: #fff;
+  background: linear-gradient(135deg, #1E9E57 0%, #25D366 100%);
+  box-shadow: 0 8px 20px rgba(30, 158, 87, 0.35);
+}
+
+.rsvp-btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(30, 158, 87, 0.45);
+}

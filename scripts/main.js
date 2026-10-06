@@ -11,6 +11,12 @@
   const WEDDING_DATE = new Date('2026-12-12T17:00:00-04:00'); // Hora Venezuela (UTC-4)
 
   // ========================================================
+  // WHATSAPP DONDE LLEGAN LAS CONFIRMACIONES — Editable
+  // Solo dígitos con código de país (sin +, espacios ni guiones)
+  // ========================================================
+  const WHATSAPP_NUMBER = '584149851063';
+
+  // ========================================================
   // COUNTDOWN
   // ========================================================
   function updateCountdown() {
@@ -192,6 +198,27 @@
       });
     }
 
+    // Mensaje de WhatsApp con todos los datos de la confirmación
+    function buildWhatsAppUrl(data) {
+      const si = data.asistencia === 'si';
+      const lines = [
+        '💍 *Confirmación de asistencia*',
+        '*Boda Deivis & Maynelim · 12/12/2026*',
+        '',
+        '👤 *Nombre:* ' + data.nombre,
+        '📧 *Correo:* ' + data.email
+      ];
+      if (data.telefono) lines.push('📱 *Teléfono:* ' + data.telefono);
+      lines.push(si ? '✅ *Asistencia:* ¡Sí, asistiré!' : '❌ *Asistencia:* No podré asistir');
+      if (si) {
+        lines.push('👥 *Acompañantes:* ' + data.acompanantesTexto);
+        lines.push('🍽️ *Menú:* ' + data.menuTexto);
+      }
+      if (data.cancion) lines.push('🎵 *Canción:* ' + data.cancion);
+      if (data.mensaje) lines.push('', '💌 *Mensaje:*', data.mensaje);
+      return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
+    }
+
     function showStep(step) {
       modal.querySelectorAll('.rsvp-step').forEach(function(el) {
         el.hidden = el.dataset.step !== step;
@@ -249,8 +276,11 @@
         localStorage.setItem('rsvps', JSON.stringify(rsvps));
       } catch (err) {}
 
-      // Enviar a Google Sheet vía Formspree-style (placeholder)
-      console.log('RSVP:', data);
+      // Enviar a los novios por WhatsApp (se abre dentro del clic
+      // para que el navegador no lo bloquee como ventana emergente)
+      const waUrl = buildWhatsAppUrl(data);
+      document.getElementById('rsvp-whatsapp-link').href = waUrl;
+      window.open(waUrl, '_blank', 'noopener');
 
       const primerNombre = data.nombre.split(' ')[0];
       const si = data.asistencia === 'si';
@@ -261,9 +291,7 @@
         : 'Gracias por avisarnos. Te extrañaremos en este día tan especial. ♥';
 
       showStep('success');
-      showFeedback(si
-        ? '¡Asistencia confirmada! Te esperamos el 12 de Diciembre. ♥'
-        : 'Gracias por avisarnos, ' + primerNombre + '. ♥', false, true);
+      showFeedback('¡Listo, ' + primerNombre + '! Recuerda tocar "Enviar" en WhatsApp para que tu confirmación nos llegue. ♥', false, true);
       form.reset();
       toggleAcompanantes();
       if (si) launchConfetti();
