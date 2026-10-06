@@ -12,55 +12,276 @@
   <!-- Google Fonts: Playfair Display (serif), Great Vibes (script), Montserrat (sans-serif) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css?v=3" />
+  <link rel="stylesheet" href="/styles/invitacion.css?v=3" />
+  <link rel="stylesheet" href="/styles/effects.css?v=3" />
+  <link rel="stylesheet" href="/styles/tema.css?v=3" />
 
   <!-- Marcar JS habilitado antes del render para evitar FOUC -->
-  <script>document.documentElement.classList.add('js-enabled');</script>
+  <script>document.documentElement.classList.add('js-enabled', 'intro-pending');</script>
 </head>
 <body>
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="g-rose-blue" cx="50%" cy="45%" r="62%">
+        <stop offset="0" stop-color="#F3F6FA"/><stop offset=".35" stop-color="#C3D3E4"/>
+        <stop offset=".75" stop-color="#7E9DBE"/><stop offset="1" stop-color="#4E6E92"/>
+      </radialGradient>
+      <radialGradient id="g-rose-white" cx="50%" cy="45%" r="62%">
+        <stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#EEF2F6"/>
+        <stop offset="1" stop-color="#C6D2DF"/>
+      </radialGradient>
+      <radialGradient id="g-rose-yellow" cx="50%" cy="45%" r="62%">
+        <stop offset="0" stop-color="#FFFDF2"/><stop offset=".45" stop-color="#FBEFC4"/>
+        <stop offset=".85" stop-color="#F1D98E"/><stop offset="1" stop-color="#D9BC6A"/>
+      </radialGradient>
+      <linearGradient id="g-leaf" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#B5C6D3"/><stop offset="1" stop-color="#6F8B9F"/>
+      </linearGradient>
+      <filter id="f-watercolor" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="7" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="5"/>
+      </filter>
+      <symbol id="sym-rose-blue" viewBox="-50 -50 100 100">
+        <g fill="url(#g-rose-blue)" stroke="#5E7FA3" stroke-opacity=".25" stroke-width=".6">
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(0)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(51)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(103)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(154)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(206)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(257)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(309)" opacity=".85"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(20)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(92)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(164)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(236)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(308)" opacity=".9"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(315)"/>
+        </g>
+        <path d="M-5 1 q5 -9 10 0 q-4 6 -9 1 q3 -3 5 -1" fill="none" stroke="#4E6E92" stroke-opacity=".55" stroke-width="1.2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="sym-rose-white" viewBox="-50 -50 100 100">
+        <g fill="url(#g-rose-white)" stroke="#5E7FA3" stroke-opacity=".25" stroke-width=".6">
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(0)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(51)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(103)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(154)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(206)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(257)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(309)" opacity=".85"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(20)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(92)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(164)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(236)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(308)" opacity=".9"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(315)"/>
+        </g>
+        <path d="M-5 1 q5 -9 10 0 q-4 6 -9 1 q3 -3 5 -1" fill="none" stroke="#4E6E92" stroke-opacity=".55" stroke-width="1.2" stroke-linecap="round"/>
+      </symbol>
+    <symbol id="sym-rose-yellow" viewBox="-50 -50 100 100">
+        <g fill="url(#g-rose-yellow)" stroke="#B8994A" stroke-opacity=".25" stroke-width=".6">
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(0)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(51)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(103)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(154)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(206)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(257)" opacity=".85"/>
+          <ellipse cx="0" cy="-20" rx="20" ry="27" transform="rotate(309)" opacity=".85"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(20)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(92)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(164)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(236)" opacity=".9"/>
+          <ellipse cx="0" cy="-10" rx="14" ry="18" transform="rotate(308)" opacity=".9"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-4" rx="9" ry="11" transform="rotate(315)"/>
+        </g>
+        <path d="M-5 1 q5 -9 10 0 q-4 6 -9 1 q3 -3 5 -1" fill="none" stroke="#4E6E92" stroke-opacity=".55" stroke-width="1.2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="sym-sprig" viewBox="0 0 160 60">
+        <path d="M2 50 Q70 20 158 8" fill="none" stroke="#7F97A8" stroke-width="1.4"/>
+        <g fill="url(#g-leaf)" opacity=".9">
+          <ellipse cx="17.4" cy="36.0" rx="8.4" ry="6.8"/>
+          <ellipse cx="33.2" cy="44.7" rx="7.9" ry="6.3"/>
+          <ellipse cx="49.6" cy="25.4" rx="7.3" ry="5.9"/>
+          <ellipse cx="66.4" cy="33.0" rx="6.8" ry="5.4"/>
+          <ellipse cx="83.7" cy="16.6" rx="6.2" ry="5.0"/>
+          <ellipse cx="101.6" cy="23.1" rx="5.7" ry="4.6"/>
+          <ellipse cx="119.9" cy="9.6" rx="5.1" ry="4.1"/>
+          <ellipse cx="138.7" cy="15.0" rx="4.6" ry="3.7"/>
+        </g>
+      </symbol>
+      <symbol id="sym-floral" viewBox="0 0 320 240">
+        <g filter="url(#f-watercolor)">
+          <use href="#sym-sprig" x="0" y="0" width="160" height="60" transform="translate(40 150) rotate(-30) scale(1.1)"/>
+          <use href="#sym-sprig" x="0" y="0" width="160" height="60" transform="translate(120 60) rotate(-70) scale(0.9)"/>
+          <use href="#sym-sprig" x="0" y="0" width="160" height="60" transform="translate(150 170) rotate(10) scale(1.0)"/>
+          <use href="#sym-sprig" x="0" y="0" width="160" height="60" transform="translate(10 90) rotate(-10) scale(0.8)"/>
+          <use href="#sym-sprig" x="0" y="0" width="160" height="60" transform="translate(200 120) rotate(-40) scale(0.85)"/>
+          <path d="M70 40 q8 -18 20 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
+          <circle cx="78" cy="26" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="85" cy="20" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="92" cy="14" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <path d="M140 110 q12 -24 22 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
+          <circle cx="148" cy="96" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="155" cy="90" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="162" cy="84" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <path d="M30 200 q16 -18 24 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
+          <circle cx="38" cy="186" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="45" cy="180" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="52" cy="174" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <path d="M240 60 q8 -24 26 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
+          <circle cx="248" cy="46" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="255" cy="40" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="262" cy="34" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <path d="M260 170 q12 -18 28 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
+          <circle cx="268" cy="156" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="275" cy="150" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="282" cy="144" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <path d="M110 30 q16 -24 30 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
+          <circle cx="118" cy="16" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="125" cy="10" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="132" cy="4" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <path d="M190 200 q8 -18 32 -30" stroke="#9AAFC0" stroke-width=".8" fill="none"/>
+          <circle cx="198" cy="186" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="205" cy="180" r="3.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <circle cx="212" cy="174" r="2.2" fill="#FBEFC4" stroke="#E3CC86" stroke-width=".5"/>
+          <use href="#sym-rose-blue" x="25.0" y="65.0" width="90" height="90"/>
+          <use href="#sym-rose-white" x="100.0" y="45.0" width="70" height="70"/>
+          <use href="#sym-rose-blue" x="119.0" y="119.0" width="62" height="62"/>
+          <use href="#sym-rose-yellow" x="5.0" y="35.0" width="50" height="50"/>
+          <use href="#sym-rose-blue" x="183.0" y="73.0" width="44" height="44"/>
+          <circle cx="100" cy="170" r="5" fill="#46678C" opacity=".85"/><circle cx="98.5" cy="168.5" r="1.4" fill="#fff" opacity=".6"/>
+          <circle cx="185" cy="140" r="5" fill="#46678C" opacity=".85"/><circle cx="183.5" cy="138.5" r="1.4" fill="#fff" opacity=".6"/>
+          <circle cx="48" cy="135" r="5" fill="#46678C" opacity=".85"/><circle cx="46.5" cy="133.5" r="1.4" fill="#fff" opacity=".6"/>
+          <circle cx="225" cy="135" r="5" fill="#46678C" opacity=".85"/><circle cx="223.5" cy="133.5" r="1.4" fill="#fff" opacity=".6"/>
+          <circle cx="120" cy="125" r="5" fill="#46678C" opacity=".85"/><circle cx="118.5" cy="123.5" r="1.4" fill="#fff" opacity=".6"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
   <!-- ========================================================== -->
-  <!-- HERO PRINCIPAL                                              -->
+  <!-- INTRO: SOBRE 3D CON SELLO DE CERA (se abre y suena música)  -->
   <!-- ========================================================== -->
-  <header class="hero" id="inicio">
-    <!-- Decoración floral esquinas -->
-    <div class="floral-corner floral-tl" aria-hidden="true"></div>
-    <div class="floral-corner floral-tr" aria-hidden="true"></div>
-    <div class="floral-corner floral-bl" aria-hidden="true"></div>
-    <div class="floral-corner floral-br" aria-hidden="true"></div>
+  <div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Abrir invitación">
+    <div class="intro-glow" aria-hidden="true"></div>
+    <svg class="intro-floral intro-floral-tl" aria-hidden="true"><use href="#sym-floral"/></svg>
+    <svg class="intro-floral intro-floral-br" aria-hidden="true"><use href="#sym-floral"/></svg>
 
-    <div class="hero-overlay"></div>
+    <p class="intro-pretitle">Tienes una invitación especial</p>
 
-    <div class="hero-content">
-      <p class="hero-pretitle">Together with their families</p>
-
-      <h1 class="hero-names">
-        <span class="name">Deivis</span>
-        <span class="ampersand">&amp;</span>
-        <span class="name">Maynelim</span>
-      </h1>
-
-      <div class="hero-divider">
-        <span class="line"></span>
-        <span class="seal">
-          <svg viewBox="0 0 80 80" class="seal-svg" aria-hidden="true">
-            <circle cx="40" cy="40" r="38" class="seal-ring-outer" />
-            <circle cx="40" cy="40" r="32" class="seal-ring-inner" />
-            <text x="40" y="48" text-anchor="middle" class="seal-monogram">D|M</text>
-          </svg>
-        </span>
-        <span class="line"></span>
+    <div class="envelope" aria-hidden="true">
+      <div class="env-back"></div>
+      <div class="env-letter">
+        <span class="env-letter-names">Deivis <em>&amp;</em> Maynelim</span>
+        <span class="env-letter-date">12 · 12 · 2026</span>
       </div>
-
-      <p class="hero-subtitle">INVITE YOU TO CELEBRATE<br>THEIR WEDDING DAY</p>
-
-      <p class="hero-date">Sábado · 12 de Diciembre · 2026<br><span class="hero-time">a las 5:00 PM</span></p>
-
-      <a href="#countdown" class="hero-scroll" aria-label="Desliza hacia abajo">
-        <svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 4v16m0 0l-7-7m7 7l7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <div class="env-pocket"></div>
+      <div class="env-flap-wrap"><div class="env-flap"></div></div>
+      <div class="wax-seal env-seal"><span>D|M</span></div>
     </div>
+
+    <button type="button" class="intro-open fx-btn" id="intro-open">
+      <span>Abrir invitación</span>
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+    </button>
+    <p class="intro-hint">Activa el sonido 🔊 para disfrutarla con música</p>
+  </div>
+
+  <!-- ========================================================== -->
+  <!-- HERO: TARJETA DE INVITACIÓN                                 -->
+  <!-- ========================================================== -->
+  <header class="hero-invite" id="inicio">
+    <div class="hero-rings" aria-hidden="true"><span></span><span></span></div>
+    <svg class="hero-floral hero-floral-tr" aria-hidden="true"><use href="#sym-floral"/></svg>
+    <svg class="hero-floral hero-floral-bl" aria-hidden="true"><use href="#sym-floral"/></svg>
+
+    <div class="invite-stage">
+      <div class="invite-float">
+        <article class="invite-card fx-frame" data-tilt>
+          <div class="invite-photo">
+            <!-- Reemplazar por una foto real de los novios -->
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80" alt="Deivis y Maynelim" />
+            <svg class="invite-photo-floral" aria-hidden="true"><use href="#sym-floral"/></svg>
+            <svg class="invite-photo-floral invite-photo-floral-r" aria-hidden="true"><use href="#sym-floral"/></svg>
+          </div>
+
+          <div class="wax-seal invite-seal" aria-hidden="true"><span>D|M</span></div>
+
+          <div class="invite-body">
+            <p class="invite-pretitle">Together with their families</p>
+
+            <h1 class="invite-names">
+              <span class="invite-name">Deivis</span>
+              <span class="invite-and">and</span>
+              <span class="invite-name">Maynelim</span>
+            </h1>
+
+            <p class="invite-sub">Invite you to celebrate<br>their wedding day</p>
+
+            <div class="invite-ornament" aria-hidden="true"><span></span><i>♥</i><span></span></div>
+
+            <div class="invite-date">
+              <span class="invite-weekday">Sábado</span>
+              <div class="invite-date-row">
+                <span class="invite-date-side">Diciembre</span>
+                <span class="invite-date-day">12</span>
+                <span class="invite-date-side">2026</span>
+              </div>
+              <span class="invite-hour">a las 5:00 PM</span>
+            </div>
+
+            <p class="invite-venue">Iglesia San Rafael Arcángel</p>
+            <p class="invite-city">Puerto Ordaz · Bolívar · Venezuela</p>
+
+            <nav class="invite-actions" aria-label="Accesos rápidos">
+              <a href="#detalles" class="circle-btn">
+                <span class="circle-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                </span>
+                <span class="circle-label">Ver<br>lugar</span>
+              </a>
+              <a href="#rsvp" class="circle-btn">
+                <span class="circle-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.6 2.6L16 9.6"/></svg>
+                </span>
+                <span class="circle-label">Confirmar<br>asistencia</span>
+              </a>
+              <a href="#historia" class="circle-btn">
+                <span class="circle-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="M12 17.2s-2.6-1.6-2.6-3.3a1.3 1.3 0 012.6-.4 1.3 1.3 0 012.6.4c0 1.7-2.6 3.3-2.6 3.3z"/></svg>
+                </span>
+                <span class="circle-label">Nuestra<br>historia</span>
+              </a>
+              <a href="#regalos" class="circle-btn">
+                <span class="circle-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8.5" width="17" height="4" rx="1"/><path d="M5 12.5V20h14v-7.5M12 8.5V20M12 8.5S10.5 4 8 4.5 7 8.5 12 8.5zM12 8.5S13.5 4 16 4.5 17 8.5 12 8.5z"/></svg>
+                </span>
+                <span class="circle-label">Mesa de<br>regalos</span>
+              </a>
+            </nav>
+
+            <p class="invite-closing">¡No podemos esperar para celebrar contigo!</p>
+            <span class="invite-heart" aria-hidden="true">♥</span>
+          </div>
+          <div class="invite-wash" aria-hidden="true"></div>
+        </article>
+      </div>
+    </div>
+
+    <a href="#countdown" class="hero-scroll" aria-label="Desliza hacia abajo">
+      <svg viewBox="0 0 24 24" width="28" height="28"><path d="M12 4v16m0 0l-7-7m7 7l7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
   </header>
 
   <!-- ========================================================== -->
@@ -538,6 +759,50 @@
     </div>
   </footer>
 
-  <script src="/scripts/main.js"></script>
+  <!-- ========================================================== -->
+  <!-- BARRA DE NAVEGACIÓN INFERIOR (estilo app)                   -->
+  <!-- ========================================================== -->
+  <nav class="bottom-nav" aria-label="Navegación principal">
+    <span class="bottom-nav-indicator" aria-hidden="true"></span>
+    <a href="#inicio" class="bottom-nav-item is-active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg>
+      <span>Inicio</span>
+    </a>
+    <a href="#historia" class="bottom-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-8-4.6-8-10.2A4.3 4.3 0 0112 7.3a4.3 4.3 0 018 2.5C20 15.4 12 20 12 20z"/></svg>
+      <span>Historia</span>
+    </a>
+    <a href="#detalles" class="bottom-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>
+      <span>Detalles</span>
+    </a>
+    <a href="#rsvp" class="bottom-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
+      <span>RSVP</span>
+    </a>
+    <a href="#regalos" class="bottom-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8.5" width="17" height="4" rx="1"/><path d="M5 12.5V20h14v-7.5M12 8.5V20M12 8.5S10.5 4 8 4.5 7 8.5 12 8.5zM12 8.5S13.5 4 16 4.5 17 8.5 12 8.5z"/></svg>
+      <span>Regalos</span>
+    </a>
+  </nav>
+
+  <!-- ========================================================== -->
+  <!-- MÚSICA DE FONDO                                             -->
+  <!-- Coloca tu canción en /assets/musica/cancion.mp3. Si el      -->
+  <!-- archivo no existe, suena un Canon de Pachelbel generado     -->
+  <!-- por el navegador.                                           -->
+  <!-- ========================================================== -->
+  <audio id="bg-music" src="/assets/musica/cancion.mp3" loop preload="none"></audio>
+  <button type="button" class="music-toggle" id="music-toggle" aria-label="Reproducir música" aria-pressed="false">
+    <span class="music-ring" aria-hidden="true"></span>
+    <svg class="music-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+    <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </button>
+
+  <canvas class="fx-particles" id="fx-particles" aria-hidden="true"></canvas>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <script src="/scripts/main.js?v=3"></script>
+  <script src="/scripts/effects.js?v=3"></script>
 </body>
 </html>

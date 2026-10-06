@@ -5,39 +5,42 @@
    ============================================================ */
 
 :root {
-  /* Colores — paleta pastel con girasol (sin naranja) */
-  --dusty-blue: #6B8CAE;
-  --dusty-blue-deep: #4A6278;
-  --dusty-blue-light: #A7C0D6;
-  --dusty-blue-pale: #E8EFF5;
-  --navy: #2C3E50;
-  --cream: #FEFBF3;
-  --cream-warm: #FAF3E3;
-  --sage: #9CB99D;
-  --sage-light: #C4D4B8;
-  --sage-pale: #E8EFE3;
-  --pastel-yellow: #F5E6A3;
-  --pastel-yellow-deep: #E8D680;
-  --pastel-yellow-pale: #FDF4B8;
-  --vanilla: #FAEDCD;
-  --rose-dust: #E6D5D5;
-  --rose-dust-deep: #DDBEBD;
-  --terracotta-soft: #D4A373;
+  /* Colores — paleta de la invitación de referencia:
+     AZUL dominante + AMARILLO PASTEL como segundo color + acentos dorados.
+     (sage/cream se conservan por compatibilidad y apuntan a tonos azul-crema.
+     Las variables --blue-* y --yellow-* están en styles/tema.css.) */
+  --dusty-blue: #6E8DB0;
+  --dusty-blue-deep: #3F5A78;
+  --dusty-blue-light: #A9BFD6;
+  --dusty-blue-pale: #E7EEF5;
+  --navy: #2B3A4E;
+  --cream: #F8F5EF;
+  --cream-warm: #F2EEE6;
+  --sage: #8FA9C4;
+  --sage-light: #C9D7E6;
+  --sage-pale: #EAF0F6;
+  --pastel-yellow: #F7E7A6;
+  --pastel-yellow-deep: #EDD487;
+  --pastel-yellow-pale: #FDF6D8;
+  --vanilla: #FBF3D9;
+  --rose-dust: #E9E4DE;
+  --rose-dust-deep: #D8D0C6;
+  --terracotta-soft: #B89B5E;
   --champagne: #C9B99A;
   --champagne-light: #E6DCC7;
-  --gray-text: #5D6D7E;
-  --gray-soft: #95A5A6;
-  --gray-line: #E5DDD0;
+  --gray-text: #5A6878;
+  --gray-soft: #95A3B3;
+  --gray-line: #E2DED6;
   --white: #FFFFFF;
 
-  /* Dorados — acentos elegantes */
-  --gold: #C9A961;
-  --gold-deep: #A6863E;
-  --gold-light: #E5C77F;
-  --gold-pale: #F4E5BC;
-  --gold-shimmer: #FBE9B0;
-  --gold-gradient: linear-gradient(135deg, #A6863E 0%, #E5C77F 25%, #FBE9B0 50%, #E5C77F 75%, #A6863E 100%);
-  --gold-gradient-soft: linear-gradient(135deg, #C9A961 0%, #E5C77F 50%, #C9A961 100%);
+  /* Dorados — más intensos y brillantes */
+  --gold: #C9A352;
+  --gold-deep: #9C7A2E;
+  --gold-light: #E8C878;
+  --gold-pale: #F3E3B8;
+  --gold-shimmer: #FFF1C4;
+  --gold-gradient: linear-gradient(135deg, #9C7A2E 0%, #E8C878 25%, #FFF1C4 50%, #E8C878 75%, #9C7A2E 100%);
+  --gold-gradient-soft: linear-gradient(135deg, #C9A352 0%, #E8C878 50%, #C9A352 100%);
 
   /* Tipografías */
   --font-serif: 'Playfair Display', Georgia, serif;
@@ -420,25 +423,25 @@ a {
 
 .floral-tl {
   top: 0; left: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'><g fill='none' stroke='%239CB99D' stroke-width='1.2' stroke-linecap='round'><path d='M10,10 Q40,30 50,70 Q60,110 80,130 M30,15 Q45,40 55,75 M50,12 Q60,40 70,80 M15,40 Q40,55 70,65 M18,70 Q40,80 75,85 M10,100 Q35,110 70,115'/><g fill='%23F5E6A3' opacity='0.85'><circle cx='25' cy='20' r='4'/><circle cx='45' cy='35' r='3.5'/><circle cx='60' cy='55' r='4.5'/><circle cx='75' cy='75' r='3.5'/><circle cx='30' cy='60' r='3.5'/><circle cx='55' cy='90' r='4'/></g><g fill='%23E6D5D5' opacity='0.75'><circle cx='40' cy='15' r='3'/><circle cx='70' cy='45' r='3'/><circle cx='80' cy='100' r='3.5'/><circle cx='20' cy='90' r='3'/></g></g></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'><g fill='none' stroke='%237D98B8' stroke-width='1.2' stroke-linecap='round'><path d='M10,10 Q40,30 50,70 Q60,110 80,130 M30,15 Q45,40 55,75 M50,12 Q60,40 70,80 M15,40 Q40,55 70,65 M18,70 Q40,80 75,85 M10,100 Q35,110 70,115'/><g fill='%23F5E6A3' opacity='0.85'><circle cx='25' cy='20' r='4'/><circle cx='45' cy='35' r='3.5'/><circle cx='60' cy='55' r='4.5'/><circle cx='75' cy='75' r='3.5'/><circle cx='30' cy='60' r='3.5'/><circle cx='55' cy='90' r='4'/></g><g fill='%23E6D5D5' opacity='0.75'><circle cx='40' cy='15' r='3'/><circle cx='70' cy='45' r='3'/><circle cx='80' cy='100' r='3.5'/><circle cx='20' cy='90' r='3'/></g></g></svg>");
   transform: rotate(0deg);
 }
 
 .floral-tr {
   top: 0; right: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'><g fill='none' stroke='%239CB99D' stroke-width='1.2' stroke-linecap='round'><path d='M210,10 Q180,30 170,70 Q160,110 140,130 M190,15 Q175,40 165,75 M170,12 Q160,40 150,80 M205,40 Q180,55 150,65 M202,70 Q180,80 145,85 M210,100 Q185,110 150,115'/><g fill='%23F5E6A3' opacity='0.85'><circle cx='195' cy='20' r='4'/><circle cx='175' cy='35' r='3.5'/><circle cx='160' cy='55' r='4.5'/><circle cx='145' cy='75' r='3.5'/><circle cx='190' cy='60' r='3.5'/><circle cx='165' cy='90' r='4'/></g><g fill='%23E6D5D5' opacity='0.75'><circle cx='180' cy='15' r='3'/><circle cx='150' cy='45' r='3'/><circle cx='140' cy='100' r='3.5'/><circle cx='200' cy='90' r='3'/></g></g></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'><g fill='none' stroke='%237D98B8' stroke-width='1.2' stroke-linecap='round'><path d='M210,10 Q180,30 170,70 Q160,110 140,130 M190,15 Q175,40 165,75 M170,12 Q160,40 150,80 M205,40 Q180,55 150,65 M202,70 Q180,80 145,85 M210,100 Q185,110 150,115'/><g fill='%23F5E6A3' opacity='0.85'><circle cx='195' cy='20' r='4'/><circle cx='175' cy='35' r='3.5'/><circle cx='160' cy='55' r='4.5'/><circle cx='145' cy='75' r='3.5'/><circle cx='190' cy='60' r='3.5'/><circle cx='165' cy='90' r='4'/></g><g fill='%23E6D5D5' opacity='0.75'><circle cx='180' cy='15' r='3'/><circle cx='150' cy='45' r='3'/><circle cx='140' cy='100' r='3.5'/><circle cx='200' cy='90' r='3'/></g></g></svg>");
   transform: scaleX(-1);
 }
 
 .floral-bl {
   bottom: 0; left: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'><g fill='none' stroke='%239CB99D' stroke-width='1.2' stroke-linecap='round'><path d='M10,210 Q40,190 50,150 Q60,110 80,90 M30,205 Q45,180 55,145 M50,208 Q60,180 70,140 M15,180 Q40,165 70,155 M18,150 Q40,140 75,135 M10,120 Q35,110 70,105'/><g fill='%23F5E6A3' opacity='0.85'><circle cx='25' cy='200' r='4'/><circle cx='45' cy='185' r='3.5'/><circle cx='60' cy='165' r='4.5'/><circle cx='75' cy='145' r='3.5'/><circle cx='30' cy='160' r='3.5'/><circle cx='55' cy='130' r='4'/></g><g fill='%23E6D5D5' opacity='0.75'><circle cx='40' cy='205' r='3'/><circle cx='70' cy='175' r='3'/><circle cx='80' cy='120' r='3.5'/><circle cx='20' cy='130' r='3'/></g></g></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'><g fill='none' stroke='%237D98B8' stroke-width='1.2' stroke-linecap='round'><path d='M10,210 Q40,190 50,150 Q60,110 80,90 M30,205 Q45,180 55,145 M50,208 Q60,180 70,140 M15,180 Q40,165 70,155 M18,150 Q40,140 75,135 M10,120 Q35,110 70,105'/><g fill='%23F5E6A3' opacity='0.85'><circle cx='25' cy='200' r='4'/><circle cx='45' cy='185' r='3.5'/><circle cx='60' cy='165' r='4.5'/><circle cx='75' cy='145' r='3.5'/><circle cx='30' cy='160' r='3.5'/><circle cx='55' cy='130' r='4'/></g><g fill='%23E6D5D5' opacity='0.75'><circle cx='40' cy='205' r='3'/><circle cx='70' cy='175' r='3'/><circle cx='80' cy='120' r='3.5'/><circle cx='20' cy='130' r='3'/></g></g></svg>");
   transform: scaleY(-1);
 }
 
 .floral-br {
   bottom: 0; right: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'><g fill='none' stroke='%239CB99D' stroke-width='1.2' stroke-linecap='round'><path d='M210,210 Q180,190 170,150 Q160,110 140,90 M190,205 Q175,180 165,145 M170,208 Q160,180 150,140 M205,180 Q180,165 150,155 M202,150 Q180,140 145,135 M210,120 Q185,110 150,105'/><g fill='%23F5E6A3' opacity='0.85'><circle cx='195' cy='200' r='4'/><circle cx='175' cy='185' r='3.5'/><circle cx='160' cy='165' r='4.5'/><circle cx='145' cy='145' r='3.5'/><circle cx='190' cy='160' r='3.5'/><circle cx='165' cy='130' r='4'/></g></g></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'><g fill='none' stroke='%237D98B8' stroke-width='1.2' stroke-linecap='round'><path d='M210,210 Q180,190 170,150 Q160,110 140,90 M190,205 Q175,180 165,145 M170,208 Q160,180 150,140 M205,180 Q180,165 150,155 M202,150 Q180,140 145,135 M210,120 Q185,110 150,105'/><g fill='%23F5E6A3' opacity='0.85'><circle cx='195' cy='200' r='4'/><circle cx='175' cy='185' r='3.5'/><circle cx='160' cy='165' r='4.5'/><circle cx='145' cy='145' r='3.5'/><circle cx='190' cy='160' r='3.5'/><circle cx='165' cy='130' r='4'/></g></g></svg>");
   transform: scale(-1, -1);
 }
 
