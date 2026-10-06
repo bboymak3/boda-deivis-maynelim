@@ -36,6 +36,9 @@ Rediseño inspirado en una invitación de referencia (dusty blue + crema + dorad
 - **Inclinación 3D** de tarjetas con el mouse (y de la invitación con el giroscopio en Android).
 - **Barra inferior tipo app** que resalta la sección visible.
 - **Música de fondo** — ver `assets/musica/LEEME.md`.
+- **Modal de confirmación RSVP**: valida cada campo (mensaje bajo el campo con error),
+  muestra un resumen para revisar (Editar / Sí, confirmar) y luego una pantalla de
+  agradecimiento con check animado y confeti.
 - Respeta "reducir movimiento" del sistema.
 
 Archivos: `styles/invitacion.css`, `styles/effects.css`, `styles/tema.css`, `scripts/effects.js`.

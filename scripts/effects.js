@@ -592,7 +592,7 @@
   // BOTONES: brillo, onda al tocar y efecto magnético
   // ========================================================
   function initButtons() {
-    var buttons = document.querySelectorAll('.btn-submit, .btn-gallery, .intro-open, .copy-btn, .back-link');
+    var buttons = document.querySelectorAll('.btn-submit, .btn-gallery, .intro-open, .copy-btn, .back-link, .rsvp-btn-primary');
     buttons.forEach(function(btn) {
       btn.classList.add('fx-btn');
       // envolver textos sueltos para que queden por encima del brillo
