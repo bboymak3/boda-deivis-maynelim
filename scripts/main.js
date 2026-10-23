@@ -6,9 +6,9 @@
 
   // ========================================================
   // FECHA DEL MATRIMONIO — Editable
-  // Lunes, 21 de Diciembre de 2026, 5:00 PM (17:00)
+  // Lunes, 21 de Diciembre de 2026, 7:00 PM (19:00)
   // ========================================================
-  const WEDDING_DATE = new Date('2026-12-21T17:00:00-04:00'); // Hora Venezuela (UTC-4)
+  const WEDDING_DATE = new Date('2026-12-21T19:00:00-04:00'); // Hora Venezuela (UTC-4)
 
   // ========================================================
   // WHATSAPP DONDE LLEGAN LAS CONFIRMACIONES — Editable
