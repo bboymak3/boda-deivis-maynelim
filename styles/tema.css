@@ -591,3 +591,22 @@ body {
   .usdt-copy { padding: 0.9rem 0.4rem; }
   .usdt-email { font-size: 0.86rem; }
 }
+
+/* ============================================================
+   DETALLES — un solo lugar (Restaurante La Finca) centrado
+   ============================================================ */
+.details-grid-single {
+  grid-template-columns: minmax(0, 520px);
+  justify-content: center;
+}
+
+/* Firma bajo la frase de cierre de la invitación */
+.invite-signature {
+  font-family: var(--font-script);
+  font-size: 1.6rem;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #8A6A22 0%, #C9A352 30%, #E8C878 50%, #C9A352 70%, #8A6A22 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

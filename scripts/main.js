@@ -6,9 +6,9 @@
 
   // ========================================================
   // FECHA DEL MATRIMONIO — Editable
-  // Sábado, 12 de Diciembre de 2026, 5:00 PM (17:00)
+  // Lunes, 21 de Diciembre de 2026, 5:00 PM (17:00)
   // ========================================================
-  const WEDDING_DATE = new Date('2026-12-12T17:00:00-04:00'); // Hora Venezuela (UTC-4)
+  const WEDDING_DATE = new Date('2026-12-21T17:00:00-04:00'); // Hora Venezuela (UTC-4)
 
   // ========================================================
   // WHATSAPP DONDE LLEGAN LAS CONFIRMACIONES — Editable
@@ -207,7 +207,7 @@
       const si = data.asistencia === 'si';
       const lines = [
         '💍 *Confirmación de asistencia*',
-        '*Boda Deivis & Maynelim · 12/12/2026*',
+        '*Boda Deivis & Maynelim · 21/12/2026*',
         '',
         '👤 *Nombre:* ' + data.nombre,
         '📧 *Correo:* ' + data.email

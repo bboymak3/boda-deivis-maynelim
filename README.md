@@ -1,4 +1,4 @@
-# Boda Deivis & Maynelim — 12 · 12 · 2026
+# Boda Deivis & Maynelim — 21 · 12 · 2026
 
 Landing page de invitación al matrimonio de **Deivis Bonillo & Maynelim Fajardo**.
 
@@ -65,9 +65,9 @@ boda-deivis-maynelim/
 ## Secciones
 
 1. **Hero** — Tarjeta de invitación: foto, sello D|M, nombres, fecha y 4 botones circulares
-2. **Cuenta regresiva** — Días / Horas / Minutos / Segundos al 12-Dic-2026 5:00 PM
+2. **Cuenta regresiva** — Días / Horas / Minutos / Segundos al 21-Dic-2026 5:00 PM
 3. **Bienvenida** — Mensaje de los novios
-4. **Detalles** — Ceremonia + Recepción + dress code
+4. **Detalles** — Celebración en Restaurante La Finca + dress code (Formal)
 5. **Galería** — Grid de 6 fotos (placeholder Unsplash, se reemplazan por fotos reales)
 6. **RSVP** — Formulario completo de confirmación con confetti al enviar
 7. **Regalos** — USDT (Binance) como opción preferida con botón Copiar + Pago Móvil
@@ -79,15 +79,13 @@ Edita `index.html` y busca los siguientes placeholders:
 
 | Placeholder | Descripción |
 |-------------|-------------|
-| `Iglesia San Rafael Arcángel` | Nombre de la iglesia/lugar de la ceremonia |
-| `Av. Principal #123, Caracas, Venezuela` | Dirección ceremonia |
-| `Salón Jardín Real` | Nombre del salón de recepción |
-| `Carretera Sur, Km 12, Caracas, Venezuela` | Dirección recepción |
+| `Restaurante La Finca` | Lugar de la celebración (hero, detalles y modal RSVP) |
+| `Km 77 Autopista Ciudad Bolívar - Puerto Ordaz` | Dirección y enlace "Ver ubicación" (Google Maps) |
 | `Cuenta: 0102-XXXX-XX-XXXXXXXX` | Datos bancarios para regalos |
 | Foto en `.invite-photo img` (index.html) | Foto principal de los novios en la tarjeta |
 | `assets/musica/cancion.mp3` | Canción de fondo |
 | Fotos Unsplash en `.gallery-item` | Reemplazar `background-image` por fotos reales |
-| `WEDDING_DATE` en `scripts/main.js` | Fecha/hora del evento (default: 2026-12-12T17:00) |
+| `WEDDING_DATE` en `scripts/main.js` | Fecha/hora del evento (actual: 2026-12-21T17:00) |
 
 ## Deploy en Cloudflare Pages
 
@@ -99,4 +97,4 @@ O conecta el repositorio a GitHub y vincúlalo a Cloudflare Pages automáticamen
 
 ---
 
-Hecho con ♥ para Deivis & Maynelim · 12 · 12 · 2026
+Hecho con ♥ para Deivis & Maynelim · 21 · 12 · 2026
