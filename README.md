@@ -65,13 +65,14 @@ boda-deivis-maynelim/
 ## Secciones
 
 1. **Hero** — Tarjeta de invitación: foto, sello D|M, nombres, fecha y 4 botones circulares
-2. **Cuenta regresiva** — Días / Horas / Minutos / Segundos al 21-Dic-2026 7:00 PM
-3. **Bienvenida** — Mensaje de los novios
-4. **Detalles** — Celebración en Restaurante La Finca + dress code (Formal)
-5. **Galería** — Grid de 6 fotos (placeholder Unsplash, se reemplazan por fotos reales)
-6. **RSVP** — Formulario completo de confirmación con confetti al enviar
-7. **Regalos** — USDT (Binance) como opción preferida con botón Copiar + Pago Móvil
-8. **Footer** — Monograma, nombres, fecha y agradecimiento
+2. **Cuenta regresiva** — Días / Horas / Minutos / Segundos al 21-Dic-2026 5:00 PM
+3. **Bienvenida** — "Hay momentos en la vida que se quedan grabados para siempre…"
+4. **Detalles** — Ceremonia 5:00 PM en Restaurante La Finca + dress code FORMAL (nada de rojo, nada de blanco)
+5. **Regalos** — USDT (Binance de Maynelim y de Deivis) como opción preferida, Pago Móvil y efectivo en divisas
+6. **Galería** — Grid de fotos (placeholder Unsplash, se reemplazan por fotos reales)
+7. **RSVP** — Nombre completo, teléfono y asistencia; se envía por WhatsApp
+8. **Versículo** — Eclesiastés 4:12
+9. **Footer** — Monograma, nombres, fecha y agradecimiento
 
 ## Personalización rápida
 
@@ -85,7 +86,7 @@ Edita `index.html` y busca los siguientes placeholders:
 | Foto en `.invite-photo img` (index.html) | Foto principal de los novios en la tarjeta |
 | `assets/musica/cancion.mp3` | Canción de fondo |
 | Fotos Unsplash en `.gallery-item` | Reemplazar `background-image` por fotos reales |
-| `WEDDING_DATE` en `scripts/main.js` | Fecha/hora del evento (actual: 2026-12-21T19:00) |
+| `WEDDING_DATE` en `scripts/main.js` | Fecha/hora del evento (actual: 2026-12-21T17:00) |
 
 ## Deploy en Cloudflare Pages
 

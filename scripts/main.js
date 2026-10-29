@@ -6,9 +6,9 @@
 
   // ========================================================
   // FECHA DEL MATRIMONIO — Editable
-  // Lunes, 21 de Diciembre de 2026, 7:00 PM (19:00)
+  // Lunes, 21 de Diciembre de 2026, 5:00 PM (17:00)
   // ========================================================
-  const WEDDING_DATE = new Date('2026-12-21T19:00:00-04:00'); // Hora Venezuela (UTC-4)
+  const WEDDING_DATE = new Date('2026-12-21T17:00:00-04:00'); // Hora Venezuela (UTC-4)
 
   // ========================================================
   // WHATSAPP DONDE LLEGAN LAS CONFIRMACIONES — Editable
@@ -68,28 +68,20 @@
     if (!form) return;
 
     const feedback = document.getElementById('form-feedback');
-    const acompanantesRow = document.getElementById('acompanantes-row');
     const radios = form.querySelectorAll('input[name="asistencia"]');
     const modal = document.getElementById('rsvp-modal');
     const summary = document.getElementById('rsvp-summary');
     const confirmBtn = document.getElementById('rsvp-confirm');
     let pending = null; // datos validados esperando confirmación
 
-    // Mostrar acompañantes/menú solo si asistirá
-    function toggleAcompanantes() {
-      const si = form.querySelector('input[name="asistencia"][value="si"]').checked;
-      acompanantesRow.style.display = si ? '' : 'none';
-    }
-
     radios.forEach(function(radio) {
       radio.addEventListener('change', function() {
-        toggleAcompanantes();
         clearError(form.querySelector('.radio-group'));
       });
     });
 
     // Quitar el error de un campo en cuanto el invitado lo corrige
-    ['nombre', 'email', 'telefono'].forEach(function(name) {
+    ['nombre', 'telefono'].forEach(function(name) {
       form[name].addEventListener('input', function() { clearError(form[name]); });
     });
 
@@ -123,22 +115,21 @@
     function validate() {
       const errors = [];
       const nombre = form.nombre.value.trim().replace(/\s+/g, ' ');
-      const email = form.email.value.trim();
       const telefono = form.telefono.value.trim();
       const asistencia = form.querySelector('input[name="asistencia"]:checked');
 
-      [form.nombre, form.email, form.telefono, form.querySelector('.radio-group')].forEach(clearError);
+      [form.nombre, form.telefono, form.querySelector('.radio-group')].forEach(clearError);
 
       if (nombre.length < 3) {
         errors.push([form.nombre, 'Escribe tu nombre completo.']);
       } else if (nombre.split(' ').length < 2) {
         errors.push([form.nombre, 'Incluye tu nombre y apellido.']);
       }
-      if (!isValidEmail(email)) {
-        errors.push([form.email, 'Ingresa un correo válido, por ejemplo: nombre@correo.com']);
-      }
-      if (telefono && telefono.replace(/\D/g, '').length < 7) {
-        errors.push([form.telefono, 'El teléfono parece incompleto.']);
+      const digitos = telefono.replace(/\D/g, '');
+      if (!digitos) {
+        errors.push([form.telefono, 'Escribe tu número de teléfono.']);
+      } else if (digitos.length < 10) {
+        errors.push([form.telefono, 'El teléfono parece incompleto, por ejemplo: 0414 1234567']);
       }
       if (!asistencia) {
         errors.push([form.querySelector('.radio-group'), 'Cuéntanos si podrás asistir.']);
@@ -157,18 +148,10 @@
         return null;
       }
 
-      const si = asistencia.value === 'si';
       return {
         nombre: nombre,
-        email: email,
         telefono: telefono,
-        asistencia: asistencia.value,
-        acompanantes: si ? form.acompanantes.value : '0',
-        acompanantesTexto: si ? form.acompanantes.selectedOptions[0].text : '',
-        menu: si ? form.menu.value : '',
-        menuTexto: si ? form.menu.selectedOptions[0].text : '',
-        cancion: form.cancion.value.trim(),
-        mensaje: form.mensaje.value.trim()
+        asistencia: asistencia.value
       };
     }
 
@@ -178,13 +161,8 @@
     function fillSummary(data) {
       const rows = [
         ['Nombre', data.nombre],
-        ['Correo', data.email],
         ['Teléfono', data.telefono],
-        ['Asistencia', data.asistencia === 'si' ? '¡Sí, ahí estaré! 😊' : 'No podré asistir 😢'],
-        ['Acompañantes', data.acompanantesTexto],
-        ['Menú', data.menuTexto],
-        ['Canción', data.cancion],
-        ['Mensaje', data.mensaje]
+        ['Asistencia', data.asistencia === 'si' ? '¡Sí, ahí estaré! 😊' : 'No podré asistir 😢']
       ];
       summary.textContent = '';
       rows.forEach(function(row) {
@@ -210,16 +188,9 @@
         '*Boda Deivis & Maynelim · 21/12/2026*',
         '',
         '👤 *Nombre:* ' + data.nombre,
-        '📧 *Correo:* ' + data.email
+        '📱 *Teléfono:* ' + data.telefono,
+        si ? '✅ *Asistencia:* ¡Sí, asistiré!' : '❌ *Asistencia:* No podré asistir'
       ];
-      if (data.telefono) lines.push('📱 *Teléfono:* ' + data.telefono);
-      lines.push(si ? '✅ *Asistencia:* ¡Sí, asistiré!' : '❌ *Asistencia:* No podré asistir');
-      if (si) {
-        lines.push('👥 *Acompañantes:* ' + data.acompanantesTexto);
-        lines.push('🍽️ *Menú:* ' + data.menuTexto);
-      }
-      if (data.cancion) lines.push('🎵 *Canción:* ' + data.cancion);
-      if (data.mensaje) lines.push('', '💌 *Mensaje:*', data.mensaje);
       return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
     }
 
@@ -300,7 +271,6 @@
       showFeedback('¡Listo, ' + primerNombre + '! Recuerda tocar "Enviar" en WhatsApp para que tu confirmación nos llegue. ', false, true);
       feedback.insertAdjacentHTML('beforeend', HEART_SVG);
       form.reset();
-      toggleAcompanantes();
       if (si) launchConfetti();
     });
 
@@ -312,10 +282,6 @@
       if (!isError) {
         setTimeout(function() { feedback.classList.remove('show'); }, 8000);
       }
-    }
-
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
     }
   }
 
@@ -415,12 +381,12 @@
   // COPIAR DATOS DE PAGO (correo de Binance)
   // ========================================================
   function initCopyButtons() {
-    document.querySelectorAll('.usdt-copy-btn').forEach(function(btn) {
+    document.querySelectorAll('.usdt-copy-btn, .copy-chip').forEach(function(btn) {
       const label = btn.querySelector('span:not(.fx-btn-shine)') || btn;
       const original = label.textContent;
 
       function done(ok) {
-        label.textContent = ok ? '¡Copiado!' : 'Mantén presionado el correo para copiar';
+        label.textContent = ok ? '¡Copiado!' : 'Mantén presionado para copiar';
         btn.classList.toggle('is-copied', ok);
         setTimeout(function() {
           label.textContent = original;
