@@ -342,7 +342,7 @@
     document.documentElement.classList.add('js-enabled');
 
     const targets = document.querySelectorAll(
-      '.section-pretitle, .section-title, .script-title, .timeline-item, .details-card, .gallery-item, .gift-card, .hashtag, .welcome-text, .rsvp-form, .countdown, .dress-code'
+      '.section-pretitle, .section-title, .script-title, .details-card, .gallery-item, .gift-card, .usdt-card, .welcome-text, .rsvp-form, .countdown, .dress-code'
     );
 
     targets.forEach(function(el, idx) {

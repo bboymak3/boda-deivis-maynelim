@@ -18,7 +18,11 @@
     if (!canvas || reduceMotion) return { burst: function() {}, start: function() {} };
 
     var ctx = canvas.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Destellos pequeños y difuminados: a resolución normal se ven igual y
+    // cuestan hasta 4 veces menos en pantallas de alta densidad
+    var dpr = 1;
+    var FRAME_MS = 1000 / 30; // 30 cuadros por segundo bastan para polvo dorado
+    var lastFrame = 0;
     var W = 0, H = 0;
     var dust = [];
     var sparks = [];
@@ -119,8 +123,10 @@
     }
 
     var lastScroll = window.scrollY;
-    function frame() {
+    function frame(now) {
       if (!running) return;
+      if (now - lastFrame < FRAME_MS - 2) { requestAnimationFrame(frame); return; }
+      lastFrame = now;
       ctx.clearRect(0, 0, W, H);
 
       var scrollDelta = window.scrollY - lastScroll;
@@ -130,10 +136,11 @@
 
       for (var i = 0; i < dust.length; i++) {
         var p = dust[i];
-        p.sway += p.swaySpeed;
-        p.twinkle += p.twinkleSpeed;
-        p.y += p.vy - scrollDelta * p.z * 0.25; // parallax: lo cercano se mueve más
-        p.x += Math.sin(p.sway) * 0.25 * p.z;
+        // pasos x2: se dibuja a 30 cuadros/s con la misma velocidad que a 60
+        p.sway += p.swaySpeed * 2;
+        p.twinkle += p.twinkleSpeed * 2;
+        p.y += p.vy * 2 - scrollDelta * p.z * 0.25; // parallax: lo cercano se mueve más
+        p.x += Math.sin(p.sway) * 0.5 * p.z;
         if (p.y < -30) { dust[i] = makeDust(false); continue; }
         if (p.y > H + 40) p.y = -20;
         if (p.x < -20) p.x = W + 20;
@@ -149,12 +156,12 @@
 
       for (var j = sparks.length - 1; j >= 0; j--) {
         var k = sparks[j];
-        k.vx *= 0.97;
-        k.vy = k.vy * 0.97 + 0.06;
-        k.x += k.vx;
-        k.y += k.vy;
-        k.life -= k.decay;
-        k.rot += 0.05;
+        k.vx *= 0.94;
+        k.vy = k.vy * 0.94 + 0.12;
+        k.x += k.vx * 2;
+        k.y += k.vy * 2;
+        k.life -= k.decay * 2;
+        k.rot += 0.1;
         if (k.life <= 0) { sparks.splice(j, 1); continue; }
         ctx.globalAlpha = Math.min(1, k.life * 1.4);
         var ks = k.size * (0.6 + k.life * 0.4);
@@ -408,7 +415,7 @@
   // MARCOS DORADOS + BRILLO AL ENTRAR EN PANTALLA
   // ========================================================
   var FRAME_SELECTOR = '.fx-frame, .countdown-item, .details-card, .gift-card, .verse-card, ' +
-    '.rsvp-form, .timeline-content, .donation-card, .gallery-event-item, .gallery-item';
+    '.rsvp-form, .donation-card, .gallery-item';
 
   // ========================================================
   // ESTRELLA DORADA ✦ EN LA ESQUINA SUPERIOR DERECHA DE CADA TARJETA
@@ -463,26 +470,35 @@
   // ========================================================
   // SCROLL: los bordes giran y brillan más mientras desplazas
   // ========================================================
+  // Los valores se escriben SOLO en las tarjetas visibles (fx-in-view):
+  // escribirlos en <html> obligaba a recalcular el estilo de toda la página
+  // en cada cuadro del desplazamiento.
   function initScrollGlow() {
     var glow = 0;
     var lastY = window.scrollY;
     var looping = false;
+    var bar = document.querySelector('.scroll-progress');
 
     function update() {
       var y = window.scrollY;
       var max = document.documentElement.scrollHeight - window.innerHeight;
-      root.style.setProperty('--scroll-deg', (y * 0.35).toFixed(1) + 'deg');
-      root.style.setProperty('--progress', max > 0 ? (y / max).toFixed(4) : 0);
+      if (bar) bar.style.transform = 'scaleX(' + (max > 0 ? (y / max).toFixed(4) : 0) + ')';
 
       var speed = Math.abs(y - lastY);
       lastY = y;
       glow = Math.max(glow * 0.92, Math.min(1, speed / 25));
-      root.style.setProperty('--scroll-glow', glow.toFixed(3));
+      var active = glow > 0.01;
+      var deg = (y * 0.35).toFixed(1) + 'deg';
+      var g = active ? glow.toFixed(3) : '0';
+      document.querySelectorAll('.fx-frame.fx-in-view').forEach(function(el) {
+        el.style.setProperty('--scroll-deg', deg);
+        el.style.setProperty('--scroll-glow', g);
+        el.classList.toggle('fx-glowing', active);
+      });
 
-      if (glow > 0.01) {
+      if (active) {
         requestAnimationFrame(update);
       } else {
-        root.style.setProperty('--scroll-glow', '0');
         looping = false;
       }
     }
@@ -494,6 +510,19 @@
       }
     }, { passive: true });
     update();
+  }
+
+  // ========================================================
+  // PAUSAR ANIMACIONES DE LAS SECCIONES QUE NO SE VEN
+  // (brillos, estrellas, bordes que giran...): ahorra batería y
+  // deja libre el procesador para que el desplazamiento sea fluido
+  // ========================================================
+  function initOffscreenPause() {
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { e.target.classList.toggle('fx-offscreen', !e.isIntersecting); });
+    }, { rootMargin: '150px 0px' });
+    document.querySelectorAll('body > header, body > section, body > footer').forEach(function(el) { io.observe(el); });
   }
 
   // ========================================================
@@ -562,7 +591,7 @@
   // BOTONES: brillo, onda al tocar y efecto magnético
   // ========================================================
   function initButtons() {
-    var buttons = document.querySelectorAll('.btn-submit, .btn-gallery, .intro-open, .copy-btn, .back-link, .rsvp-btn-primary, .rsvp-btn-whatsapp, .usdt-copy-btn');
+    var buttons = document.querySelectorAll('.btn-submit, .intro-open, .copy-btn, .back-link, .rsvp-btn-primary, .rsvp-btn-whatsapp, .usdt-copy-btn');
     buttons.forEach(function(btn) {
       btn.classList.add('fx-btn');
       // envolver textos sueltos para que queden por encima del brillo
@@ -598,7 +627,7 @@
     });
 
     if (!finePointer || reduceMotion) return;
-    document.querySelectorAll('.btn-gallery, .intro-open, .circle-btn').forEach(function(btn) {
+    document.querySelectorAll('.intro-open, .circle-btn').forEach(function(btn) {
       btn.classList.add('fx-magnetic');
       btn.addEventListener('pointermove', function(e) {
         var r = btn.getBoundingClientRect();
@@ -671,6 +700,7 @@
     initCountdownFlip();
     initBottomNav();
     initScrollGlow();
+    initOffscreenPause();
     initIntro();
     Particles.start();
   }
