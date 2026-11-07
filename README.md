@@ -34,7 +34,8 @@ Rediseño inspirado en una invitación de referencia (dusty blue + crema + dorad
 - **Partículas doradas** con profundidad (parallax) y rastro de destellos con el mouse.
 - **Inclinación 3D** de tarjetas con el mouse (y de la invitación con el giroscopio en Android).
 - **Barra inferior tipo app** que resalta la sección visible.
-- **Música de fondo** — ver `assets/musica/LEEME.md`.
+- **Música de fondo** — "Hasta Ese Día" (Lasso) con reproductor: empezar de nuevo,
+  reproducir/pausar y volumen. Ver `assets/musica/LEEME.md`.
 - **Modal de confirmación RSVP**: valida cada campo (mensaje bajo el campo con error),
   muestra un resumen para revisar (Editar / Sí, confirmar) y luego una pantalla de
   agradecimiento con check animado y confeti.
@@ -84,7 +85,7 @@ Edita `index.html` y busca los siguientes placeholders:
 | `Km 77 Autopista Ciudad Bolívar - Puerto Ordaz` | Dirección y enlace "Ver ubicación" (Google Maps) |
 | `Cuenta: 0102-XXXX-XX-XXXXXXXX` | Datos bancarios para regalos |
 | Foto en `.invite-photo img` (index.html) | Foto principal de los novios en la tarjeta |
-| `assets/musica/cancion.mp3` | Canción de fondo |
+| `assets/musica/hasta-ese-dia.m4a` | Canción de fondo (ver `assets/musica/LEEME.md`) |
 | Fotos Unsplash en `.gallery-item` | Reemplazar `background-image` por fotos reales |
 | `WEDDING_DATE` en `scripts/main.js` | Fecha/hora del evento (actual: 2026-12-21T17:00) |
 

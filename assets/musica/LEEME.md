@@ -1,13 +1,15 @@
 # Música de fondo
 
-Coloca aquí la canción con el nombre **`cancion.mp3`** (MP3, idealmente < 5 MB).
+Canción actual: **"Hasta Ese Día" — Lasso** (`hasta-ese-dia.m4a`).
 
-- Suena cuando el invitado toca **"Abrir invitación"** (los navegadores no permiten
-  reproducir audio sin que el usuario toque algo primero).
-- Se puede pausar/reanudar con el botón redondo de la esquina inferior derecha.
-- Mientras no exista `cancion.mp3`, la página toca automáticamente el
-  **Canon en Re de Pachelbel** (dominio público) generado por el propio navegador.
+- Al entrar a la página intenta sonar sola. La mayoría de los celulares y
+  navegadores no dejan sonar audio hasta que la persona toca la pantalla, así
+  que en ese caso empieza con el primer toque (por ejemplo al tocar
+  **"Abrir invitación"** en el sobre).
+- El reproductor flotante (abajo a la derecha) tiene: empezar de nuevo,
+  reproducir/pausar, bajar y subir volumen. El volumen elegido se recuerda.
+- Se pausa al salir de la pestaña y sigue al volver.
 
-Recomendaciones de canciones: "A Thousand Years" (instrumental en piano),
-"Perfect" (versión violín), "Canon in D", "Can't Help Falling in Love" (piano).
-Usa una versión que tengas derecho a usar o con licencia libre.
+Para cambiar la canción: coloca el archivo nuevo aquí **con otro nombre**
+(los archivos de `/assets/` se guardan en caché por un año) y actualiza el
+`src` del `<audio id="bg-music">` en `index.html`.

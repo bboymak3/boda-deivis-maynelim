@@ -203,212 +203,164 @@
   })();
 
   // ========================================================
-  // MÚSICA: archivo propio o Canon de Pachelbel sintetizado
+  // MÚSICA DE FONDO: "Hasta Ese Día" (Lasso)
+  // Intenta sonar sola al entrar. Si el navegador bloquea el
+  // sonido hasta que la persona toque la pantalla (lo normal en
+  // celulares), empieza con el primer toque, por ejemplo al
+  // abrir el sobre. Controles: empezar de nuevo, reproducir/
+  // pausar, bajar y subir volumen.
   // ========================================================
   var Music = (function() {
     var audio = document.getElementById('bg-music');
-    var button = document.getElementById('music-toggle');
-    if (!audio || !button) return { start: function() {} };
+    var player = document.getElementById('music-player');
+    if (!audio || !player) return { start: function() {} };
 
+    var playBtn = player.querySelector('[data-action="toggle"]');
+    var levelFill = player.querySelector('.mp-level-fill');
+    var levelText = player.querySelector('.mp-level-text');
     var AudioCtx = window.AudioContext || window.webkitAudioContext;
     var actx = null;
-    var mode = null;      // 'file' | 'synth'
-    var playing = false;
-    var wantPlaying = false;
-    var synth = null;
+    var gain = null;
+    var STEP = 0.1;
+    var volume = 0.7;
+    var userPaused = false; // si la persona pausó, no volver a sonar sola
 
-    function ensureContext() {
-      if (!actx && AudioCtx) actx = new AudioCtx();
-      if (actx && actx.state === 'suspended') actx.resume();
+    try {
+      var saved = parseFloat(localStorage.getItem('boda-volumen'));
+      if (saved >= 0 && saved <= 1) volume = saved;
+    } catch (e) {}
+
+    // En iPhone el volumen de <audio> no se puede cambiar por código:
+    // se controla con un nodo de ganancia de Web Audio. Se crea dentro
+    // de un toque, que es cuando el navegador lo permite.
+    function ensureGraph() {
+      if (!AudioCtx || gain) {
+        if (actx && actx.state === 'suspended') actx.resume();
+        return;
+      }
+      try {
+        actx = new AudioCtx();
+        var source = actx.createMediaElementSource(audio);
+        gain = actx.createGain();
+        gain.gain.value = audio.paused ? 0 : volume;
+        source.connect(gain);
+        gain.connect(actx.destination);
+        audio.volume = 1;
+        if (actx.state === 'suspended') actx.resume();
+      } catch (e) {
+        gain = null; // sin Web Audio: se usa audio.volume
+      }
+    }
+
+    function applyVolume(v, fade) {
+      if (gain && actx) {
+        var now = actx.currentTime;
+        gain.gain.cancelScheduledValues(now);
+        gain.gain.setValueAtTime(gain.gain.value, now);
+        gain.gain.linearRampToValueAtTime(v, now + (fade ? 1.5 : 0.15));
+      } else {
+        try { audio.volume = v; } catch (e) {}
+      }
+    }
+
+    function renderLevel() {
+      var pct = Math.round(volume * 100);
+      levelFill.style.width = pct + '%';
+      levelText.textContent = pct + '%';
+      player.querySelector('[data-action="down"]').disabled = volume <= 0;
+      player.querySelector('[data-action="up"]').disabled = volume >= 1;
     }
 
     function setPlaying(state) {
-      playing = state;
-      button.classList.toggle('is-playing', state);
-      button.setAttribute('aria-pressed', String(state));
-      button.setAttribute('aria-label', state ? 'Pausar música' : 'Reproducir música');
+      player.classList.toggle('is-playing', state);
+      playBtn.setAttribute('aria-pressed', String(state));
+      playBtn.setAttribute('aria-label', state ? 'Pausar música' : 'Reproducir música');
     }
 
-    function fadeInFile() {
-      audio.volume = 0;
-      var v = 0;
-      var id = setInterval(function() {
-        v = Math.min(0.7, v + 0.05);
-        audio.volume = v;
-        if (v >= 0.7) clearInterval(id);
-      }, 120);
-    }
-
-    function startSynth() {
-      ensureContext();
-      if (!actx) return;
-      if (!synth) synth = createCanon(actx);
-      synth.play();
-      mode = 'synth';
-      setPlaying(true);
-    }
-
-    // Debe llamarse desde un clic/toque (los navegadores bloquean el autoplay)
-    function start() {
-      wantPlaying = true;
-      ensureContext(); // desbloquea el audio dentro del gesto del usuario
-      if (mode === 'synth') { startSynth(); return; }
+    function play(fromGesture) {
+      if (fromGesture) ensureGraph();
+      applyVolume(0, false);
       var p = audio.play();
-      if (p && p.then) {
-        p.then(function() {
-          mode = 'file';
-          fadeInFile();
-          setPlaying(true);
-        }).catch(startSynth); // sin archivo → melodía generada
-      } else {
-        mode = 'file';
+      var onStart = function() {
         setPlaying(true);
-      }
+        applyVolume(volume, true); // entra suave
+      };
+      if (p && p.then) return p.then(onStart);
+      onStart();
+      return Promise.resolve();
     }
 
     function pause() {
-      wantPlaying = false;
-      if (mode === 'file') audio.pause();
-      if (mode === 'synth' && synth) synth.pause();
+      audio.pause();
       setPlaying(false);
     }
 
-    audio.addEventListener('error', function() {
-      if (wantPlaying && mode !== 'synth') startSynth();
+    // Llamado desde el botón del sobre y desde el primer toque
+    function start() {
+      if (userPaused) return;
+      waitForGesture.off();
+      if (audio.paused) play(true).catch(function() {});
+      else ensureGraph();
+    }
+
+    var waitForGesture = (function() {
+      var events = ['pointerdown', 'touchend', 'keydown'];
+      function handler(e) {
+        if (e.target.closest && e.target.closest('#music-player')) return; // los botones lo manejan
+        start();
+      }
+      return {
+        on: function() { events.forEach(function(ev) { document.addEventListener(ev, handler, true); }); },
+        off: function() { events.forEach(function(ev) { document.removeEventListener(ev, handler, true); }); }
+      };
+    })();
+
+    player.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      var action = btn.getAttribute('data-action');
+      ensureGraph();
+      waitForGesture.off();
+      if (action === 'toggle') {
+        if (audio.paused) { userPaused = false; play(true).catch(function() {}); }
+        else { userPaused = true; pause(); }
+      } else if (action === 'restart') {
+        userPaused = false;
+        audio.currentTime = 0;
+        if (audio.paused) play(true).catch(function() {});
+      } else if (action === 'up' || action === 'down') {
+        volume = Math.round(Math.min(1, Math.max(0, volume + (action === 'up' ? STEP : -STEP))) * 10) / 10;
+        try { localStorage.setItem('boda-volumen', String(volume)); } catch (err) {}
+        if (!audio.paused) applyVolume(volume, false);
+        renderLevel();
+      }
     });
 
-    button.addEventListener('click', function() {
-      if (playing) pause();
-      else start();
-    });
+    audio.addEventListener('pause', function() { setPlaying(false); });
+    audio.addEventListener('play', function() { setPlaying(true); });
 
     // Pausar al salir de la pestaña y reanudar al volver
+    var pausedByHide = false;
     document.addEventListener('visibilitychange', function() {
-      if (!wantPlaying) return;
       if (document.hidden) {
-        if (mode === 'file') audio.pause();
-        if (mode === 'synth' && synth) synth.pause();
-      } else {
-        if (mode === 'file') audio.play().catch(function() {});
-        if (mode === 'synth' && synth) synth.play();
+        if (!audio.paused) { pausedByHide = true; audio.pause(); }
+      } else if (pausedByHide) {
+        pausedByHide = false;
+        if (actx && actx.state === 'suspended') actx.resume();
+        audio.play().catch(function() {});
       }
+    });
+
+    renderLevel();
+
+    // Intento de inicio automático al entrar
+    play(false).catch(function() {
+      setPlaying(false);
+      waitForGesture.on();
     });
 
     return { start: start };
   })();
-
-  // Canon en Re de Pachelbel (dominio público) como caja de música
-  function createCanon(actx) {
-    var master = actx.createGain();
-    master.gain.value = 0;
-    master.connect(actx.destination);
-
-    // Reverberación suave generada (sala de iglesia)
-    var reverb = actx.createConvolver();
-    var len = Math.floor(actx.sampleRate * 3);
-    var impulse = actx.createBuffer(2, len, actx.sampleRate);
-    for (var ch = 0; ch < 2; ch++) {
-      var data = impulse.getChannelData(ch);
-      for (var i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
-    }
-    reverb.buffer = impulse;
-    var wet = actx.createGain();
-    wet.gain.value = 0.45;
-    reverb.connect(wet);
-    wet.connect(master);
-
-    function freq(m) { return 440 * Math.pow(2, (m - 69) / 12); }
-
-    function note(midi, t, dur, vol, type, bell) {
-      var osc = actx.createOscillator();
-      var g = actx.createGain();
-      osc.type = type || 'sine';
-      osc.frequency.value = freq(midi);
-      g.gain.setValueAtTime(0.0001, t);
-      g.gain.exponentialRampToValueAtTime(vol, t + 0.015);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-      osc.connect(g);
-      g.connect(master);
-      g.connect(reverb);
-      osc.start(t);
-      osc.stop(t + dur + 0.05);
-      if (bell) { // armónico brillante tipo caja de música
-        var o2 = actx.createOscillator();
-        var g2 = actx.createGain();
-        o2.frequency.value = freq(midi) * 4;
-        g2.gain.setValueAtTime(0.0001, t);
-        g2.gain.exponentialRampToValueAtTime(vol * 0.18, t + 0.01);
-        g2.gain.exponentialRampToValueAtTime(0.0001, t + dur * 0.4);
-        o2.connect(g2);
-        g2.connect(master);
-        g2.connect(reverb);
-        o2.start(t);
-        o2.stop(t + dur);
-      }
-    }
-
-    var BEAT = 0.75;                      // 80 bpm
-    var BASS = [50, 45, 47, 42, 43, 38, 43, 45];               // D A Bm F#m G D G A
-    var CHORDS = [[62, 66, 69], [61, 64, 69], [62, 66, 71], [61, 66, 69],
-                  [62, 67, 71], [62, 66, 69], [62, 67, 71], [61, 64, 69]];
-    var MELODIES = [
-      null,
-      [[78], [76], [74], [73], [71], [69], [71], [73]],
-      [[74], [73], [71], [69], [67], [66], [67], [64]],
-      [[74, 78], [81, 79], [78, 74], [78, 76], [74, 71], [74, 69], [67, 71], [69, 67]]
-    ];
-
-    var step = 0;
-    var nextTime = 0;
-    var timer = null;
-
-    function scheduleChord(s, t) {
-      var c = s % 8;
-      var cycle = Math.floor(s / 8);
-      var section = cycle === 0 ? 0 : 1 + ((cycle - 1) % 3);
-      note(BASS[c], t, BEAT * 2.2, 0.16, 'sine');
-      note(BASS[c] + 12, t, BEAT * 1.6, 0.05, 'triangle');
-      var arp = [0, 1, 2, 1];
-      for (var a = 0; a < 4; a++) {
-        note(CHORDS[c][arp[a]] + (a === 2 ? 12 : 0), t + a * BEAT / 2, 0.9, 0.045, 'triangle');
-      }
-      var mel = MELODIES[section];
-      if (mel) {
-        var notes = mel[c];
-        var each = (BEAT * 2) / notes.length;
-        for (var n = 0; n < notes.length; n++) {
-          note(notes[n], t + n * each, 1.8, 0.11, 'sine', true);
-        }
-      }
-    }
-
-    function tick() {
-      while (nextTime < actx.currentTime + 0.6) {
-        scheduleChord(step, nextTime);
-        nextTime += BEAT * 2;
-        step++;
-      }
-    }
-
-    return {
-      play: function() {
-        if (actx.state === 'suspended') actx.resume();
-        if (!timer) {
-          if (nextTime < actx.currentTime) nextTime = actx.currentTime + 0.1;
-          timer = setInterval(tick, 80);
-          tick();
-        }
-        master.gain.cancelScheduledValues(actx.currentTime);
-        master.gain.setTargetAtTime(0.55, actx.currentTime, 0.6);
-      },
-      pause: function() {
-        master.gain.cancelScheduledValues(actx.currentTime);
-        master.gain.setTargetAtTime(0, actx.currentTime, 0.15);
-        clearInterval(timer);
-        timer = null;
-      }
-    };
-  }
 
   // ========================================================
   // INTRO: abrir el sobre
@@ -628,7 +580,7 @@
     });
 
     if (!finePointer || reduceMotion) return;
-    document.querySelectorAll('.btn-gallery, .intro-open, .music-toggle, .circle-btn').forEach(function(btn) {
+    document.querySelectorAll('.btn-gallery, .intro-open, .circle-btn').forEach(function(btn) {
       btn.classList.add('fx-magnetic');
       btn.addEventListener('pointermove', function(e) {
         var r = btn.getBoundingClientRect();

@@ -294,9 +294,6 @@ body {
   box-shadow: inset 0 0 0 1px rgba(201, 163, 82, 0.6), 0 0 14px rgba(247, 231, 166, 0.7);
 }
 
-.music-bars i {
-  background: linear-gradient(180deg, #FFFBEB, var(--yellow-300));
-}
 
 /* ============================================================
    PÁGINAS SECUNDARIAS (galería y donaciones)
