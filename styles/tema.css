@@ -726,3 +726,70 @@ body {
 .pm-row { flex-wrap: wrap; }
 .pm-row dd { margin-left: auto; }
 .pm-value { white-space: nowrap; }
+
+/* ============================================================
+   DRESS CODE — vestimenta ni roja ni blanca
+   Dos muestras de color tachadas + frase elegante
+   ============================================================ */
+.dress-avoid {
+  margin: 1.6rem auto 0;
+  max-width: 420px;
+  padding: 1.3rem 1.2rem 1.1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(201, 163, 82, 0.45);
+  box-shadow: 0 8px 22px rgba(42, 64, 96, 0.08);
+}
+
+.dress-swatches {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.dress-swatch {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(42, 64, 96, 0.18), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.dress-swatch-red {
+  background: radial-gradient(circle at 35% 30%, #F08A8A 0%, #C93B3B 60%, #9E2626 100%);
+}
+
+.dress-swatch-white {
+  background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #F6F4EF 60%, #E4E0D8 100%);
+  border: 1px solid #D9D3C7;
+}
+
+/* Línea diagonal que "tacha" el color */
+.dress-swatch::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -4px;
+  right: -4px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--blue-700);
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.85);
+  transform: rotate(-45deg);
+}
+
+.dress-avoid-text {
+  font-family: var(--font-elegant);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--blue-800);
+  margin-bottom: 0.3rem;
+}
+
+.dress-avoid-note {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--gray-text);
+}
