@@ -351,11 +351,6 @@
       el.style.transitionDelay = (idx % 4) * 80 + 'ms';
     });
 
-    // Fallback: revelar todo después de 2s (por si observer no dispara)
-    setTimeout(function() {
-      targets.forEach(function(el) { el.classList.add('visible'); });
-    }, 2000);
-
     if (!('IntersectionObserver' in window)) {
       // Fallback: mostrar todo
       targets.forEach(function(el) { el.classList.add('visible'); });

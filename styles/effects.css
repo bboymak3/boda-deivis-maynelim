@@ -200,12 +200,12 @@
 }
 
 /* ============================================================
-   APARICIÓN EN 3D AL HACER SCROLL
+   APARICIÓN AL HACER SCROLL — todo llega desde la derecha
    ============================================================ */
 .js-enabled .reveal:not(.visible) {
   opacity: 0;
-  transform: perspective(900px) translateY(40px) rotateX(14deg) scale(0.97);
-  transform-origin: 50% 100%;
+  transform: perspective(900px) translateX(70px) rotateY(-12deg) scale(0.97);
+  transform-origin: 100% 50%;
 }
 
 .js-enabled .reveal.visible {
