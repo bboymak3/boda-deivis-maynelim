@@ -410,6 +410,24 @@
   var FRAME_SELECTOR = '.fx-frame, .countdown-item, .details-card, .gift-card, .verse-card, ' +
     '.rsvp-form, .timeline-content, .donation-card, .gallery-event-item, .gallery-item';
 
+  // ========================================================
+  // ESTRELLA DORADA ✦ EN LA ESQUINA SUPERIOR DERECHA DE CADA TARJETA
+  // ========================================================
+  var CORNER_SELECTOR = '.countdown-item, .details-card, .dress-code, .usdt-card, ' +
+    '.gift-secondary, .rsvp-form, .verse-card, .donation-card';
+
+  function initCornerStars() {
+    document.querySelectorAll(CORNER_SELECTOR).forEach(function(el, i) {
+      if (el.querySelector(':scope > .corner-star')) return;
+      var star = document.createElement('span');
+      star.className = 'corner-star';
+      star.setAttribute('aria-hidden', 'true');
+      star.textContent = '✦';
+      star.style.animationDelay = (i % 5) * 0.7 + 's'; // que no titilen todas a la vez
+      el.appendChild(star);
+    });
+  }
+
   function initFrames() {
     var frames = document.querySelectorAll(FRAME_SELECTOR);
     frames.forEach(function(el) {
@@ -647,6 +665,7 @@
   // ========================================================
   function init() {
     initFrames();
+    initCornerStars();
     initButtons();
     initTilt();
     initCountdownFlip();

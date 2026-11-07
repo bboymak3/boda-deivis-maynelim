@@ -790,3 +790,46 @@ body {
   font-style: italic;
   color: var(--gray-text);
 }
+
+/* ============================================================
+   ESTRELLA ✦ ARRIBA A LA DERECHA DE CADA TARJETA
+   (la inserta scripts/effects.js; titila suavemente)
+   ============================================================ */
+.details-card::after { content: none; } /* la reemplaza la estrella animada */
+
+.corner-star {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 7;
+  font-size: 0.95rem;
+  line-height: 1;
+  pointer-events: none;
+  background: linear-gradient(135deg, #9C7A2E 0%, #E8C878 45%, #FFF1C4 55%, #C9A352 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 4px rgba(247, 231, 166, 0.9));
+  animation: cornerTwinkle 3.5s ease-in-out infinite;
+}
+
+/* Tarjetas pequeñas de la cuenta regresiva: estrella más chica */
+.countdown-item .corner-star {
+  top: 6px;
+  right: 7px;
+  font-size: 0.6rem;
+}
+
+/* Tarjeta USDT (fondo azul) y la etiqueta "Opción preferida" arriba */
+.usdt-card .corner-star {
+  top: 16px;
+  right: 18px;
+}
+
+@keyframes cornerTwinkle {
+  0%, 100% { opacity: 0.55; transform: scale(0.85) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.15) rotate(45deg); }
+}
+
+/* Que la entrada desde la derecha nunca cree scroll horizontal */
+html, body { overflow-x: clip; }
