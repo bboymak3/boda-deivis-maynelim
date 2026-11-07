@@ -62,10 +62,7 @@
 .script-title,
 .count-number,
 .verse-text strong,
-.verse-ref,
-.gallery-cta-title,
-.hero-names .name,
-.hero-names .ampersand {
+.verse-ref {
   background-size: 200% 200%;
   animation: goldShimmer 6s linear infinite;
 }
@@ -77,9 +74,7 @@
 .gift-card,
 .verse-card,
 .rsvp-form,
-.timeline-content,
-.donation-card,
-.gallery-event-item {
+.donation-card {
   border-color: rgba(201, 163, 82, 0.35);
 }
 
@@ -119,9 +114,14 @@
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite: exclude;
   animation: spinAngle 7s linear infinite;
+  opacity: 0.8;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Más brillo solo mientras se desplaza (el filtro no queda activo en reposo) */
+.fx-frame.fx-glowing .fx-border {
   opacity: calc(0.8 + var(--scroll-glow) * 0.2);
   filter: brightness(calc(1 + var(--scroll-glow) * 0.35)) saturate(calc(1 + var(--scroll-glow) * 0.3));
-  transition: opacity 0.4s ease, filter 0.4s ease;
 }
 
 .invite-card .fx-border {
@@ -129,7 +129,7 @@
 }
 
 /* Halo dorado alrededor de la tarjeta mientras se desplaza */
-.fx-frame.fx-in-view {
+.fx-frame.fx-glowing {
   box-shadow:
     0 0 calc(var(--scroll-glow) * 26px) rgba(232, 200, 120, calc(var(--scroll-glow) * 0.55)),
     0 8px 30px rgba(201, 169, 97, 0.15);
@@ -271,23 +271,13 @@
   animation: btnGlow 2.8s ease-in-out infinite;
 }
 
-.btn-gallery.fx-btn {
-  animation: btnGlowSoft 2.8s ease-in-out infinite;
-}
-
 @keyframes btnGlow {
   0%, 100% { box-shadow: 0 4px 16px rgba(201, 163, 82, 0.3); }
   50% { box-shadow: 0 6px 26px rgba(232, 200, 120, 0.7), 0 0 0 3px rgba(255, 241, 196, 0.45); }
 }
 
-@keyframes btnGlowSoft {
-  0%, 100% { box-shadow: 0 4px 16px rgba(201, 163, 82, 0.15); }
-  50% { box-shadow: 0 6px 24px rgba(232, 200, 120, 0.5), 0 0 0 3px rgba(255, 241, 196, 0.4); }
-}
-
 /* Enlaces dorados con subrayado animado y flecha que avanza */
-.details-link,
-.gift-link {
+.details-link {
   background-image: linear-gradient(90deg, #9C7A2E, #FFF1C4, #E8C878, #9C7A2E);
   background-size: 0% 1.5px;
   background-repeat: no-repeat;
@@ -296,20 +286,10 @@
   transition: background-size 0.45s ease, color 0.3s ease, letter-spacing 0.3s ease;
 }
 
-.details-link:hover,
-.gift-link:hover {
+.details-link:hover {
   background-size: 100% 1.5px;
   letter-spacing: 0.24em;
   text-shadow: 0 0 10px rgba(232, 200, 120, 0.6);
-}
-
-.hashtag {
-  position: relative;
-  overflow: hidden;
-}
-
-.hashtag:hover {
-  transform: translateY(-4px) scale(1.04);
 }
 
 /* ============================================================
@@ -322,16 +302,6 @@
 @keyframes flipNumber {
   0% { transform: perspective(300px) rotateX(-90deg); opacity: 0.2; }
   100% { transform: perspective(300px) rotateX(0); opacity: 1; }
-}
-
-/* Los puntos de la línea de tiempo laten en dorado */
-.timeline-dot {
-  animation: dotPulse 2.6s ease-in-out infinite;
-}
-
-@keyframes dotPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 200, 120, 0.6); }
-  50% { box-shadow: 0 0 0 8px rgba(232, 200, 120, 0); }
 }
 
 /* ============================================================
@@ -358,7 +328,7 @@
   width: 100%;
   z-index: 960;
   transform-origin: 0 50%;
-  transform: scaleX(var(--progress, 0));
+  transform: scaleX(0); /* lo actualiza JS */
   background: linear-gradient(90deg, #9C7A2E, #E8C878, #FFF8E1, #E8C878, #9C7A2E);
   box-shadow: 0 0 10px rgba(232, 200, 120, 0.8);
 }
@@ -373,4 +343,15 @@
     transition-duration: 0.01ms !important;
   }
   .fx-particles { display: none; }
+}
+
+/* ============================================================
+   RENDIMIENTO — secciones fuera de pantalla con animaciones en pausa
+   (la clase la pone scripts/effects.js)
+   ============================================================ */
+.fx-offscreen,
+.fx-offscreen *,
+.fx-offscreen *::before,
+.fx-offscreen *::after {
+  animation-play-state: paused !important;
 }

@@ -45,7 +45,7 @@ body {
 .section-pretitle { color: var(--blue-600); }
 
 /* Fondo oscuro → títulos en amarillo pastel + dorado */
-.on-dark .section-pretitle,
+
 .countdown-section .section-pretitle,
 .rsvp-section .section-pretitle {
   color: var(--yellow-300);
@@ -128,8 +128,6 @@ body {
 
 .countdown-item {
   background: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.05) 100%);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
   box-shadow: 0 10px 30px rgba(10, 20, 40, 0.35), inset 0 1px 0 rgba(255,255,255,0.15);
 }
 
@@ -251,19 +249,11 @@ body {
   background: linear-gradient(180deg, var(--blue-50) 0%, var(--blue-100) 100%);
 }
 
-.gift-icon { color: var(--blue-500); }
 .gift-title { color: var(--blue-800); }
 
 .gift-card.featured {
   background: linear-gradient(180deg, #FFFFFF 0%, var(--yellow-100) 100%);
 }
-
-.gift-bank {
-  background: var(--yellow-50);
-  border-left-color: var(--blue-500);
-}
-
-.gift-bank strong { color: var(--blue-700); }
 
 /* ============================================================
    FOOTER — azul noche con amarillo pastel
@@ -282,7 +272,7 @@ body {
    BARRA INFERIOR Y MÚSICA
    ============================================================ */
 .bottom-nav {
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .bottom-nav-item { color: var(--blue-600); }
@@ -293,7 +283,6 @@ body {
   background: linear-gradient(180deg, var(--yellow-200) 0%, var(--yellow-300) 100%);
   box-shadow: inset 0 0 0 1px rgba(201, 163, 82, 0.6), 0 0 14px rgba(247, 231, 166, 0.7);
 }
-
 
 /* ============================================================
    PÁGINAS SECUNDARIAS (galería y donaciones)
@@ -568,13 +557,6 @@ body {
   font-size: 1.15rem;
   text-align: center;
   margin-bottom: 0.8rem;
-}
-
-.gift-secondary .gift-link {
-  letter-spacing: 0.12em;
-  display: block;
-  text-align: center;
-  margin-top: 1rem;
 }
 
 /* Etiqueta "Opción preferida" por encima del marco dorado animado */
