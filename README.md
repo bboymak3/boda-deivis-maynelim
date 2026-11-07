@@ -67,8 +67,8 @@ boda-deivis-maynelim/
 1. **Hero** — Tarjeta de invitación: foto, sello D|M, nombres, fecha y 4 botones circulares
 2. **Cuenta regresiva** — Días / Horas / Minutos / Segundos al 21-Dic-2026 5:00 PM
 3. **Bienvenida** — "Hay momentos en la vida que se quedan grabados para siempre…"
-4. **Detalles** — Ceremonia 5:00 PM en Restaurante La Finca + dress code FORMAL (nada de rojo, nada de blanco)
-5. **Regalos** — USDT (Binance de Maynelim y de Deivis) como opción preferida, Pago Móvil y efectivo en divisas
+4. **Detalles** — Ceremonia 5:00 PM en Restaurante La Finca + dress code FORMAL (vestimenta ni roja ni blanca)
+5. **Regalos** — USDT (Binance de Maynelim y de Deivis) como opción preferida, Pago Móvil y divisas en efectivo
 6. **Galería** — Grid de fotos (placeholder Unsplash, se reemplazan por fotos reales)
 7. **RSVP** — Nombre completo, teléfono y asistencia; se envía por WhatsApp
 8. **Versículo** — Eclesiastés 4:12
