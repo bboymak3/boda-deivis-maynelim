@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Panel de confirmaciones — Deivis &amp; Maynelim</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue-900: #2A4060;
+      --blue-700: #3F5A78;
+      --blue-500: #6E8DB0;
+      --blue-100: #E1EAF4;
+      --blue-50: #EEF3F9;
+      --yellow-100: #FDF6D8;
+      --gold: #C9A352;
+      --gold-light: #E8C878;
+      --gold-deep: #9C7A2E;
+      --green: #1E8E50;
+      --red: #B0443D;
+      --text: #2A4060;
+      --muted: #5A6878;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+      font-weight: 400;
+      color: var(--text);
+      background: linear-gradient(165deg, var(--blue-50) 0%, var(--blue-100) 100%);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 980px; margin: 0 auto; padding: 24px 16px 48px; }
+
+    .brand { text-align: center; margin-bottom: 24px; }
+    .brand-names { font-family: 'Great Vibes', cursive; font-size: 2.4rem; color: var(--blue-700); line-height: 1.1; }
+    .brand-sub {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-deep);
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid rgba(201, 163, 82, 0.45);
+      box-shadow: 0 14px 40px rgba(42, 64, 96, 0.12);
+      padding: 24px 20px;
+    }
+
+    /* ---------- Acceso ---------- */
+    .login { max-width: 380px; margin: 8vh auto 0; text-align: center; }
+    .login h1 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 1.4rem; margin-bottom: 6px; }
+    .login p { font-size: 0.85rem; color: var(--muted); margin-bottom: 18px; }
+    .field { position: relative; margin-bottom: 12px; }
+    .field input {
+      width: 100%; padding: 14px 48px 14px 16px; font: inherit; font-size: 1rem; color: var(--text);
+      border: 1.5px solid #D6DEE8; border-radius: 12px; background: var(--blue-50); outline: none;
+    }
+    .field input:focus { border-color: var(--blue-500); background: #fff; box-shadow: 0 0 0 3px rgba(232, 200, 120, 0.45); }
+    .toggle-pass {
+      position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+      width: 38px; height: 38px; border: none; background: none; cursor: pointer; color: var(--muted); border-radius: 50%;
+    }
+    .toggle-pass:hover { background: var(--blue-50); }
+    .msg { min-height: 1.3em; font-size: 0.82rem; margin-top: 10px; }
+    .msg.error { color: var(--red); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+      padding: 12px 18px; border-radius: 40px; border: none; cursor: pointer;
+      font: inherit; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn:disabled { opacity: 0.6; cursor: default; }
+    .btn-primary {
+      width: 100%; color: var(--yellow-100);
+      background: linear-gradient(135deg, var(--blue-700) 0%, var(--blue-500) 100%);
+      box-shadow: 0 0 0 1.5px var(--gold-light), 0 8px 20px rgba(42, 64, 96, 0.3);
+    }
+    .btn-ghost { color: var(--blue-700); background: #fff; border: 1.5px solid #D6DEE8; }
+    .btn-ghost:hover { border-color: var(--blue-500); }
+    .btn-gold { color: var(--blue-900); background: linear-gradient(135deg, #E8C878 0%, #FFF1C4 50%, #E8C878 100%); }
+
+    /* ---------- Panel ---------- */
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 16px;
+    }
+    .toolbar h1 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 1.35rem; }
+    .toolbar .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+    .stat { text-align: center; padding: 16px 8px; border-radius: 14px; background: #fff; border: 1px solid rgba(201, 163, 82, 0.4); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; line-height: 1; }
+    .stat-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+    .stat-yes .stat-num { color: var(--green); }
+    .stat-no .stat-num { color: var(--red); }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .filters input {
+      flex: 1 1 220px; padding: 11px 14px; font: inherit; font-size: 0.9rem; color: var(--text);
+      border: 1.5px solid #D6DEE8; border-radius: 12px; background: #fff; outline: none;
+    }
+    .filters input:focus { border-color: var(--blue-500); }
+    .chips { display: flex; gap: 6px; }
+    .chip {
+      padding: 9px 14px; border-radius: 30px; border: 1.5px solid #D6DEE8; background: #fff; cursor: pointer;
+      font: inherit; font-size: 0.72rem; font-weight: 600; color: var(--muted);
+    }
+    .chip[aria-pressed="true"] { background: var(--blue-700); border-color: var(--blue-700); color: var(--yellow-100); }
+
+    .list { display: grid; gap: 10px; }
+    .item {
+      display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; align-items: center;
+      background: #fff; border-radius: 14px; padding: 14px 16px; border: 1px solid #E3E8EF;
+    }
+    .item-name { font-weight: 600; font-size: 1rem; }
+    .item-meta { font-size: 0.78rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; }
+    .item-meta a { color: var(--blue-700); text-decoration: none; font-weight: 500; }
+    .item-meta a:hover { text-decoration: underline; }
+    .badge {
+      display: inline-block; padding: 5px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em;
+    }
+    .badge-yes { background: #E3F4EA; color: var(--green); }
+    .badge-no { background: #F8E6E4; color: var(--red); }
+    .badge-dup { background: var(--yellow-100); color: var(--gold-deep); margin-left: 6px; }
+
+    .empty { text-align: center; color: var(--muted); padding: 32px 12px; font-size: 0.9rem; }
+    .updated { font-size: 0.72rem; color: var(--muted); text-align: right; margin-top: 12px; }
+    .hidden { display: none !important; }
+
+    @media (max-width: 520px) {
+      .stat-num { font-size: 1.6rem; }
+      .toolbar .actions { width: 100%; }
+      .toolbar .actions .btn { flex: 1; padding: 11px 10px; letter-spacing: 0.08em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-names">Deivis &amp; Maynelim</div>
+      <div class="brand-sub">Panel de confirmaciones · 21 · 12 · 2026</div>
+    </div>
+
+    <!-- Acceso -->
+    <section class="card login" id="login">
+      <h1>Acceso privado</h1>
+      <p>Escribe la clave para ver las confirmaciones.</p>
+      <form id="login-form" autocomplete="off">
+        <div class="field">
+          <input type="password" id="clave" placeholder="Clave" aria-label="Clave" required autocomplete="current-password" />
+          <button type="button" class="toggle-pass" id="toggle-pass" aria-label="Mostrar clave">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <button type="submit" class="btn btn-primary" id="login-btn">Entrar</button>
+        <p class="msg" id="login-msg" role="alert"></p>
+      </form>
+    </section>
+
+    <!-- Panel -->
+    <section class="hidden" id="panel">
+      <div class="toolbar">
+        <h1>Confirmaciones</h1>
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="refresh">Actualizar</button>
+          <button type="button" class="btn btn-gold" id="csv">Descargar Excel</button>
+          <button type="button" class="btn btn-ghost" id="logout">Salir</button>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="stat-num" id="n-total">0</div><div class="stat-label">Respuestas</div></div>
+        <div class="stat stat-yes"><div class="stat-num" id="n-si">0</div><div class="stat-label">Asistirán</div></div>
+        <div class="stat stat-no"><div class="stat-num" id="n-no">0</div><div class="stat-label">No asistirán</div></div>
+      </div>
+
+      <div class="filters">
+        <input type="search" id="buscar" placeholder="Buscar por nombre o teléfono" aria-label="Buscar" />
+        <div class="chips" role="group" aria-label="Filtrar">
+          <button type="button" class="chip" data-filtro="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="chip" data-filtro="si" aria-pressed="false">Sí</button>
+          <button type="button" class="chip" data-filtro="no" aria-pressed="false">No</button>
+        </div>
+      </div>
+
+      <div class="list" id="lista" aria-live="polite"></div>
+      <p class="updated" id="actualizado"></p>
+    </section>
+  </div>
+
+  <script>
+  (function() {
+    'use strict';
+
+    var API = '/api/admin/confirmaciones';
+    var KEY = 'boda-admin-clave'; // solo en esta pestaña (se borra al cerrarla)
+    var items = [];
+    var filtro = 'todos';
+
+    var $ = function(id) { return document.getElementById(id); };
+    var loginBox = $('login'), panel = $('panel'), msg = $('login-msg');
+
+    function getClave() { try { return sessionStorage.getItem(KEY) || ''; } catch (e) { return ''; } }
+    function setClave(v) { try { v ? sessionStorage.setItem(KEY, v) : sessionStorage.removeItem(KEY); } catch (e) {} }
+
+    function mostrarError(texto) {
+      msg.textContent = texto;
+      msg.className = 'msg error';
+    }
+
+    async function cargar(clave) {
+      var res;
+      try {
+        res = await fetch(API, { headers: { Authorization: 'Bearer ' + clave }, cache: 'no-store' });
+      } catch (e) {
+        throw new Error('Sin conexión. Revisa tu internet e inténtalo de nuevo.');
+      }
+      if (res.status === 401) throw new Error('Clave incorrecta.');
+      if (res.status === 503) throw new Error('El panel aún no está configurado en Cloudflare (falta RSVP_KV o ADMIN_PASSWORD).');
+      if (!res.ok) throw new Error('No se pudieron cargar las confirmaciones (error ' + res.status + ').');
+      var data = await res.json();
+      return data.items || [];
+    }
+
+    async function entrar(clave) {
+      $('login-btn').disabled = true;
+      $('login-btn').textContent = 'Entrando…';
+      msg.textContent = '';
+      try {
+        items = await cargar(clave);
+        setClave(clave);
+        loginBox.classList.add('hidden');
+        panel.classList.remove('hidden');
+        pintar();
+      } catch (e) {
+        setClave('');
+        loginBox.classList.remove('hidden');
+        panel.classList.add('hidden');
+        mostrarError(e.message);
+      } finally {
+        $('login-btn').disabled = false;
+        $('login-btn').textContent = 'Entrar';
+      }
+    }
+
+    function soloDigitos(t) { return String(t || '').replace(/\D/g, ''); }
+
+    // Teléfono venezolano 0414... → 58414... para el enlace de WhatsApp
+    function waNumero(t) {
+      var d = soloDigitos(t);
+      if (d.indexOf('0') === 0 && d.length === 11) d = '58' + d.slice(1);
+      return d;
+    }
+
+    function fechaLocal(iso) {
+      try {
+        return new Date(iso).toLocaleString('es-VE', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+      } catch (e) { return iso; }
+    }
+
+    function pintar() {
+      var q = $('buscar').value.trim().toLowerCase();
+      var qd = soloDigitos(q);
+      var conteo = {};
+      items.forEach(function(it) { var k = soloDigitos(it.telefono); conteo[k] = (conteo[k] || 0) + 1; });
+
+      $('n-total').textContent = items.length;
+      $('n-si').textContent = items.filter(function(i) { return i.asistencia === 'si'; }).length;
+      $('n-no').textContent = items.filter(function(i) { return i.asistencia === 'no'; }).length;
+
+      var visibles = items.filter(function(it) {
+        if (filtro !== 'todos' && it.asistencia !== filtro) return false;
+        if (!q) return true;
+        return it.nombre.toLowerCase().indexOf(q) !== -1 || (qd && soloDigitos(it.telefono).indexOf(qd) !== -1);
+      });
+
+      var lista = $('lista');
+      lista.textContent = '';
+      if (!visibles.length) {
+        var vacio = document.createElement('p');
+        vacio.className = 'empty';
+        vacio.textContent = items.length ? 'No hay resultados para esta búsqueda.' : 'Todavía no hay confirmaciones.';
+        lista.appendChild(vacio);
+      }
+
+      visibles.forEach(function(it) {
+        var row = document.createElement('article');
+        row.className = 'item';
+
+        var info = document.createElement('div');
+        var nombre = document.createElement('div');
+        nombre.className = 'item-name';
+        nombre.textContent = it.nombre;
+        if (conteo[soloDigitos(it.telefono)] > 1) {
+          var dup = document.createElement('span');
+          dup.className = 'badge badge-dup';
+          dup.textContent = 'Repetido';
+          dup.title = 'Este teléfono confirmó más de una vez';
+          nombre.appendChild(dup);
+        }
+
+        var meta = document.createElement('div');
+        meta.className = 'item-meta';
+        var tel = document.createElement('a');
+        tel.href = 'tel:' + soloDigitos(it.telefono);
+        tel.textContent = it.telefono;
+        var wa = document.createElement('a');
+        wa.href = 'https://wa.me/' + waNumero(it.telefono);
+        wa.target = '_blank';
+        wa.rel = 'noopener';
+        wa.textContent = 'WhatsApp';
+        var fecha = document.createElement('span');
+        fecha.textContent = fechaLocal(it.fecha);
+        meta.append(tel, wa, fecha);
+        info.append(nombre, meta);
+
+        var badge = document.createElement('span');
+        badge.className = 'badge ' + (it.asistencia === 'si' ? 'badge-yes' : 'badge-no');
+        badge.textContent = it.asistencia === 'si' ? 'Asistirá' : 'No asistirá';
+
+        row.append(info, badge);
+        lista.appendChild(row);
+      });
+
+      $('actualizado').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-VE', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function descargarCSV() {
+      var filas = [['Nombre', 'Teléfono', 'Asistencia', 'Fecha']].concat(items.map(function(it) {
+        return [it.nombre, it.telefono, it.asistencia === 'si' ? 'Sí' : 'No', new Date(it.fecha).toLocaleString('es-VE')];
+      }));
+      // ";" y BOM para que Excel en español lo abra con acentos y columnas correctas
+      var csv = '﻿' + filas.map(function(f) {
+        return f.map(function(c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(';');
+      }).join('\r\n');
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      a.download = 'confirmaciones-boda.csv';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function() { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    }
+
+    $('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var clave = $('clave').value;
+      if (clave) entrar(clave);
+    });
+
+    $('toggle-pass').addEventListener('click', function() {
+      var input = $('clave');
+      var ver = input.type === 'password';
+      input.type = ver ? 'text' : 'password';
+      this.setAttribute('aria-label', ver ? 'Ocultar clave' : 'Mostrar clave');
+    });
+
+    $('refresh').addEventListener('click', async function() {
+      var btn = this;
+      btn.disabled = true;
+      btn.textContent = 'Cargando…';
+      try { items = await cargar(getClave()); pintar(); }
+      catch (e) { setClave(''); panel.classList.add('hidden'); loginBox.classList.remove('hidden'); mostrarError(e.message); }
+      finally { btn.disabled = false; btn.textContent = 'Actualizar'; }
+    });
+
+    $('logout').addEventListener('click', function() {
+      setClave('');
+      items = [];
+      $('clave').value = '';
+      panel.classList.add('hidden');
+      loginBox.classList.remove('hidden');
+    });
+
+    $('csv').addEventListener('click', descargarCSV);
+    $('buscar').addEventListener('input', pintar);
+    document.querySelectorAll('.chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        filtro = chip.getAttribute('data-filtro');
+        document.querySelectorAll('.chip').forEach(function(c) { c.setAttribute('aria-pressed', String(c === chip)); });
+        pintar();
+      });
+    });
+
+    // Si ya entró en esta pestaña, volver a cargar sin pedir la clave
+    if (getClave()) entrar(getClave());
+    else $('clave').focus();
+  })();
+  </script>
+</body>
+</html>

@@ -88,7 +88,29 @@ Edita `index.html` y busca los siguientes placeholders:
 | `assets/fotos/galeria-*.webp/.jpg` | Fotos de la galería (WebP + JPEG de respaldo, sin datos EXIF/GPS) |
 | `WEDDING_DATE` en `scripts/main.js` | Fecha/hora del evento (actual: 2026-12-21T17:00) |
 
-## Deploy en Cloudflare Pages
+## Panel de confirmaciones (`/admin`)
+
+Cada confirmación sigue llegando por **WhatsApp** como siempre y, además, se
+guarda en Cloudflare para verla en **`/admin`** (protegido con clave). Si el
+guardado no está configurado o falla, la invitación funciona igual.
+
+- `functions/api/rsvp.js` — `POST /api/rsvp`: guarda nombre, teléfono y asistencia.
+- `functions/api/admin/confirmaciones.js` — `GET /api/admin/confirmaciones`: lista
+  todo; exige `Authorization: Bearer <clave>`.
+- `admin.html` — panel: totales, búsqueda, filtro Sí/No, enlaces de llamada y
+  WhatsApp, marca de "Repetido" y descarga a Excel (CSV).
+
+**Configuración (una sola vez) en Cloudflare → Workers & Pages → el proyecto → Settings:**
+
+1. **Bindings → Add → KV namespace**: nombre de variable `RSVP_KV`, namespace
+   `boda-deivis-maynelim-confirmaciones` (en Production y Preview).
+2. **Variables and Secrets → Add**: tipo **Secret**, nombre `ADMIN_PASSWORD`,
+   valor = la clave del panel. La clave **no** está en el código.
+3. Volver a desplegar (Deployments → ⋯ → Retry deployment) para que tome los cambios.
+
+Solo se guardan las confirmaciones hechas **después** de esta configuración.
+
+
 
 ```bash
 npx wrangler@latest pages deploy . --project-name=boda-deivis-maynelim --branch=main --commit-dirty=true
