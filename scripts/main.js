@@ -257,6 +257,17 @@
       document.getElementById('rsvp-whatsapp-link').href = waUrl;
       window.open(waUrl, '_blank', 'noopener');
 
+      // Copia para el panel de administración (/admin). Si el servidor no
+      // está configurado o falla, se ignora: WhatsApp sigue siendo el envío principal.
+      try {
+        fetch('/api/rsvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre: data.nombre, telefono: data.telefono, asistencia: data.asistencia }),
+          keepalive: true
+        }).catch(function() {});
+      } catch (err) {}
+
       const primerNombre = data.nombre.split(' ')[0];
       const si = data.asistencia === 'si';
       document.getElementById('rsvp-success-title').textContent =
