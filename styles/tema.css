@@ -844,3 +844,13 @@ html, body { overflow-x: clip; }
 @media (hover: none) {
   .gallery-overlay { opacity: 1; }
 }
+
+/* Foto horizontal destacada: ocupa todo el ancho de la galería */
+.gallery-item-wide {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+@media (min-width: 769px) {
+  .gallery-item-wide { aspect-ratio: 21 / 9; }
+}

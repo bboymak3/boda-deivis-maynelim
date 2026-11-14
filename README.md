@@ -70,7 +70,7 @@ boda-deivis-maynelim/
 3. **Bienvenida** — "Hay momentos en la vida que se quedan grabados para siempre…"
 4. **Detalles** — Ceremonia 5:00 PM en Restaurante La Finca + dress code FORMAL (vestimenta ni roja ni blanca)
 5. **Regalos** — USDT (Binance de Maynelim y de Deivis) como opción preferida, Pago Móvil y divisas en efectivo
-6. **Galería** — Las 4 fotos de los novios (`assets/fotos/galeria-*`)
+6. **Galería** — 5 fotos de los novios: 1 horizontal destacada + 4 verticales (`assets/fotos/galeria-*`)
 7. **RSVP** — Nombre completo, teléfono y asistencia; se envía por WhatsApp
 8. **Versículo** — Eclesiastés 4:12
 9. **Footer** — Monograma, nombres, fecha y agradecimiento
