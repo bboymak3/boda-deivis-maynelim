@@ -194,6 +194,27 @@
       return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
     }
 
+    // Guarda la confirmación en el servidor para el panel /admin.
+    // sendBeacon está hecho para enviar datos aunque la página se cierre o pase
+    // a segundo plano; si no existe o no se pudo encolar, se usa fetch keepalive.
+    // Si el servidor no está configurado o falla, se ignora: WhatsApp sigue igual.
+    function guardarEnPanel(data) {
+      const body = JSON.stringify({ nombre: data.nombre, telefono: data.telefono, asistencia: data.asistencia });
+      try {
+        if (navigator.sendBeacon && navigator.sendBeacon('/api/rsvp', new Blob([body], { type: 'text/plain;charset=UTF-8' }))) {
+          return;
+        }
+      } catch (err) {}
+      try {
+        fetch('/api/rsvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+          body: body,
+          keepalive: true
+        }).catch(function() {});
+      } catch (err) {}
+    }
+
     function showStep(step) {
       modal.querySelectorAll('.rsvp-step').forEach(function(el) {
         el.hidden = el.dataset.step !== step;
@@ -251,22 +272,15 @@
         localStorage.setItem('rsvps', JSON.stringify(rsvps));
       } catch (err) {}
 
+      // Copia para el panel de administración (/admin). Se envía ANTES de abrir
+      // WhatsApp: al cambiar de app, el celular congela la página y cortaba el envío.
+      guardarEnPanel(data);
+
       // Enviar a los novios por WhatsApp (se abre dentro del clic
       // para que el navegador no lo bloquee como ventana emergente)
       const waUrl = buildWhatsAppUrl(data);
       document.getElementById('rsvp-whatsapp-link').href = waUrl;
       window.open(waUrl, '_blank', 'noopener');
-
-      // Copia para el panel de administración (/admin). Si el servidor no
-      // está configurado o falla, se ignora: WhatsApp sigue siendo el envío principal.
-      try {
-        fetch('/api/rsvp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nombre: data.nombre, telefono: data.telefono, asistencia: data.asistencia }),
-          keepalive: true
-        }).catch(function() {});
-      } catch (err) {}
 
       const primerNombre = data.nombre.split(' ')[0];
       const si = data.asistencia === 'si';

@@ -102,6 +102,10 @@ el guardado no está configurado o falla, la invitación funciona igual.
   todo; exige `Authorization: Bearer <clave>`.
 - `admin.html` — panel: totales, búsqueda, filtro Sí/No, enlaces de llamada y
   WhatsApp, marca de "Repetido" y descarga para Excel (CSV).
+- `functions/api/estado.js` — `GET /api/estado`: diagnóstico (base conectada, tabla,
+  clave configurada). No muestra datos de invitados.
+- La invitación envía la copia con `navigator.sendBeacon` **antes** de abrir WhatsApp
+  (al cambiar de app el celular congela la página y cortaba el envío).
 
 **Configuración (una sola vez) en Cloudflare → Workers & Pages → el proyecto → Settings:**
 
