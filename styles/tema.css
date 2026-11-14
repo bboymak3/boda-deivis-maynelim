@@ -854,3 +854,7 @@ html, body { overflow-x: clip; }
 @media (min-width: 769px) {
   .gallery-item-wide { aspect-ratio: 21 / 9; }
 }
+
+@media (min-width: 769px) {
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
