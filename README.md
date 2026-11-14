@@ -84,9 +84,9 @@ Edita `index.html` y busca los siguientes placeholders:
 | `Restaurante La Finca` | Lugar de la celebración (hero, detalles y modal RSVP) |
 | `Km 77 Autopista Ciudad Bolívar - Puerto Ordaz` | Dirección y enlace "Ver ubicación" (Google Maps) |
 | `Cuenta: 0102-XXXX-XX-XXXXXXXX` | Datos bancarios para regalos |
-| Foto en `.invite-photo img` (index.html) | Foto principal de los novios en la tarjeta |
+| `assets/fotos/portada.*` | Foto de los novios en la tarjeta (fondo un poco difuminado) |
 | `assets/musica/hasta-ese-dia.webm` / `.m4a` | Canción de fondo: Opus liviana + AAC de respaldo (ver `assets/musica/LEEME.md`) |
-| Fotos Unsplash en `.gallery-item` | Reemplazar `background-image` por fotos reales |
+| `assets/fotos/galeria-*.webp/.jpg` | Fotos de la galería (WebP + JPEG de respaldo, sin datos EXIF/GPS) |
 | `WEDDING_DATE` en `scripts/main.js` | Fecha/hora del evento (actual: 2026-12-21T17:00) |
 
 ## Deploy en Cloudflare Pages

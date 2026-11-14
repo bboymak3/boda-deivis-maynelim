@@ -14,10 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/styles/main.css?v=19" />
-  <link rel="stylesheet" href="/styles/invitacion.css?v=19" />
-  <link rel="stylesheet" href="/styles/effects.css?v=19" />
-  <link rel="stylesheet" href="/styles/tema.css?v=19" />
+  <link rel="stylesheet" href="/styles/main.css?v=20" />
+  <link rel="stylesheet" href="/styles/invitacion.css?v=20" />
+  <link rel="stylesheet" href="/styles/effects.css?v=20" />
+  <link rel="stylesheet" href="/styles/tema.css?v=20" />
 
   <!-- Marcar JS habilitado antes del render para evitar FOUC -->
   <script>document.documentElement.classList.add('js-enabled', 'intro-pending');</script>
@@ -210,10 +210,10 @@
       <div class="invite-float">
         <article class="invite-card fx-frame" data-tilt>
           <div class="invite-photo">
-            <!-- Reemplazar por una foto real de los novios -->
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80" alt="Deivis y Maynelim" />
-            <svg class="invite-photo-floral" aria-hidden="true"><use href="#sym-floral"/></svg>
-            <svg class="invite-photo-floral invite-photo-floral-r" aria-hidden="true"><use href="#sym-floral"/></svg>
+            <picture>
+              <source srcset="/assets/fotos/portada.webp" type="image/webp" />
+              <img src="/assets/fotos/portada.jpg" alt="Deivis y Maynelim abrazados y riendo" width="900" height="1200" fetchpriority="high" decoding="async" />
+            </picture>
           </div>
 
           <div class="wax-seal invite-seal" aria-hidden="true"><span>D|M</span></div>
@@ -466,30 +466,34 @@
       <h2 class="section-title script-title">Nuestra galería</h2>
 
       <div class="gallery-grid">
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80')">
-          <div class="gallery-overlay"><span>Nosotros</span></div>
-        </div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80')">
-          <div class="gallery-overlay"><span>Para siempre</span></div>
-        </div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1511285564829-80945275fece?w=600&q=80')">
-          <div class="gallery-overlay"><span>El gran día</span></div>
-        </div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=80')">
-          <div class="gallery-overlay"><span>Juntos</span></div>
-        </div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1525258946800-98cfd641d0de?w=600&q=80')">
-          <div class="gallery-overlay"><span>Amor</span></div>
-        </div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=80')">
-          <div class="gallery-overlay"><span>Felices</span></div>
-        </div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80')">
-          <div class="gallery-overlay"><span>Bendición</span></div>
-        </div>
-        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80')">
-          <div class="gallery-overlay"><span>Detalles</span></div>
-        </div>
+        <figure class="gallery-item">
+          <picture>
+            <source srcset="/assets/fotos/galeria-montana.webp" type="image/webp" />
+            <img src="/assets/fotos/galeria-montana.jpg" alt="Deivis y Maynelim: caminando de la mano en la montaña" loading="lazy" decoding="async" style="object-position: center 55%;" />
+          </picture>
+          <figcaption class="gallery-overlay"><span>Juntos</span></figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <picture>
+            <source srcset="/assets/fotos/galeria-parque.webp" type="image/webp" />
+            <img src="/assets/fotos/galeria-parque.jpg" alt="Deivis y Maynelim: abrazados en el parque" loading="lazy" decoding="async" style="object-position: center 35%;" />
+          </picture>
+          <figcaption class="gallery-overlay"><span>Nosotros</span></figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <picture>
+            <source srcset="/assets/fotos/galeria-lago.webp" type="image/webp" />
+            <img src="/assets/fotos/galeria-lago.jpg" alt="Deivis y Maynelim: sentados frente al lago" loading="lazy" decoding="async" style="object-position: center 60%;" />
+          </picture>
+          <figcaption class="gallery-overlay"><span>Para siempre</span></figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <picture>
+            <source srcset="/assets/fotos/galeria-risas.webp" type="image/webp" />
+            <img src="/assets/fotos/galeria-risas.jpg" alt="Deivis y Maynelim: riendo abrazados" loading="lazy" decoding="async" style="object-position: center 30%;" />
+          </picture>
+          <figcaption class="gallery-overlay"><span>Felices</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -698,7 +702,7 @@
   <canvas class="fx-particles" id="fx-particles" aria-hidden="true"></canvas>
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <script src="/scripts/main.js?v=19"></script>
-  <script src="/scripts/effects.js?v=19"></script>
+  <script src="/scripts/main.js?v=20"></script>
+  <script src="/scripts/effects.js?v=20"></script>
 </body>
 </html>
