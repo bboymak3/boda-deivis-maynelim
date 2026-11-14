@@ -446,6 +446,36 @@ body {
   to { transform: scale(1.06); }
 }
 
+/* Zona superior sin foto: acuarela suave + florecitas azules en las esquinas */
+.invite-photo-floral-only {
+  height: 210px;
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 10%, rgba(169, 191, 214, 0.45) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 55% at 90% 85%, rgba(169, 191, 214, 0.4) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 60% 30%, rgba(247, 231, 166, 0.35) 0%, transparent 70%);
+}
+
+.invite-photo-floral-only::after { content: none; }
+
+.invite-photo-floral {
+  position: absolute;
+  top: -28px;
+  left: -46px;
+  width: 230px;
+  height: 172px;
+  z-index: 2;
+  transform: rotate(150deg);
+  pointer-events: none;
+}
+
+.invite-photo-floral-r {
+  top: auto;
+  left: auto;
+  bottom: -26px;
+  right: -40px;
+  transform: rotate(-15deg);
+}
+
 /* Desvanecido de la foto hacia el papel (solo el borde inferior) */
 .invite-photo::after {
   content: '';
@@ -976,6 +1006,7 @@ body {
 @media (min-width: 900px) {
   .invite-stage { max-width: 470px; }
   .invite-photo { height: 460px; }
+  .invite-photo-floral-only { height: 230px; }
   .hero-floral { width: 520px; height: 390px; }
 }
 

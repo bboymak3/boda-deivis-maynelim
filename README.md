@@ -65,12 +65,12 @@ boda-deivis-maynelim/
 
 ## Secciones
 
-1. **Hero** — Tarjeta de invitación: foto, sello D|M, nombres, fecha y 4 botones circulares
+1. **Hero** — Tarjeta de invitación: florecitas azules, sello D|M, nombres, fecha y 4 botones circulares
 2. **Cuenta regresiva** — Días / Horas / Minutos / Segundos al 21-Dic-2026 5:00 PM
 3. **Bienvenida** — "Hay momentos en la vida que se quedan grabados para siempre…"
 4. **Detalles** — Ceremonia 5:00 PM en Restaurante La Finca + dress code FORMAL (vestimenta ni roja ni blanca)
 5. **Regalos** — USDT (Binance de Maynelim y de Deivis) como opción preferida, Pago Móvil y divisas en efectivo
-6. **Galería** — 5 fotos de los novios: 1 horizontal destacada + 4 verticales (`assets/fotos/galeria-*`)
+6. **Galería** — 7 fotos de los novios: 1 horizontal destacada + 6 verticales (`assets/fotos/galeria-*`)
 7. **RSVP** — Nombre completo, teléfono y asistencia; se envía por WhatsApp
 8. **Versículo** — Eclesiastés 4:12
 9. **Footer** — Monograma, nombres, fecha y agradecimiento
@@ -84,7 +84,6 @@ Edita `index.html` y busca los siguientes placeholders:
 | `Restaurante La Finca` | Lugar de la celebración (hero, detalles y modal RSVP) |
 | `Km 77 Autopista Ciudad Bolívar - Puerto Ordaz` | Dirección y enlace "Ver ubicación" (Google Maps) |
 | `Cuenta: 0102-XXXX-XX-XXXXXXXX` | Datos bancarios para regalos |
-| `assets/fotos/portada.*` | Foto de los novios en la tarjeta (fondo un poco difuminado) |
 | `assets/musica/hasta-ese-dia.webm` / `.m4a` | Canción de fondo: Opus liviana + AAC de respaldo (ver `assets/musica/LEEME.md`) |
 | `assets/fotos/galeria-*.webp/.jpg` | Fotos de la galería (WebP + JPEG de respaldo, sin datos EXIF/GPS) |
 | `WEDDING_DATE` en `scripts/main.js` | Fecha/hora del evento (actual: 2026-12-21T17:00) |
