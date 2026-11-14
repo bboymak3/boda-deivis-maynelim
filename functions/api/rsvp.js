@@ -2,11 +2,12 @@
  * POST /api/rsvp — guarda una confirmación de asistencia.
  *
  * Lo llama la invitación (scripts/main.js) además de abrir WhatsApp.
- * Si el almacenamiento no está configurado responde 503 y la invitación
+ * Si la base de datos no está configurada responde 503 y la invitación
  * sigue funcionando igual.
  *
  * Requiere en Cloudflare Pages → Settings → Bindings:
- *   KV namespace con el nombre de variable  RSVP_KV
+ *   D1 database  generico_db  con el nombre de variable  GENERICO_DB
+ * Tabla: boda_dm_confirmaciones  (ver db/schema.sql)
  */
 
 const MAX_BODY = 2048;
@@ -23,7 +24,7 @@ function clean(value, max) {
 }
 
 export async function onRequestPost({ request, env }) {
-  if (!env.RSVP_KV) return json({ ok: false, error: 'almacenamiento-no-configurado' }, 503);
+  if (!env.GENERICO_DB) return json({ ok: false, error: 'base-de-datos-no-configurada' }, 503);
 
   const raw = await request.text();
   if (raw.length > MAX_BODY) return json({ ok: false, error: 'demasiado-grande' }, 413);
@@ -44,17 +45,10 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: 'datos-incompletos' }, 422);
   }
 
-  const record = {
-    nombre,
-    telefono,
-    asistencia,
-    fecha: new Date().toISOString(),
-  };
-
-  // La clave empieza con la fecha para que la lista salga en orden.
-  // Los datos van también en "metadata" para listarlos sin leer uno por uno.
-  const key = `rsvp:${record.fecha}:${crypto.randomUUID().slice(0, 8)}`;
-  await env.RSVP_KV.put(key, JSON.stringify(record), { metadata: record });
+  await env.GENERICO_DB
+    .prepare('INSERT INTO boda_dm_confirmaciones (nombre, telefono, asistencia, fecha) VALUES (?1, ?2, ?3, ?4)')
+    .bind(nombre, telefono, asistencia, new Date().toISOString())
+    .run();
 
   return json({ ok: true }, 201);
 }
