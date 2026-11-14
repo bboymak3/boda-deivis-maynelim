@@ -425,52 +425,36 @@ body {
 
 .invite-photo {
   position: relative;
-  height: 290px;
+  height: 400px;
   overflow: hidden;
 }
 
+/* Foto de los novios: vertical, se encuadra para que se vean las dos caras */
 .invite-photo img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
-  transform: scale(1.08);
-  animation: kenBurns 18s ease-in-out infinite alternate;
+  object-position: center 12%;
+  transform-origin: 40% 30%;
+  animation: kenBurns 20s ease-in-out infinite alternate;
 }
 
+/* Acercamiento lento y suave (sin recortar las caras) */
 @keyframes kenBurns {
-  from { transform: scale(1.08) translate(0, 0); }
-  to { transform: scale(1.18) translate(-2%, -2%); }
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
 }
 
-/* Desvanecido de la foto hacia el papel */
+/* Desvanecido de la foto hacia el papel (solo el borde inferior) */
 .invite-photo::after {
   content: '';
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 45%;
-  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.75) 70%, #FFFFFF 100%);
-}
-
-.invite-photo-floral {
-  position: absolute;
-  top: -28px;
-  left: -46px;
-  width: 210px;
-  height: 158px;
-  z-index: 2;
-  transform: rotate(150deg);
-  pointer-events: none;
-}
-
-.invite-photo-floral-r {
-  top: auto;
-  left: auto;
-  bottom: -30px;
-  right: -40px;
-  transform: rotate(-15deg);
+  height: 22%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.7) 65%, #FFFFFF 100%);
 }
 
 .invite-seal {
@@ -991,7 +975,7 @@ body {
    ============================================================ */
 @media (min-width: 900px) {
   .invite-stage { max-width: 470px; }
-  .invite-photo { height: 320px; }
+  .invite-photo { height: 460px; }
   .hero-floral { width: 520px; height: 390px; }
 }
 

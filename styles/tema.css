@@ -815,3 +815,32 @@ body {
 
 /* Que la entrada desde la derecha nunca cree scroll horizontal */
 html, body { overflow-x: clip; }
+
+/* ============================================================
+   GALERÍA — fotos de los novios en tarjetas verticales (3:4)
+   ============================================================ */
+.gallery-grid {
+  grid-auto-rows: auto;
+  max-width: 900px;
+}
+
+.gallery-item {
+  margin: 0;
+  aspect-ratio: 3 / 4;
+}
+
+.gallery-item picture,
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-item img {
+  object-fit: cover;
+}
+
+/* En celular la etiqueta se ve siempre (no hay "pasar el mouse") */
+@media (hover: none) {
+  .gallery-overlay { opacity: 1; }
+}
