@@ -5,7 +5,7 @@
  * La clave NO está en el código: se compara con el secreto ADMIN_PASSWORD.
  *
  * Requiere en Cloudflare Pages → Settings:
- *   Bindings:   KV namespace  RSVP_KV   (el mismo que usa /api/rsvp)
+ *   Bindings:   D1 database  generico_db  →  GENERICO_DB  (el mismo que usa /api/rsvp)
  *   Variables:  ADMIN_PASSWORD  (tipo "Secret")
  */
 
@@ -29,7 +29,7 @@ async function sameSecret(a, b) {
 }
 
 export async function onRequestGet({ request, env }) {
-  if (!env.ADMIN_PASSWORD || !env.RSVP_KV) {
+  if (!env.ADMIN_PASSWORD || !env.GENERICO_DB) {
     return json({ ok: false, error: 'panel-no-configurado' }, 503);
   }
 
@@ -40,23 +40,11 @@ export async function onRequestGet({ request, env }) {
     return json({ ok: false, error: 'clave-incorrecta' }, 401);
   }
 
-  const items = [];
-  let cursor;
-  do {
-    const page = await env.RSVP_KV.list({ prefix: 'rsvp:', cursor });
-    for (const k of page.keys) {
-      let data = k.metadata;
-      if (!data) {
-        const value = await env.RSVP_KV.get(k.name);
-        data = value ? JSON.parse(value) : null;
-      }
-      if (data) items.push({ id: k.name, ...data });
-    }
-    cursor = page.list_complete ? undefined : page.cursor;
-  } while (cursor);
+  const { results } = await env.GENERICO_DB
+    .prepare('SELECT id, nombre, telefono, asistencia, fecha FROM boda_dm_confirmaciones ORDER BY fecha DESC, id DESC')
+    .all();
 
-  items.sort((a, b) => (a.fecha < b.fecha ? 1 : -1)); // más recientes primero
-  return json({ ok: true, items });
+  return json({ ok: true, items: results || [] });
 }
 
 export async function onRequest() {

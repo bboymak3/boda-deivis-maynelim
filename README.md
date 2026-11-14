@@ -91,26 +91,30 @@ Edita `index.html` y busca los siguientes placeholders:
 ## Panel de confirmaciones (`/admin`)
 
 Cada confirmación sigue llegando por **WhatsApp** como siempre y, además, se
-guarda en Cloudflare para verla en **`/admin`** (protegido con clave). Si el
-guardado no está configurado o falla, la invitación funciona igual.
+guarda en **Cloudflare D1** para verla en **`/admin`** (protegido con clave). Si
+el guardado no está configurado o falla, la invitación funciona igual.
 
-- `functions/api/rsvp.js` — `POST /api/rsvp`: guarda nombre, teléfono y asistencia.
+- Base: `generico_db` (compartida), tabla **`boda_dm_confirmaciones`**. El prefijo
+  `boda_dm_` la separa de las tablas de otros proyectos. Estructura en `db/schema.sql`.
+- `functions/api/rsvp.js` — `POST /api/rsvp`: guarda nombre, teléfono y asistencia
+  (consultas con parámetros, sin riesgo de inyección SQL).
 - `functions/api/admin/confirmaciones.js` — `GET /api/admin/confirmaciones`: lista
   todo; exige `Authorization: Bearer <clave>`.
 - `admin.html` — panel: totales, búsqueda, filtro Sí/No, enlaces de llamada y
-  WhatsApp, marca de "Repetido" y descarga a Excel (CSV).
+  WhatsApp, marca de "Repetido" y descarga para Excel (CSV).
 
 **Configuración (una sola vez) en Cloudflare → Workers & Pages → el proyecto → Settings:**
 
-1. **Bindings → Add → KV namespace**: nombre de variable `RSVP_KV`, namespace
-   `boda-deivis-maynelim-confirmaciones` (en Production y Preview).
+1. **Bindings → Add → D1 database**: nombre de variable `GENERICO_DB`, base
+   `generico_db` (en Production y Preview).
 2. **Variables and Secrets → Add**: tipo **Secret**, nombre `ADMIN_PASSWORD`,
    valor = la clave del panel. La clave **no** está en el código.
 3. Volver a desplegar (Deployments → ⋯ → Retry deployment) para que tome los cambios.
 
 Solo se guardan las confirmaciones hechas **después** de esta configuración.
+Consulta directa: `SELECT * FROM boda_dm_confirmaciones ORDER BY fecha DESC;`
 
-
+## Deploy en Cloudflare Pages
 
 ```bash
 npx wrangler@latest pages deploy . --project-name=boda-deivis-maynelim --branch=main --commit-dirty=true

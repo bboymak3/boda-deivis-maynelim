@@ -225,7 +225,7 @@
         throw new Error('Sin conexión. Revisa tu internet e inténtalo de nuevo.');
       }
       if (res.status === 401) throw new Error('Clave incorrecta.');
-      if (res.status === 503) throw new Error('El panel aún no está configurado en Cloudflare (falta RSVP_KV o ADMIN_PASSWORD).');
+      if (res.status === 503) throw new Error('El panel aún no está configurado en Cloudflare (falta la base GENERICO_DB o la clave ADMIN_PASSWORD).');
       if (!res.ok) throw new Error('No se pudieron cargar las confirmaciones (error ' + res.status + ').');
       var data = await res.json();
       return data.items || [];
@@ -340,7 +340,11 @@
       }));
       // ";" y BOM para que Excel en español lo abra con acentos y columnas correctas
       var csv = '﻿' + filas.map(function(f) {
-        return f.map(function(c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(';');
+        return f.map(function(c) {
+          var t = String(c);
+          if (/^[=+\-@\t\r]/.test(t)) t = "'" + t; // que Excel no lo ejecute como fórmula
+          return '"' + t.replace(/"/g, '""') + '"';
+        }).join(';');
       }).join('\r\n');
       var a = document.createElement('a');
       a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
