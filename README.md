@@ -100,9 +100,10 @@ el guardado no está configurado o falla, la invitación funciona igual.
 - `functions/api/rsvp.js` — `POST /api/rsvp`: guarda nombre, teléfono y asistencia
   (consultas con parámetros, sin riesgo de inyección SQL).
 - `functions/api/admin/confirmaciones.js` — exige `Authorization: Bearer <clave>`:
-  `GET` lista todo, `POST` agrega a mano (`origen = 'manual'`), `DELETE ?id=` borra.
+  `GET` lista todo, `POST` agrega a mano (`origen = 'manual'`), `DELETE ?id=` borra
+  **solo las agregadas a mano**: las de los invitados (`origen = 'web'`) están protegidas (403).
 - `admin.html` — panel: totales, búsqueda, filtro Sí/No, **agregar a mano** (para
-  quienes confirmaron por otro medio), borrar, enlaces de llamada y WhatsApp,
+  quienes confirmaron por otro medio), borrar las agregadas a mano, enlaces de llamada y WhatsApp,
   marcas "Manual" y "Repetido" y descarga para Excel (CSV, con columna Origen).
 - `functions/api/estado.js` — `GET /api/estado`: diagnóstico (base conectada, tabla,
   clave configurada). No muestra datos de invitados.
