@@ -95,13 +95,15 @@ guarda en **Cloudflare D1** para verla en **`/admin`** (protegido con clave). Si
 el guardado no está configurado o falla, la invitación funciona igual.
 
 - Base: `generico_db` (compartida), tabla **`boda_dm_confirmaciones`**. El prefijo
-  `boda_dm_` la separa de las tablas de otros proyectos. Estructura en `db/schema.sql`.
+  `boda_dm_` la separa de las tablas de otros proyectos. Estructura en `db/schema.sql`
+  (migración de la columna `origen`: `db/002_origen.sql`, ya aplicada).
 - `functions/api/rsvp.js` — `POST /api/rsvp`: guarda nombre, teléfono y asistencia
   (consultas con parámetros, sin riesgo de inyección SQL).
-- `functions/api/admin/confirmaciones.js` — `GET /api/admin/confirmaciones`: lista
-  todo; exige `Authorization: Bearer <clave>`.
-- `admin.html` — panel: totales, búsqueda, filtro Sí/No, enlaces de llamada y
-  WhatsApp, marca de "Repetido" y descarga para Excel (CSV).
+- `functions/api/admin/confirmaciones.js` — exige `Authorization: Bearer <clave>`:
+  `GET` lista todo, `POST` agrega a mano (`origen = 'manual'`), `DELETE ?id=` borra.
+- `admin.html` — panel: totales, búsqueda, filtro Sí/No, **agregar a mano** (para
+  quienes confirmaron por otro medio), borrar, enlaces de llamada y WhatsApp,
+  marcas "Manual" y "Repetido" y descarga para Excel (CSV, con columna Origen).
 - `functions/api/estado.js` — `GET /api/estado`: diagnóstico (base conectada, tabla,
   clave configurada). No muestra datos de invitados.
 - La invitación envía la copia con `navigator.sendBeacon` **antes** de abrir WhatsApp

@@ -136,10 +136,56 @@
     .updated { font-size: 0.72rem; color: var(--muted); text-align: right; margin-top: 12px; }
     .hidden { display: none !important; }
 
+    /* Agregar a mano */
+    .btn-add {
+      color: var(--yellow-100);
+      background: linear-gradient(135deg, var(--blue-700) 0%, var(--blue-500) 100%);
+      box-shadow: 0 0 0 1.5px var(--gold-light);
+    }
+    .add-card { margin-bottom: 16px; }
+    .add-card h2 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 1.15rem; margin-bottom: 4px; }
+    .add-card .hint { font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; }
+    .add-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .add-grid label { display: flex; flex-direction: column; gap: 6px; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .add-grid input {
+      padding: 11px 13px; font: inherit; font-size: 0.95rem; letter-spacing: 0; text-transform: none; color: var(--text);
+      border: 1.5px solid #D6DEE8; border-radius: 12px; background: var(--blue-50); outline: none;
+    }
+    .add-grid input:focus { border-color: var(--blue-500); background: #fff; }
+    .add-full { grid-column: 1 / -1; }
+    .seg { display: flex; gap: 8px; }
+    .seg label {
+      flex: 1; flex-direction: row; justify-content: center; align-items: center; gap: 6px; cursor: pointer;
+      padding: 11px 10px; border: 1.5px solid #D6DEE8; border-radius: 12px; background: #fff;
+      font-size: 0.8rem; letter-spacing: 0.04em; text-transform: none; color: var(--text);
+    }
+    .seg input { position: absolute; opacity: 0; pointer-events: none; }
+    .seg label:has(input:checked) { border-color: var(--blue-700); background: var(--blue-50); box-shadow: 0 0 0 2px rgba(232, 200, 120, 0.6); }
+    .add-actions { display: flex; gap: 8px; margin-top: 14px; }
+    .add-actions .btn { flex: 1; }
+    .add-msg { font-size: 0.8rem; margin-top: 10px; min-height: 1.2em; }
+    .add-msg.error { color: var(--red); }
+    .add-msg.ok { color: var(--green); }
+
+    .badge-manual { background: var(--blue-100); color: var(--blue-700); margin-left: 6px; }
+    .item-side { display: flex; align-items: center; gap: 8px; }
+    .del-btn {
+      width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #E3E8EF; background: #fff; cursor: pointer;
+      display: grid; place-items: center; color: var(--muted); flex: none;
+    }
+    .del-btn:hover { color: var(--red); border-color: #F0C9C5; background: #FDF3F2; }
+    .del-btn:disabled { opacity: 0.5; cursor: default; }
+    .item.is-new { animation: nuevo 1.6s ease; }
+    @keyframes nuevo { 0% { box-shadow: 0 0 0 3px var(--gold-light); } 100% { box-shadow: 0 0 0 0 transparent; } }
+
+    @media (max-width: 520px) {
+      .add-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 520px) {
       .stat-num { font-size: 1.6rem; }
-      .toolbar .actions { width: 100%; }
-      .toolbar .actions .btn { flex: 1; padding: 11px 10px; letter-spacing: 0.08em; }
+      .toolbar .actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+      .toolbar .actions .btn { padding: 11px 10px; letter-spacing: 0.08em; }
     }
   </style>
 </head>
@@ -171,11 +217,36 @@
       <div class="toolbar">
         <h1>Confirmaciones</h1>
         <div class="actions">
+          <button type="button" class="btn btn-add" id="add-open">+ Agregar</button>
           <button type="button" class="btn btn-ghost" id="refresh">Actualizar</button>
           <button type="button" class="btn btn-gold" id="csv">Descargar Excel</button>
           <button type="button" class="btn btn-ghost" id="logout">Salir</button>
         </div>
       </div>
+
+      <form class="card add-card hidden" id="add-form" autocomplete="off">
+        <h2>Agregar confirmación</h2>
+        <p class="hint">Para quienes te confirmaron por otro medio (WhatsApp, llamada, en persona).</p>
+        <div class="add-grid">
+          <label>Nombre completo
+            <input type="text" id="add-nombre" maxlength="80" placeholder="Nombre y apellido" required />
+          </label>
+          <label>Teléfono (opcional)
+            <input type="tel" id="add-telefono" maxlength="30" placeholder="0414 1234567" inputmode="tel" />
+          </label>
+          <div class="add-full">
+            <div class="seg" role="radiogroup" aria-label="Asistencia">
+              <label><input type="radio" name="add-asistencia" value="si" checked /> ✅ Asistirá</label>
+              <label><input type="radio" name="add-asistencia" value="no" /> ❌ No asistirá</label>
+            </div>
+          </div>
+        </div>
+        <div class="add-actions">
+          <button type="button" class="btn btn-ghost" id="add-cancel">Cancelar</button>
+          <button type="submit" class="btn btn-gold" id="add-save">Guardar</button>
+        </div>
+        <p class="add-msg" id="add-msg" role="status"></p>
+      </form>
 
       <div class="stats">
         <div class="stat"><div class="stat-num" id="n-total">0</div><div class="stat-label">Respuestas</div></div>
@@ -320,14 +391,35 @@
         wa.textContent = 'WhatsApp';
         var fecha = document.createElement('span');
         fecha.textContent = fechaLocal(it.fecha);
-        meta.append(tel, wa, fecha);
+        if (soloDigitos(it.telefono)) meta.append(tel, wa, fecha);
+        else meta.append(fecha); // sin teléfono: no mostrar enlaces vacíos
         info.append(nombre, meta);
 
         var badge = document.createElement('span');
         badge.className = 'badge ' + (it.asistencia === 'si' ? 'badge-yes' : 'badge-no');
         badge.textContent = it.asistencia === 'si' ? 'Asistirá' : 'No asistirá';
 
-        row.append(info, badge);
+        if (it.origen === 'manual') {
+          var man = document.createElement('span');
+          man.className = 'badge badge-manual';
+          man.textContent = 'Manual';
+          man.title = 'Agregada a mano desde el panel';
+          nombre.appendChild(man);
+        }
+        if (String(it.id) === String(ultimoAgregado)) row.classList.add('is-new');
+
+        var del = document.createElement('button');
+        del.type = 'button';
+        del.className = 'del-btn';
+        del.setAttribute('aria-label', 'Borrar la confirmación de ' + it.nombre);
+        del.title = 'Borrar';
+        del.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 002 2h6a2 2 0 002-2l1-12M9 7V4h6v3"/></svg>';
+        del.addEventListener('click', function() { borrar(it, del); });
+
+        var side = document.createElement('div');
+        side.className = 'item-side';
+        side.append(badge, del);
+        row.append(info, side);
         lista.appendChild(row);
       });
 
@@ -335,8 +427,8 @@
     }
 
     function descargarCSV() {
-      var filas = [['Nombre', 'Teléfono', 'Asistencia', 'Fecha']].concat(items.map(function(it) {
-        return [it.nombre, it.telefono, it.asistencia === 'si' ? 'Sí' : 'No', new Date(it.fecha).toLocaleString('es-VE')];
+      var filas = [['Nombre', 'Teléfono', 'Asistencia', 'Fecha', 'Origen']].concat(items.map(function(it) {
+        return [it.nombre, it.telefono, it.asistencia === 'si' ? 'Sí' : 'No', new Date(it.fecha).toLocaleString('es-VE'), it.origen === 'manual' ? 'Manual' : 'Web'];
       }));
       // ";" y BOM para que Excel en español lo abra con acentos y columnas correctas
       var csv = '﻿' + filas.map(function(f) {
@@ -378,6 +470,7 @@
 
     $('logout').addEventListener('click', function() {
       setClave('');
+      abrirFormulario(false);
       items = [];
       $('clave').value = '';
       panel.classList.add('hidden');
@@ -385,6 +478,88 @@
     });
 
     $('csv').addEventListener('click', descargarCSV);
+
+    // ---------- Agregar a mano ----------
+    var ultimoAgregado = null;
+    var addForm = $('add-form'), addMsg = $('add-msg');
+
+    function abrirFormulario(abrir) {
+      addForm.classList.toggle('hidden', !abrir);
+      $('add-open').textContent = abrir ? 'Cerrar' : '+ Agregar';
+      addMsg.textContent = '';
+      if (abrir) $('add-nombre').focus();
+    }
+
+    function sesionVencida(res) {
+      if (res.status !== 401) return false;
+      setClave('');
+      panel.classList.add('hidden');
+      loginBox.classList.remove('hidden');
+      mostrarError('La sesión expiró o la clave cambió. Vuelve a entrar.');
+      return true;
+    }
+
+    $('add-open').addEventListener('click', function() { abrirFormulario(addForm.classList.contains('hidden')); });
+    $('add-cancel').addEventListener('click', function() { abrirFormulario(false); });
+
+    addForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var nombre = $('add-nombre').value.trim().replace(/\s+/g, ' ');
+      var telefono = $('add-telefono').value.trim();
+      var asistencia = addForm.querySelector('input[name="add-asistencia"]:checked').value;
+      if (nombre.length < 2) {
+        addMsg.textContent = 'Escribe el nombre de la persona.';
+        addMsg.className = 'add-msg error';
+        $('add-nombre').focus();
+        return;
+      }
+      var btn = $('add-save');
+      btn.disabled = true;
+      btn.textContent = 'Guardando…';
+      try {
+        var res = await fetch(API, {
+          method: 'POST',
+          headers: { Authorization: 'Bearer ' + getClave(), 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre: nombre, telefono: telefono, asistencia: asistencia })
+        });
+        if (sesionVencida(res)) return;
+        if (!res.ok) throw new Error();
+        var data = await res.json();
+        ultimoAgregado = data.item && data.item.id;
+        items = await cargar(getClave());
+        pintar();
+        addForm.reset();
+        addMsg.textContent = '✓ Guardado: ' + nombre + (asistencia === 'si' ? ' (asistirá).' : ' (no asistirá).');
+        addMsg.className = 'add-msg ok';
+        $('add-nombre').focus();
+      } catch (err) {
+        addMsg.textContent = 'No se pudo guardar. Revisa tu conexión e inténtalo de nuevo.';
+        addMsg.className = 'add-msg error';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Guardar';
+      }
+    });
+
+    // ---------- Borrar ----------
+    async function borrar(it, btn) {
+      var origen = it.origen === 'manual' ? 'agregada a mano' : 'enviada desde la invitación';
+      if (!confirm('¿Borrar la confirmación de ' + it.nombre + ' (' + origen + ')?\n\nEsta acción no se puede deshacer.')) return;
+      btn.disabled = true;
+      try {
+        var res = await fetch(API + '?id=' + encodeURIComponent(it.id), {
+          method: 'DELETE',
+          headers: { Authorization: 'Bearer ' + getClave() }
+        });
+        if (sesionVencida(res)) return;
+        if (!res.ok && res.status !== 404) throw new Error();
+        items = items.filter(function(x) { return x.id !== it.id; });
+        pintar();
+      } catch (err) {
+        btn.disabled = false;
+        alert('No se pudo borrar. Revisa tu conexión e inténtalo de nuevo.');
+      }
+    }
     $('buscar').addEventListener('input', pintar);
     document.querySelectorAll('.chip').forEach(function(chip) {
       chip.addEventListener('click', function() {
