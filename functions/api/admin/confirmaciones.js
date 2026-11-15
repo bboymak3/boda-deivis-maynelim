@@ -3,7 +3,8 @@
  *
  *   GET     lista todas las confirmaciones
  *   POST    agrega una confirmación a mano   { nombre, telefono?, asistencia }
- *   DELETE  borra una confirmación           ?id=123
+ *   DELETE  borra una confirmación AGREGADA A MANO  ?id=123
+ *           (las que llegaron desde la invitación, origen 'web', no se pueden borrar)
  *
  * La clave se envía como  Authorization: Bearer <clave>  y se compara con el
  * secreto ADMIN_PASSWORD (no está en el código).
@@ -100,8 +101,19 @@ export async function onRequestDelete({ request, env }) {
   const id = Number(new URL(request.url).searchParams.get('id'));
   if (!Number.isInteger(id) || id <= 0) return json({ ok: false, error: 'id-invalido' }, 400);
 
-  const res = await env.GENERICO_DB.prepare('DELETE FROM boda_dm_confirmaciones WHERE id = ?1').bind(id).run();
-  if (!res.meta?.changes) return json({ ok: false, error: 'no-existe' }, 404);
+  // Las confirmaciones de los invitados (origen 'web') están protegidas:
+  // solo se pueden borrar las agregadas a mano desde el panel.
+  const row = await env.GENERICO_DB
+    .prepare('SELECT origen FROM boda_dm_confirmaciones WHERE id = ?1')
+    .bind(id)
+    .first();
+  if (!row) return json({ ok: false, error: 'no-existe' }, 404);
+  if (row.origen !== 'manual') return json({ ok: false, error: 'protegida' }, 403);
+
+  await env.GENERICO_DB
+    .prepare("DELETE FROM boda_dm_confirmaciones WHERE id = ?1 AND origen = 'manual'")
+    .bind(id)
+    .run();
   return json({ ok: true });
 }
 
